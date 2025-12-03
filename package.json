@@ -29,6 +29,7 @@
     "typescript-eslint": "^8.48.0",
     "vite": "^7.2.4",
     "vite-plugin-php": "^2.0.4",
-    "wp-types": "^4.68.3"
+    "wp-types": "^4.68.3",
+    "cpts-javascript-utilities": "cptSwing/cpts-javascript-utilities#1.0.1"
   }
 }
