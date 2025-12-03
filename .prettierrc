@@ -1,6 +1,7 @@
 {
     "jsxSingleQuote": false,
     "plugins": [
+        "@prettier/plugin-php",
         "prettier-plugin-tailwindcss"
     ],
     "printWidth": 160,

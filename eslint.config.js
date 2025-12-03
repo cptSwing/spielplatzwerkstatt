@@ -12,7 +12,7 @@ export default [
     ...tsEslint.configs.recommended,
     jsxA11yEslint.flatConfigs.recommended,
     {
-        ignores: ['dist/**/*', 'test/fixtures/**', 'test/__snapshots__/**'],
+        ignores: ['dist/**/*', 'node_modules'],
     },
     {
         files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
