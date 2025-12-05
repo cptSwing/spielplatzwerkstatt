@@ -7,7 +7,7 @@ const Leistungen = ({ leistungsData }: { leistungsData: ACF_Leistung_Type }) => 
     const { vollbild_slider, info_kaertchen, produkt_story_a, produkt_story_b, produkt_story_c } = leistungsData;
 
     return (
-        <div className="flex w-(--container-width) flex-col items-center justify-start gap-y-12">
+        <div className="relative flex w-(--container-width) flex-col items-center justify-start gap-y-24 [--content-card-padding:--spacing(2)]">
             <LeistungHeader headerData={vollbild_slider} />
             <InfoKarten kartenData={info_kaertchen} />
             <ProduktStory storyData={produkt_story_a} />

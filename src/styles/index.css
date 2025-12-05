@@ -23,10 +23,10 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-:root {
-    @apply h-dvh w-dvw bg-cyan-400 [--container-horizontal-margin:10%] [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--header-footer-gutter:--spacing(6)] [--header-footer-height:--spacing(28)] [--header-footer-remaining-height:calc(100dvh-2*(var(--header-footer-height)-var(--header-footer-gutter)))];
+body {
+    @apply h-auto text-base w-dvw overflow-x-hidden bg-cyan-400  [--container-horizontal-margin:5%] md:[--container-horizontal-margin:10%] xl:[--container-horizontal-margin:20%] [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--header-footer-gutter:--spacing(6)] [--header-footer-height:--spacing(28)] [--page-height-no-header-no-footer:calc(100dvh-2*(var(--header-footer-height)-var(--header-footer-gutter)))] [--page-height-no-header:calc(100dvh-var(--header-footer-height)-var(--header-footer-gutter))];
 }
 
 #frontend-root {
-    @apply -mt-(--header-footer-gutter) flex min-h-(--header-footer-remaining-height) w-full flex-col items-center justify-center py-[calc(var(--header-footer-gutter)*2)] text-2xl;
+    @apply -mt-(--header-footer-gutter) flex min-h-(--page-height-no-header-no-footer) w-full flex-col items-center justify-center pb-[calc(var(--header-footer-gutter)*4)] pt-[calc(var(--header-footer-gutter)*2.5)] ;
 }

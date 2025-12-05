@@ -6,9 +6,7 @@
     $result = file_get_contents($endpoint);
 ?>
 
-<?php 
-    include("partials/header.php");
-?>
+<?php include("partials/header.php"); ?>
 
 <div
     id="frontend-root"
@@ -18,6 +16,8 @@
 >
 </div>
 
-<?php 
-    include("partials/footer.php");
-?>
+
+
+
+
+<?php include("partials/footer.php"); ?>

@@ -6,13 +6,11 @@ const Carousel = ({
     visibleItemsCount = 1,
     isInfinite = true,
     withIndicator = true,
-    square = false,
 }: {
     images: string[];
     visibleItemsCount?: number;
     isInfinite?: boolean;
     withIndicator?: boolean;
-    square?: boolean;
 }) => {
     const isRepeating = isInfinite && images.length > visibleItemsCount;
 
@@ -35,86 +33,80 @@ const Carousel = ({
     }, [currentIndex, isRepeating, visibleItemsCount, images.length]);
 
     // previous images before the first item
-    const extraPreviousItems = useMemo(() => {
+    const extraPreviousImages = useMemo(() => {
         const output = [];
         for (let index = 0; index < visibleItemsCount; index++) {
             output.push(
-                <img
+                <ImageWrapper
+                    key={images[images.length - 1 - index] + index}
                     src={images[images.length - 1 - index]}
-                    alt={`slider ${index + 1}`}
-                    className={classNames('shrink-0 grow object-cover', square && 'aspect-square')}
-                    style={{ width: `calc(100% / ${visibleItemsCount})` }}
+                    visibleItemsCount={visibleItemsCount}
+                    imageIndex={images.length - 1 - index}
+                    currentIndex={currentIndex}
                 />,
             );
         }
         output.reverse();
         return output;
-    }, [images, square, visibleItemsCount]);
+    }, [images, currentIndex, visibleItemsCount]);
 
     // next images after the last item
-    const extraNextItems = useMemo(() => {
+    const extraNextImages = useMemo(() => {
         const output = [];
         for (let index = 0; index < visibleItemsCount; index++) {
             output.push(
-                <img
+                <ImageWrapper
+                    key={images[index] + index}
                     src={images[index]}
-                    alt={`slider ${index + 1}`}
-                    className={classNames('shrink-0 grow object-cover', square && 'aspect-square')}
-                    style={{ width: `calc(100% / ${visibleItemsCount})` }}
+                    visibleItemsCount={visibleItemsCount}
+                    imageIndex={index}
+                    currentIndex={currentIndex}
                 />,
             );
         }
         return output;
-    }, [images, square, visibleItemsCount]);
+    }, [images, currentIndex, visibleItemsCount]);
 
     return (
-        <div className="flex h-[inherit] w-full flex-col">
-            <div className="relative flex min-h-full w-full overflow-hidden">
-                {isPrevButtonVisible ? (
-                    <DirectionalButton
-                        previous
-                        length={images.length}
-                        isRepeating={isRepeating}
-                        visibleItemsCount={visibleItemsCount}
-                        currentIndexState={currentIndexState}
-                        timeoutInProgressState={timeoutInProgressState}
-                    />
-                ) : null}
+        <div className="relative flex h-full w-full flex-col overflow-hidden">
+            {isPrevButtonVisible ? (
+                <DirectionalButton
+                    previous
+                    length={images.length}
+                    isRepeating={isRepeating}
+                    visibleItemsCount={visibleItemsCount}
+                    currentIndexState={currentIndexState}
+                    timeoutInProgressState={timeoutInProgressState}
+                />
+            ) : null}
 
-                {/* <div className="w-full overflow-hidden" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}> */}
-                <div
-                    className={classNames('flex transition-all', !isTransitionEnabled && 'transition-none')}
-                    style={{
-                        transform: `translateX(-${currentIndex * (100 / visibleItemsCount)}%)`,
-                    }}
-                    onTransitionEnd={() => handleTransitionEnd()}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                >
-                    {isRepeating && extraPreviousItems}
-                    {images.map((url, idx) => (
-                        <img
-                            key={url + idx}
-                            src={url}
-                            alt={`slider ${idx + 1}`}
-                            className={classNames('shrink-0 grow object-cover', square && 'aspect-square')}
-                            style={{ width: `calc(100% / ${visibleItemsCount})` }}
-                        />
-                    ))}
-                    {isRepeating && extraNextItems}
-                </div>
-                {/* </div> */}
-
-                {isNextButtonVisible ? (
-                    <DirectionalButton
-                        length={images.length}
-                        isRepeating={isRepeating}
-                        visibleItemsCount={visibleItemsCount}
-                        currentIndexState={currentIndexState}
-                        timeoutInProgressState={timeoutInProgressState}
-                    />
-                ) : null}
+            {/* <div className="w-full overflow-hidden" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}> */}
+            <div
+                className={classNames('flex h-full transition-transform duration-300', !isTransitionEnabled && 'transition-none')}
+                style={{
+                    transform: `translateX(-${currentIndex * (100 / visibleItemsCount)}%)`,
+                }}
+                onTransitionEnd={handleTransitionEnd}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+            >
+                {isRepeating && extraPreviousImages}
+                {images.map((url, idx) => (
+                    <ImageWrapper key={url + idx} src={url} visibleItemsCount={visibleItemsCount} imageIndex={idx} currentIndex={currentIndex} />
+                ))}
+                {isRepeating && extraNextImages}
             </div>
+            {/* </div> */}
+
+            {isNextButtonVisible ? (
+                <DirectionalButton
+                    length={images.length}
+                    isRepeating={isRepeating}
+                    visibleItemsCount={visibleItemsCount}
+                    currentIndexState={currentIndexState}
+                    timeoutInProgressState={timeoutInProgressState}
+                />
+            ) : null}
 
             {withIndicator && <RenderDots length={images.length} currentIndex={currentIndex} isRepeating={isRepeating} visibleItemsCount={visibleItemsCount} />}
         </div>
@@ -204,6 +196,33 @@ const DirectionalButton = ({
     );
 };
 
+const ImageWrapper = ({
+    src,
+    visibleItemsCount,
+    imageIndex,
+    currentIndex,
+}: {
+    src: string;
+    visibleItemsCount: number;
+    imageIndex: number;
+    currentIndex: number;
+}) => {
+    return (
+        <div
+            className={classNames(
+                'border-neutral-40 relative shrink-0',
+                (currentIndex - imageIndex) % 2 === 0 ? '[clip-path:inset(0px_var(--content-card-padding))]' : '[clip-path:inset(0px_0px)]',
+            )}
+            key={src + imageIndex}
+            style={{
+                width: `calc(100% / ${visibleItemsCount})`,
+            }}
+        >
+            <img src={src} alt={`slider ${imageIndex + 1}`} className="size-full object-cover" />
+        </div>
+    );
+};
+
 const RenderDots = ({
     length,
     currentIndex,
@@ -241,23 +260,28 @@ const RenderDots = ({
         for (let index = 0; index < localLength; index++) {
             let className = '';
             if (calculatedActiveIndex === index) {
-                className = 'w-3 h-1.5 bg-black shrink-0 grow ml-1.5 rounded-xl transition-all first-of-type:ml-0 cursor-pointer';
+                className = 'w-3 h-1.5 bg-black shrink-0 grow ml-1.5 rounded-xl transition-[margin-left,width,height] first-of-type:ml-0 cursor-pointer';
             } else if (calculatedActiveIndex === 0) {
                 if (calculatedActiveIndex + index <= 2) {
-                    className = 'ml-1.5 rounded-xl transition-all first-of-type:ml-0 size-1.5 bg-neutral-900 shrink-0 grow cursor-pointer';
+                    className =
+                        'ml-1.5 rounded-xl transition-[margin-left,width,height] first-of-type:ml-0 size-1.5 bg-neutral-900 shrink-0 grow cursor-pointer';
                 } else {
-                    className = 'ml-1.5 rounded-xl transition-all first-of-type:ml-0 my-px bg-neutral-900 shrink-0 grow size-1 cursor-pointer';
+                    className =
+                        'ml-1.5 rounded-xl transition-[margin-left,width,height] first-of-type:ml-0 my-px bg-neutral-900 shrink-0 grow size-1 cursor-pointer';
                 }
             } else if (calculatedActiveIndex === localLength - 1) {
                 if (Math.abs(calculatedActiveIndex - index) <= 2) {
-                    className = 'ml-1.5 rounded-xl transition-all first-of-type:ml-0 size-1.5 bg-neutral-900 shrink-0 grow cursor-pointer';
+                    className =
+                        'ml-1.5 rounded-xl transition-[margin-left,width,height] first-of-type:ml-0 size-1.5 bg-neutral-900 shrink-0 grow cursor-pointer';
                 } else {
-                    className = 'ml-1.5 rounded-xl transition-all first-of-type:ml-0 my-px bg-neutral-900 shrink-0 grow size-1 cursor-pointer';
+                    className =
+                        'ml-1.5 rounded-xl transition-[margin-left,width,height] first-of-type:ml-0 my-px bg-neutral-900 shrink-0 grow size-1 cursor-pointer';
                 }
             } else if (Math.abs(calculatedActiveIndex - index) === 1) {
-                className = 'ml-1.5 rounded-xl transition-all first-of-type:ml-0 size-1.5 bg-neutral-900 shrink-0 grow cursor-pointer';
+                className = 'ml-1.5 rounded-xl transition-[margin-left,width,height] first-of-type:ml-0 size-1.5 bg-neutral-900 shrink-0 grow cursor-pointer';
             } else {
-                className = 'ml-1.5 rounded-xl transition-all first-of-type:ml-0 my-px bg-neutral-900 shrink-0 grow size-1 cursor-pointer';
+                className =
+                    'ml-1.5 rounded-xl transition-[margin-left,width,height] first-of-type:ml-0 my-px bg-neutral-900 shrink-0 grow size-1 cursor-pointer';
             }
             output.push(<div key={index} data-index={index} className={className} />);
         }
@@ -313,154 +337,4 @@ function previousItem(
     }
 }
 
-const _StyledCarousel = ` 
-    .carousel-content {
-       -ms-overflow-style: none;
-        /* hide scrollbar in IE and Edge */
-        scrollbar-width: none;
-        /* hide scrollbar in Firefox */
-    }
-
-    /* hide scrollbar in webkit browser */
-
-    .carousel-content::-webkit-scrollbar,
-    .carousel-content::-webkit-scrollbar {
-        display: none;
-    }
-
-    .carousel-content > * {
-        flex-shrink: 0;
-        flex-grow: 1;
-        width:  calc(100% / visibleItemsCount);
-    }
-
-    .left-arrow-button,
-    .right-arrow-button {
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 48px;
-        height: 48px;
-        border-radius: 24px;
-        background-color: white;
-        border: 1px solid #ddd;
-        cursor: pointer;
-        display: flex;
-        align-images: center;
-        justify-content: center;
-        box-shadow:
-            rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-            rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-            rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-            rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-        transition: all 150ms linear;
-    }
-
-    .left-arrow-button:hover,
-    .right-arrow-button:hover {
-        background-color: #ddd;
-    }
-
-    .left-arrow-button:focus,
-    .right-arrow-button:focus {
-        outline: none;
-    }
-
-    .left-arrow-button {
-        left: 24px;
-    }
-
-    .right-arrow-button {
-        right: 24px;
-    }
-
-    .left-arrow {
-        display: block;
-        width: 0;
-        height: 0;
-        border-top: 7.5px solid transparent;
-        border-bottom: 7.5px solid transparent;
-        border-right: 10px solid #484848;
-        border-left: 5px solid transparent;
-        transform: translateX(-25%);
-    }
-
-    .right-arrow {
-        display: block;
-        width: 0;
-        height: 0;
-        border-top: 7.5px solid transparent;
-        border-bottom: 7.5px solid transparent;
-        border-left: 10px solid #484848;
-        border-right: 5px solid transparent;
-        transform: translateX(25%);
-    }
-
-    @media (hover: none) and (pointer: coarse) {
-        .left-arrow-button,
-        .right-arrow-button {
-            display: none;
-        }
-    }
-
-    .indicator-container {
-        display: flex;
-        flex-direction: row;
-        align-images: center;
-        margin: 0 auto;
-        -ms-overflow-style: none;
-        /* hide scrollbar in IE and Edge */
-        scrollbar-width: none;
-        /* hide scrollbar in Firefox */
-    }
-
-    .indicator-container::-webkit-scrollbar,
-    .indicator-container::-webkit-scrollbar {
-        display: none;
-    }
-
-    .indicator-container {
-        max-width: 56px;
-        overflow: auto;
-    }
-
-    .indicator-container > * {
-        margin-left: 6px;
-        border-radius: 12px;
-        transition-property: all;
-        transition-duration: 250ms;
-        transition-timing-function: linear;
-    }
-
-    .indicator-container > div:first-child {
-        margin-left: 0px;
-    }
-
-    .indicator-container > .dots-active {
-        width: 12px;
-        height: 6px;
-        background-color: #00000096;
-        flex-shrink: 0;
-        flex-grow: 1;
-    }
-
-    .indicator-container > .dots-close {
-        width: 6px;
-        height: 6px;
-        background-color: #00000033;
-        flex-shrink: 0;
-        flex-grow: 1;
-    }
-
-    .indicator-container > .dots-far {
-        width: 4px;
-        height: 4px;
-        margin-top: 1px;
-        margin-bottom: 1px;
-        background-color: #00000033;
-        flex-shrink: 0;
-        flex-grow: 1;
-    }
-`;
 export default Carousel;

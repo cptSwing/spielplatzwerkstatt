@@ -6,7 +6,7 @@ const LeistungHeader = ({ headerData }: { headerData: ACF_Vollbild_Slider }) => 
     const bilder = Object.values(rest);
 
     return (
-        <div className="relative h-[calc(var(--header-footer-remaining-height)*0.9)] w-full bg-neutral-200 p-2">
+        <div className="relative h-[calc(var(--page-height-no-header-no-footer)*0.95)] w-full bg-neutral-200 p-(--content-card-padding)">
             <h1 className="absolute top-12 left-12 z-20 bg-white p-2">{titel}</h1>
             <div className="size-full">
                 <Slider images={bilder} withIndicator={false} />
