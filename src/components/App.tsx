@@ -1,43 +1,53 @@
 import { lazy, Suspense } from 'preact/compat';
 import { useEffect, useState } from 'preact/hooks';
 import type { ROUTES } from '../types/consts';
-import type { ACF_Leistung_Type, ArrayElement, WP_REST_API_Post_With_ACF_Type } from '../types/types';
+import type { ACF_Leistung_Type, ACF_Property, ArrayElement } from '../types/types';
+import ErrorMessage from './ErrorMessage';
+import LoadingMessage from './LoadingMessage';
 
 const Home = lazy(() => import('./Home'));
 const Leistungen = lazy(() => import('./Leistungen'));
 
 const App = () => {
-    const [whichRoute, setWhichRoute] = useState<ArrayElement<typeof ROUTES> | null>(null);
+    const [route, setRoute] = useState<ArrayElement<typeof ROUTES>>();
+    const [hasLoaded, setHasLoaded] = useState(false);
     const [apiResult, setApiResult] = useState<ACF_Leistung_Type | null>(null);
 
     useEffect(() => {
-        const frontendRoot = document.getElementById('frontend-root')!;
+        const frontendRoot = document.getElementById('frontend-root');
         if (frontendRoot) {
             const dataRoute = frontendRoot.dataset.route as ArrayElement<typeof ROUTES> | undefined;
-            setWhichRoute(dataRoute ?? null);
+            setRoute(dataRoute);
 
             const dataApiString = frontendRoot.dataset.api;
             if (dataApiString) {
-                const acf = (JSON.parse(dataApiString)[0] as WP_REST_API_Post_With_ACF_Type).acf;
-                setApiResult(acf);
+                const parsedData: ACF_Property[] = JSON.parse(dataApiString);
+                if (parsedData.length) {
+                    const acf = parsedData[0].acf;
+                    setApiResult(acf);
+                }
             }
         }
+
+        setHasLoaded(true);
     }, []);
 
-    if (!whichRoute || !apiResult) return <>Error</>;
+    if (!hasLoaded) {
+        return <LoadingMessage />;
+    } else if (!route) {
+        return <ErrorMessage message={'No route slug specified!'} />;
+    } else if (!apiResult && route !== 'home') {
+        return <ErrorMessage message={'No API results!'} />;
+    }
 
-    return (
-        <>
-            {whichRoute === 'home' ? (
-                <Suspense fallback={<div>Loading</div>}>
-                    <Home />
-                </Suspense>
-            ) : (
-                <Suspense fallback={<div>Loading</div>}>
-                    <Leistungen leistungsData={apiResult} />
-                </Suspense>
-            )}
-        </>
+    return route === 'home' ? (
+        <Suspense fallback={<LoadingMessage />}>
+            <Home />
+        </Suspense>
+    ) : (
+        <Suspense fallback={<LoadingMessage />}>
+            <Leistungen leistungsData={apiResult!} />
+        </Suspense>
     );
 };
 

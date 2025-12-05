@@ -1,26 +1,8 @@
-import { useRef } from 'preact/hooks';
-import type { ACF_Produkt_Story } from '../types/types';
-import Slider from './Slider';
-import { useBreakpoint } from '../hooks/useBreakpoint';
-
-const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
-    const { titel, beschreibung, ...rest } = storyData;
-    const produktStory_Ref = useRef<HTMLDivElement | null>(null);
-
-    const breakpoint = useBreakpoint();
-
-    const bilder = Object.values(rest).filter(Boolean);
-
+const TextBlock = () => {
     return (
-        <div ref={produktStory_Ref} className="relative h-(--page-height-no-header)">
-            <h3 className="mb-(--header-footer-offset)">{titel}</h3>
-            <div className="element-level-1 mb-(--header-footer-offset) h-1/2 w-full bg-sky-100 p-(--content-card-padding)">
-                <Slider images={bilder} visibleItemsCount={breakpoint === null ? 1 : breakpoint === 'sm' ? 2 : 3} />
-            </div>
-            <p>
-                {beschreibung}
-                <br />
-                <br />
+        <div className="element-level-1 my-(--header-footer-margin) h-auto w-dvw px-(--container-horizontal-margin) py-(--header-footer-offset) [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
+            <h2 className="my-2 text-left text-lg">Ihr Partner um die Ecke</h2>
+            <p className="text-justify text-pretty">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales, est ut pulvinar commodo, purus ante porta tortor, rutrum accumsan lorem
                 felis vel massa. Donec iaculis justo non venenatis rhoncus. Nullam at dapibus tortor. Quisque aliquet turpis odio, semper faucibus sem fermentum
                 luctus. Donec dui magna, eleifend ut nibh quis, pharetra porttitor diam. Vivamus porttitor metus risus, in blandit lectus consectetur at. Donec
@@ -33,4 +15,4 @@ const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
     );
 };
 
-export default ProduktStory;
+export default TextBlock;

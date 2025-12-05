@@ -10,7 +10,6 @@
 
 <div
     id="frontend-root"
-    class="bg-blue-300"
     data-api='<?= $result ?>'
     data-route='<?= $slug ?>'
 >

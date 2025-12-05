@@ -1,9 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-console.log('defaultTheme', defaultTheme);
-console.log('defaultTheme.screens', defaultTheme.screens);
-
 /* https://github.com/cptSwing/cpts-react-utilities/blob/main/hooks/useBreakPoint.ts */
 
 const { screens } = defaultTheme;

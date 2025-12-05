@@ -4,18 +4,23 @@ import tsEslint from 'typescript-eslint';
 import prettierEslintRecommended from 'eslint-plugin-prettier/recommended';
 import jsxA11yEslint from 'eslint-plugin-jsx-a11y';
 import preactEsLint from 'eslint-config-preact';
+import tailwindEsLint from 'eslint-plugin-tailwindcss';
+import htmlEsLint from '@html-eslint/eslint-plugin';
 
 export default [
-    prettierEslintRecommended,
+    ...tailwindEsLint.configs['flat/recommended'],
+    htmlEsLint.configs?.recommended,
     jsEslint.configs.recommended,
     ...preactEsLint,
     ...tsEslint.configs.recommended,
     jsxA11yEslint.flatConfigs.recommended,
+    prettierEslintRecommended,
     {
         ignores: ['dist/**/*', 'node_modules'],
     },
     {
-        files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
+        files: ['**/*.{js,jsx,mjs,cjs,ts,tsx,html,php,css}'],
+        plugins: { htmlEsLint },
         languageOptions: {
             globals: {
                 ...globals.node,
@@ -42,6 +47,8 @@ export default [
                 },
             ],
             '@typescript-eslint/no-unused-expressions': ['error', { allowTernary: true, allowShortCircuit: true }],
+
+            'html/no-duplicate-class': 'error',
         },
     },
 ];

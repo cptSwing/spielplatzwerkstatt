@@ -1,12 +1,18 @@
 {
     "jsxSingleQuote": false,
-    "plugins": [
-        "@prettier/plugin-php",
-        "prettier-plugin-tailwindcss"
-    ],
     "printWidth": 160,
     "quoteProps": "consistent",
     "singleAttributePerLine": false,
     "singleQuote": true,
-    "tabWidth": 4
+    "tabWidth": 4,
+    "plugins": ["@prettier/plugin-php"],
+    "overrides": [
+        {
+            "files": ["*.php"],
+            "options": {
+                "parser": "php",
+                "phpVersion": "8.3"
+            }
+        }
+    ]
 }

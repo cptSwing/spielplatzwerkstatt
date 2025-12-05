@@ -68,7 +68,7 @@ const Carousel = ({
     }, [images, currentIndex, visibleItemsCount]);
 
     return (
-        <div className="relative flex h-full w-full flex-col overflow-hidden">
+        <div className="relative flex h-full w-full flex-col overflow-x-hidden">
             {isPrevButtonVisible ? (
                 <DirectionalButton
                     previous
@@ -210,7 +210,7 @@ const ImageWrapper = ({
     return (
         <div
             className={classNames(
-                'border-neutral-40 relative shrink-0',
+                'relative z-50 shrink-0',
                 (currentIndex - imageIndex) % 2 === 0 ? '[clip-path:inset(0px_var(--content-card-padding))]' : '[clip-path:inset(0px_0px)]',
             )}
             key={src + imageIndex}
@@ -218,7 +218,7 @@ const ImageWrapper = ({
                 width: `calc(100% / ${visibleItemsCount})`,
             }}
         >
-            <img src={src} alt={`slider ${imageIndex + 1}`} className="size-full object-cover" />
+            <img src={src} alt={`slider ${imageIndex + 1}`} className="element-level-2 size-full object-cover" />
         </div>
     );
 };
