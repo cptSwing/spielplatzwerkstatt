@@ -13,17 +13,17 @@
     --color-theme-fill-3: var(--color-sky-500);
 }
 
+html {
+    @apply [--header-footer-height:--spacing(28)] scroll-smooth [--header-footer-offset:--spacing(8)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [scroll-padding-top:calc(var(--header-footer-height)+var(--header-footer-margin))];
+}
+
 body {
-    @apply bg-theme-background h-auto w-dvw overflow-x-hidden text-sm [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--content-card-padding:--spacing(2)] [--header-footer-offset:--spacing(8)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-height:--spacing(28)] [--page-height-no-header-no-footer:calc(100dvh-2*(var(--header-footer-height)+var(--header-footer-margin)))] [--page-height-no-header:calc(100dvh-var(--header-footer-height)-var(--header-footer-margin))];
-    @apply  [--container-horizontal-margin:--spacing(6)] md:[--container-horizontal-margin:--spacing(16)] lg:[--container-horizontal-margin:--spacing(32)] xl:[--container-horizontal-margin:--spacing(56)] 2xl:[--container-horizontal-margin:--spacing(76)]
+    @apply bg-theme-background h-auto  text-white w-dvw overflow-x-hidden text-sm [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--content-card-padding:--spacing(2)] [--page-height-no-header-no-footer:calc(100dvh-var(--header-footer-height)-2*var(--header-footer-margin))] [--page-height-no-header:calc(100dvh-var(--header-footer-height)-var(--header-footer-margin))];
+    @apply [--container-horizontal-margin:--spacing(6)] md:[--container-horizontal-margin:--spacing(16)] xl:[--container-horizontal-margin:--spacing(56)] 2xl:[--container-horizontal-margin:--spacing(76)]  lg:[--container-horizontal-margin:--spacing(32)];
 }
 
 #frontend-root {
     @apply min-h-(--page-height-no-header-no-footer) w-full;
-}
-
-main {
-    @apply mx-auto w-(--container-width);
 }
 
 .element-level-1 {
@@ -32,6 +32,41 @@ main {
 
 .element-level-2 {
     @apply rounded-xs bg-theme-fill-3 shadow-md;
+}
+
+/* input[name="input-radio-leistungen"] + label  */
+.radio-leistungen-label {
+    @apply relative inline-block rounded-t-xs text-theme-logo-1 peer-checked:-translate-y-0.5 peer-checked:text-theme-logo-3 after:absolute after:top-0 after:left-0 after:-z-10 after:h-full after:w-full after:bg-theme-fill-2 after:transition-[transform,background-color] peer-checked:after:h-(--header-footer-height) peer-checked:after:bg-theme-background hover:-translate-y-0.5 hover:**:no-underline! peer-checked:hover:**:cursor-default! hover:after:bg-theme-background;
+}
+
+/* Default Element Styles: */
+
+main {
+    @apply mx-auto w-(--container-width);
+}
+
+h1 {
+    @apply text-5xl text-sky-900;
+}
+
+h2 {
+    @apply text-4xl text-sky-900;
+}
+
+h3 {
+    @apply text-3xl text-sky-900;
+}
+
+h4 {
+    @apply text-2xl text-sky-900;
+}
+
+h5 {
+    @apply text-xl text-sky-900;
+}
+
+h6 {
+    @apply text-lg text-sky-900;
 }
 
 a {
