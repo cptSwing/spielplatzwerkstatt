@@ -5,16 +5,21 @@
     --color-theme-logo-2: #f5c823;
     --color-theme-logo-3: #b05259;
     --color-theme-logo-4: #aecebc;
+
+    --color-theme-background: #fff5ec;
+
     --color-theme-fill-1: #029fcf;
-    --color-theme-fill-2: #fff5ec;
+    --color-theme-fill-2: var(--color-sky-300);
+    --color-theme-fill-3: var(--color-sky-500);
 }
 
 body {
-    @apply bg-theme-fill-2 h-auto w-dvw overflow-x-hidden text-sm [--container-horizontal-margin:--spacing(6)] [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--content-card-padding:--spacing(4)] [--header-footer-offset:--spacing(8)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-height:--spacing(28)] [--page-height-no-header-no-footer:calc(100dvh-2*(var(--header-footer-height)+var(--header-footer-margin)))] [--page-height-no-header:calc(100dvh-var(--header-footer-height)-var(--header-footer-margin))] md:[--container-horizontal-margin:--spacing(16)] lg:[--container-horizontal-margin:--spacing(32)] xl:[--container-horizontal-margin:--spacing(56)] 2xl:[--container-horizontal-margin:--spacing(76)];
+    @apply bg-theme-background h-auto w-dvw overflow-x-hidden text-sm [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--content-card-padding:--spacing(2)] [--header-footer-offset:--spacing(8)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-height:--spacing(28)] [--page-height-no-header-no-footer:calc(100dvh-2*(var(--header-footer-height)+var(--header-footer-margin)))] [--page-height-no-header:calc(100dvh-var(--header-footer-height)-var(--header-footer-margin))];
+    @apply  [--container-horizontal-margin:--spacing(6)] md:[--container-horizontal-margin:--spacing(16)] lg:[--container-horizontal-margin:--spacing(32)] xl:[--container-horizontal-margin:--spacing(56)] 2xl:[--container-horizontal-margin:--spacing(76)]
 }
 
 #frontend-root {
-    @apply  min-h-(--page-height-no-header-no-footer) w-full;
+    @apply min-h-(--page-height-no-header-no-footer) w-full;
 }
 
 main {
@@ -22,11 +27,11 @@ main {
 }
 
 .element-level-1 {
-    @apply rounded-xs bg-sky-300 shadow-sm;
+    @apply rounded-none bg-theme-fill-2 shadow-sm;
 }
 
 .element-level-2 {
-    @apply rounded-sm bg-sky-500 shadow-md;
+    @apply rounded-xs bg-theme-fill-3 shadow-md;
 }
 
 a {
@@ -38,5 +43,5 @@ a > img {
 }
 
 button {
-    @apply cursor-pointer rounded-lg border-2 border-theme-fill-2/70 shadow-lg hover:shadow-xl hover:-translate-y-0.5   bg-theme-logo-1 text-theme-logo-2 px-4 py-2 text-base transition-[border-color] hover:border-theme-fill-2 focus:outline-4 focus:outline-sky-800 focus-visible:outline-4 focus-visible:outline-sky-800;
+    @apply cursor-pointer rounded-lg border-2 border-theme-background/70 shadow-lg hover:shadow-xl hover:-translate-y-0.5   bg-theme-logo-1 text-theme-logo-2 px-4 py-2 text-base transition-[border-color] hover:border-theme-background focus:outline-4 focus:outline-sky-800 focus-visible:outline-4 focus-visible:outline-sky-800;
 }

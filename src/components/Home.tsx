@@ -23,7 +23,7 @@ const Home = () => {
                 <div class="bg-sky-900 p-(--content-card-padding)">
                     <h2 class="text-center">Neuigkeiten:</h2>
 
-                    <div class="mx-auto grid w-full grid-cols-1 gap-[calc(var(--content-card-padding)*2)] p-(--content-card-padding) [--news-card-padding:calc(var(--content-card-padding)/2)] md:grid-cols-3">
+                    <div class="mx-auto grid w-full grid-cols-1 gap-[calc(var(--content-card-padding)*2)] [--news-card-padding:calc(var(--content-card-padding)/2)] md:grid-cols-3">
                         <div class="element-level-2 h-auto overflow-hidden bg-sky-600 p-(--news-card-padding)">
                             <h3>Newsitem 1</h3>
                             <p class="text-sm">

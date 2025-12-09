@@ -1,13 +1,21 @@
 <?php
-    require 'partials/includes.php';
-    $layout = new WrapHTML(title: 'Spielplatzwerkstatt');
+    require('partials/includes.php');
+    $slug = 'home';
+    $layout = new WrapHTML(title: 'Home - Spielplatzwerkstatt');
+    $endpoint = CMSHOST . '/wp-json/acf/v3/leistung?slug[]=' . $slug;
+    $result = file_get_contents($endpoint);
 ?>
 
-<div class="bg-red-400 w-full h-dvh flex flex-col justify-center items-center ">
-    <div class="mx-(--container-horizontal-margin) bg-emerald-300 flex flex-col justify-center items-center rounded p-8">
-        <a href="pages/home.php">
-            <span class="block mx-auto w-fit italic">Willkommen bei der</span>
-            <img class="h-auto mx-auto max-w-2/3" src="images/logo_spielplatzwerkstatt_870x848.png" />    
-        </a>
-    </div>
-</div>
+<?php 
+    include("partials/header.php");
+?>
+
+<div
+    id="frontend-root"
+    data-api='<?= $result ?>'
+    data-route='<?= $slug ?>'
+></div>
+
+<?php 
+    include("partials/footer.php");
+?>
