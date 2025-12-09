@@ -1,7 +1,7 @@
 const Home = () => {
     return (
         <main className="flex flex-col items-center justify-start gap-y-24 [--content-card-padding-double:calc(var(--content-card-padding)*2)] [--home-anchor-header-margin-left:calc(var(--home-anchor-image-width)+var(--content-card-padding-double))] [--home-anchor-image-width:--spacing(48)]">
-            <div className="-mt-(--content-card-padding-double) flex h-(--page-height-no-header-no-footer) w-1/3 flex-col items-stretch justify-center gap-(--content-card-padding-double)">
+            <div className="-mt-(--content-card-padding-double) flex min-h-(--page-height-no-header-no-footer) w-full flex-col items-stretch justify-center gap-(--content-card-padding-double) md:w-1/2 lg:w-1/3">
                 <h4 className="self-start">Die Spielplatzbau GmbH bietet an:</h4>
                 <div className="element-level-1 relative flex h-16 flex-row items-center justify-start gap-(--content-card-padding) p-(--content-card-padding)">
                     <a className="aspect-square h-[150%]" href="#home-anchor-spielplatzbau">
@@ -70,16 +70,16 @@ const Home = () => {
             </div>
 
             {/* Anchored Elements: */}
-            <div id="home-anchor-spielplatzbau" className="h-(--page-height-no-header-no-footer)">
+            <div id="home-anchor-spielplatzbau" className="min-h-(--page-height-no-header-no-footer)">
                 <div className="element-level-1 p-(--content-card-padding)">
                     <a
-                        className="mt-(--content-card-padding) mr-auto mb-(--content-card-padding-double) ml-(--home-anchor-header-margin-left) block"
+                        className="mt-(--content-card-padding) mr-auto mb-(--content-card-padding-double) ml-auto inline-block md:ml-(--home-anchor-header-margin-left)"
                         href="/pages/spielplatzbau.php"
                     >
                         <h6>Spielplatzbau</h6>
                     </a>
 
-                    <div className="flex flex-row items-start justify-start gap-(--content-card-padding-double)">
+                    <div className="flex flex-col items-center justify-start gap-(--content-card-padding-double) md:flex-row md:items-start">
                         <a className="block aspect-square w-(--home-anchor-image-width)" href="/pages/spielplatzbau.php">
                             <img className="object-cover" alt="spielplatzbau" src="../images/symbol_geraet_238x240.png" />
                         </a>
@@ -132,16 +132,16 @@ const Home = () => {
                 </div>
             </div>
 
-            <div id="home-anchor-galabau" className="h-(--page-height-no-header-no-footer)">
+            <div id="home-anchor-galabau" className="min-h-(--page-height-no-header-no-footer)">
                 <div className="element-level-1 p-(--content-card-padding)">
                     <a
-                        className="mt-(--content-card-padding) mr-auto mb-(--content-card-padding-double) ml-(--home-anchor-header-margin-left) block"
+                        className="mt-(--content-card-padding) mr-auto mb-(--content-card-padding-double) ml-auto inline-block md:ml-(--home-anchor-header-margin-left)"
                         href="/pages/galabau.php"
                     >
                         <h6>Garten- & Landschaftsbau</h6>
                     </a>
 
-                    <div className="flex flex-row items-start justify-start gap-(--content-card-padding-double)">
+                    <div className="flex flex-col items-center justify-start gap-(--content-card-padding-double) md:flex-row md:items-start">
                         <a className="block aspect-square w-(--home-anchor-image-width)" href="/pages/galabau.php">
                             <img className="object-cover" alt="galabau" src="../images/symbol_spaten_203x205.png" />
                         </a>
@@ -194,16 +194,16 @@ const Home = () => {
                 </div>
             </div>
 
-            <div id="home-anchor-naschgarten" className="h-(--page-height-no-header-no-footer)">
+            <div id="home-anchor-naschgarten" className="min-h-(--page-height-no-header-no-footer)">
                 <div className="element-level-1 p-(--content-card-padding)">
                     <a
-                        className="mt-(--content-card-padding) mr-auto mb-(--content-card-padding-double) ml-(--home-anchor-header-margin-left) block"
+                        className="mt-(--content-card-padding) mr-auto mb-(--content-card-padding-double) ml-auto inline-block md:ml-(--home-anchor-header-margin-left)"
                         href="/pages/naschgarten.php"
                     >
                         <h6>Naschgarten</h6>
                     </a>
 
-                    <div className="flex flex-row items-start justify-start gap-(--content-card-padding-double)">
+                    <div className="flex flex-col items-center justify-start gap-(--content-card-padding-double) md:flex-row md:items-start">
                         <a className="block aspect-square w-(--home-anchor-image-width)" href="/pages/naschgarten.php">
                             <img className="object-cover" alt="naschgarten" src="../images/symbol_baum_211x211.png" />
                         </a>
@@ -256,16 +256,16 @@ const Home = () => {
                 </div>
             </div>
 
-            <div id="home-anchor-workshops" className="h-(--page-height-no-header-no-footer)">
+            <div id="home-anchor-workshops" className="min-h-(--page-height-no-header-no-footer)">
                 <div className="element-level-1 p-(--content-card-padding)">
                     <a
-                        className="mt-(--content-card-padding) mr-auto mb-(--content-card-padding-double) ml-(--home-anchor-header-margin-left) block"
+                        className="mt-(--content-card-padding) mr-auto mb-(--content-card-padding-double) ml-auto inline-block md:ml-(--home-anchor-header-margin-left)"
                         href="/pages/workshops.php"
                     >
                         <h6>Workshops</h6>
                     </a>
 
-                    <div className="flex flex-row items-start justify-start gap-(--content-card-padding-double)">
+                    <div className="flex flex-col items-center justify-start gap-(--content-card-padding-double) md:flex-row md:items-start">
                         <a className="block aspect-square w-(--home-anchor-image-width)" href="/pages/workshops.php">
                             <img className="object-cover" alt="workshops" src="../images/symbol_buch_210x213.png" />
                         </a>
