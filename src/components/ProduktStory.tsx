@@ -12,9 +12,9 @@ const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
     const bilder = Object.values(rest).filter(Boolean);
 
     return (
-        <div ref={produktStory_Ref} className="relative h-(--page-height-no-header)">
+        <div ref={produktStory_Ref} className="relative h-(--page-height-no-header-no-footer)">
             <h3 className="mb-(--header-footer-offset)">{titel}</h3>
-            <div className="element-level-1 mb-(--header-footer-offset) h-1/2 w-full bg-sky-100 p-(--content-card-padding)">
+            <div className="element-level-1 mb-(--header-footer-offset) h-1/2 w-full p-(--content-card-padding)">
                 <Slider images={bilder} visibleItemsCount={breakpoint === null ? 1 : breakpoint === 'sm' ? 2 : 3} />
             </div>
             <p>
