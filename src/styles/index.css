@@ -1,16 +1,16 @@
 @import 'tailwindcss';
 
 @theme {
-    --color-theme-logo-1: #6d8c74;
-    --color-theme-logo-2: #f5c823;
-    --color-theme-logo-3: #b05259;
-    --color-theme-logo-4: #aecebc;
+    --color-theme-dunkelgruen: #758d76;
+    --color-theme-gelb: #ebbd27;
+    --color-theme-weinrot: #9e4f5b;
+    --color-theme-hellgruen: #afc9ba;
 
     --color-theme-background: #fff5ec;
 
     --color-theme-fill-1: #029fcf;
-    --color-theme-fill-2: var(--color-sky-300);
-    --color-theme-fill-3: var(--color-sky-500);
+    --color-theme-fill-2: #74d4ff;
+    --color-theme-fill-3: #00a6f4;
 }
 
 html {
@@ -36,7 +36,7 @@ body {
 
 /* input[name="input-radio-leistungen"] + label  */
 .radio-leistungen-label {
-    @apply relative inline-block rounded-t-xs text-theme-logo-1 peer-checked:-translate-y-0.5 peer-checked:text-theme-logo-3 after:absolute after:top-0 after:left-0 after:-z-10 after:h-full after:w-full after:bg-theme-fill-2 after:transition-[transform,background-color] peer-checked:after:h-(--header-footer-height) peer-checked:after:bg-theme-background hover:-translate-y-0.5 hover:**:no-underline! peer-checked:hover:**:cursor-default! hover:after:bg-theme-background;
+    @apply relative inline-block rounded-t-xs text-theme-dunkelgruen peer-checked:-translate-y-0.5 peer-checked:text-theme-weinrot after:absolute after:top-0 after:left-0 after:-z-10 after:h-full after:w-full after:bg-theme-fill-2 after:transition-[transform,background-color] peer-checked:after:h-(--header-footer-height) peer-checked:after:bg-theme-background hover:-translate-y-0.5 hover:**:no-underline! peer-checked:hover:**:cursor-default! hover:after:bg-theme-background;
 }
 
 /* Default Element Styles: */
@@ -78,5 +78,5 @@ a > img {
 }
 
 button {
-    @apply cursor-pointer rounded-lg border-2 border-theme-background/70 shadow-lg hover:shadow-xl hover:-translate-y-0.5   bg-theme-logo-1 text-theme-logo-2 px-4 py-2 text-base transition-[border-color] hover:border-theme-background focus:outline-4 focus:outline-sky-800 focus-visible:outline-4 focus-visible:outline-sky-800;
+    @apply cursor-pointer rounded-lg border-2 border-theme-background/70 shadow-lg hover:shadow-xl hover:-translate-y-0.5   bg-theme-dunkelgruen text-theme-gelb px-4 py-2 text-base transition-[border-color] hover:border-theme-background focus:outline-4 focus:outline-sky-800 focus-visible:outline-4 focus-visible:outline-sky-800;
 }
