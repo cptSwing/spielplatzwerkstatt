@@ -12,6 +12,7 @@
     id="frontend-root"
     data-api='<?= $result ?>'
     data-route='<?= $slug ?>'
+    style="--slug-color:var(--color-theme-hellgruen)"
 >
 </div>
 

@@ -25,7 +25,6 @@ class WrapHTML
             <body>
                 <?= $output ?>
             </body>
-
             <script type="module" src="/src/index.tsx"></script>
         </html>
 

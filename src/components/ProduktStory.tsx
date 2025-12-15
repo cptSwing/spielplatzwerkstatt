@@ -1,23 +1,29 @@
-import { useRef } from 'preact/hooks';
 import type { ACF_Produkt_Story } from '../types/types';
-import Slider from './Slider';
 import { useBreakpoint } from '../hooks/useBreakpoint';
+import Carousel from './Carousel';
 
 const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
     const { titel, beschreibung, ...rest } = storyData;
-    const produktStory_Ref = useRef<HTMLDivElement | null>(null);
 
     const breakpoint = useBreakpoint();
 
     const bilder = Object.values(rest).filter(Boolean);
 
     return (
-        <div ref={produktStory_Ref} className="relative h-(--page-height-no-header-no-footer)">
-            <h3 className="mb-(--header-footer-offset)">{titel}</h3>
-            <div className="element-level-1 mb-(--header-footer-offset) h-1/2 w-full p-(--content-card-padding)">
-                <Slider images={bilder} visibleItemsCount={breakpoint === null ? 1 : breakpoint === 'sm' ? 2 : 3} />
+        <div className="element-level-1 flex w-full flex-col items-start justify-start gap-(--content-card-padding-double) p-(--content-card-padding)">
+            <div className="w-full pt-(--content-card-padding) pl-(--content-card-padding)">
+                <h5 className="relative z-0 w-fit pr-10 pl-(--content-card-padding) text-theme-background before:absolute before:top-0 before:left-0 before:-z-10 before:size-full before:bg-(--slug-color)">
+                    {titel}
+                </h5>
+                <hr className="-mt-(--content-card-padding-half) w-[calc(100%-var(--content-card-padding))] text-(--slug-color)" />
             </div>
-            <p>
+
+            <div className="relative h-80 w-full">
+                <Carousel imageSources={bilder} displayCount={3} />
+                {/* <Slider images={bilder} visibleItemsCount={breakpoint === null ? 1 : breakpoint === 'sm' ? 2 : 3} /> */}
+            </div>
+
+            <p className="bg-white p-2">
                 {beschreibung}
                 <br />
                 <br />

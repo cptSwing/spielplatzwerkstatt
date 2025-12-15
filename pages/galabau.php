@@ -12,6 +12,7 @@ $result = file_get_contents($endpoint);
     id="frontend-root"
     data-api='<?= $result ?>'
     data-route='<?= $slug ?>'
+    style="--slug-color:var(--color-theme-weinrot)"
 ></div>
 
 <?php include 'partials/footer.php';

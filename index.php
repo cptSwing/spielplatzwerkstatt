@@ -14,7 +14,8 @@
     id="frontend-root"
     data-api='<?= $result ?>'
     data-route='<?= $slug ?>'
-></div>
+> 
+</div>
 
 <?php 
     include("partials/footer.php");

@@ -10,14 +10,20 @@
     --color-theme-weinrot: #9e4f5b;
     --color-theme-hellgruen: #afc9ba;
 
-    --color-theme-background: var(--color-white);
-    --color-theme-text: var(--color-slate-50);
-    --color-theme-link: var(--color-slate-800);
+    --color-theme-background: var(--color-neutral-100);
+    --color-theme-text: var(--color-slate-800);
+    --color-theme-link: var(--color-slate-700);
 
-    --color-theme-primary: var(--color-theme-dunkelgruen);
-    --color-theme-secondary: var(--color-theme-gelb);
-    --color-theme-accent: var(--color-theme-weinrot);
-    --color-theme-primary-variation: var(--color-theme-hellgruen);
+    /* --color-theme-primary: var(--color-theme-dunkelgruen); */
+    /* --color-theme-secondary: var(--color-theme-gelb); */
+    /* --color-theme-primary-variation: var(--color-theme-hellgruen); */
+
+    --color-theme-primary: #619961;
+    --color-theme-secondary: var(--color-theme-weinrot);
+    --color-theme-accent: #ffd82d;
+    /* --color-theme-primary-variation: #9dbb90; */
+    /* --color-theme-primary-variation: #9dbb90; */
+    --color-theme-primary-variation: #76ad85;
 
     --drop-shadow-centered-xs: 0 0 1px var(--tw-drop-shadow-color, rgb(0 0 0 / 0.15));
     --drop-shadow-centered-sm: 0 0 2px var(--tw-drop-shadow-color, rgb(0 0 0 / 0.15));
@@ -32,7 +38,7 @@
     }
 
     body {
-        @apply h-auto w-dvw overflow-x-hidden bg-theme-primary font-roboto-serif text-sm font-light text-theme-text;
+        @apply h-auto w-dvw overflow-x-hidden bg-theme-background bg-[url(/svg/symbole_hintergrund.svg)] [background-size:100%] [background-position:0_var(--header-footer-margin)] font-roboto-serif text-sm font-light text-theme-text;
 
         @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer:calc(100dvh-var(--header-footer-height)-2*var(--header-footer-margin))] [--page-height-no-header:calc(100dvh-var(--header-footer-height)-var(--header-footer-margin))];
 
@@ -74,18 +80,22 @@
     }
 
     hr {
-        @apply h-px w-full border-b;
+        @apply w-full border-b-4;
     }
 }
 
 @layer components {
+    #frontend-root {
+        @apply min-h-(--page-height-no-header-no-footer) w-full;
+    }
+
     .button {
         @apply relative inline-block cursor-pointer rounded-xl border-2 border-blue-300 bg-blue-400 py-1 pr-2 pl-6 font-gabarito text-base text-theme-text shadow-md outline-offset-1 outline-theme-secondary transition-[border-color] **:text-theme-text hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:**:no-underline focus:-translate-y-0.5 focus:border-blue-200 focus:outline-2 focus-visible:-translate-y-0.5 focus-visible:border-blue-200 focus-visible:outline-4 active:border-blue-200;
         @apply before:absolute before:top-1/2 before:left-2 before:size-3 before:-translate-y-1/2 before:bg-theme-accent before:[clip-path:polygon(0%_0%,100%_50%,0%_100%)];
     }
 
     .element-level-1 {
-        @apply rounded-xs bg-theme-secondary text-theme-text shadow-sm;
+        @apply rounded-xs border border-theme-primary bg-white text-theme-text shadow-md;
     }
 
     .element-level-2 {
@@ -93,18 +103,27 @@
     }
 
     /* input[name="input-radio-leistungen"] + label  */
-    .radio-leistungen-label {
-        @apply relative inline-block rounded-t-xs text-theme-primary-variation peer-checked:-translate-y-0.5 peer-checked:text-theme-accent hover:-translate-y-px hover:text-theme-accent hover:**:no-underline! peer-checked:hover:-translate-y-0.5 peer-checked:hover:**:cursor-default!;
-        @apply after:absolute after:top-0 after:left-0 after:-z-10 after:h-full after:w-full after:bg-theme-accent after:transition-[transform,background-color] peer-checked:after:h-(--header-footer-height) peer-checked:after:bg-theme-primary hover:after:bg-theme-primary;
+    .header-menu-item {
+        @apply relative flex flex-row items-center drop-shadow-sm;
+    }
+
+    .header-menu-item-label {
+        @apply rounded-xs border border-theme-primary text-theme-primary-variation peer-checked:text-theme-background hover:-translate-y-px hover:text-theme-background hover:**:no-underline! peer-checked:hover:-translate-y-0 peer-checked:hover:**:cursor-default!;
+        @apply after:absolute after:top-0 after:left-0 after:-z-10 after:h-full after:w-full after:bg-theme-background after:transition-[transform,background-color] peer-checked:after:bg-theme-primary-variation hover:after:bg-theme-primary-variation;
+        /* @apply  peer-checked:after:h-(--header-footer-height) ; */
+    }
+
+    .header-menu-item-label > img {
+        @apply inline-block aspect-square h-8 -translate-x-1/4 -translate-y-px scale-130 object-cover;
+    }
+
+    .header-menu-item-label > a {
+        @apply inline-block py-px pr-0.5 text-xs text-inherit select-none md:py-1 md:pr-2 md:text-sm;
     }
 
     /* Default Element Styles: */
 
     .image-hover {
-        @apply transition-[filter] group-hover:brightness-125 group-hover:saturate-125 hover:brightness-125 hover:saturate-125 active:brightness-125 active:saturate-125;
+        @apply transition-[filter] group-hover:brightness-110 group-hover:saturate-125 hover:brightness-110 hover:saturate-125 active:brightness-110 active:saturate-125;
     }
-}
-
-#frontend-root {
-    @apply min-h-(--page-height-no-header-no-footer) w-full;
 }
