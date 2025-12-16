@@ -7,7 +7,7 @@ const InfoKarten = ({ kartenData }: { kartenData: ACF_Info_Karten }) => {
         <div className="my-16 flex flex-wrap items-start justify-center gap-(--info-karten-gap) [--info-karten-gap:--spacing(12)]">
             <div className="element-level-1 h-40 shrink-0 basis-full overflow-hidden md:basis-1/3 lg:basis-[calc(33.333%-var(--info-karten-gap))]">
                 <div className="relative h-fit p-1">
-                    <div className="absolute top-0 left-0 z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
+                    <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
                     <h3 className="relative z-10 text-center text-theme-background">{infokarte_1}</h3>
                 </div>
 
@@ -21,7 +21,7 @@ const InfoKarten = ({ kartenData }: { kartenData: ACF_Info_Karten }) => {
 
             <div className="element-level-1 h-40 shrink-0 basis-full overflow-hidden md:basis-1/3 lg:basis-[calc(33.333%-var(--info-karten-gap))]">
                 <div className="relative h-fit p-1">
-                    <div className="absolute top-0 left-0 z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
+                    <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
                     <h3 className="relative z-10 text-center text-theme-background">{infokarte_2}</h3>
                 </div>
 
@@ -36,7 +36,7 @@ const InfoKarten = ({ kartenData }: { kartenData: ACF_Info_Karten }) => {
 
             <div className="element-level-1 h-40 shrink-0 basis-full overflow-hidden md:basis-1/3 lg:basis-[calc(33.333%-var(--info-karten-gap))]">
                 <div className="relative h-fit p-1">
-                    <div className="absolute top-0 left-0 z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
+                    <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
                     <h3 className="relative z-10 text-center text-theme-background">{infokarte_3}</h3>
                 </div>
 
@@ -52,7 +52,7 @@ const InfoKarten = ({ kartenData }: { kartenData: ACF_Info_Karten }) => {
 
             <div className="element-level-1 h-40 shrink-0 basis-full overflow-hidden md:basis-1/3 lg:basis-[calc(33.333%-var(--info-karten-gap))]">
                 <div className="relative h-fit p-1">
-                    <div className="absolute top-0 left-0 z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
+                    <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
                     <h3 className="relative z-10 text-center text-theme-background">{infokarte_4}</h3>
                 </div>
 
@@ -68,7 +68,7 @@ const InfoKarten = ({ kartenData }: { kartenData: ACF_Info_Karten }) => {
 
             <div className="element-level-1 h-40 shrink-0 basis-full overflow-hidden md:basis-1/3 lg:basis-[calc(33.333%-var(--info-karten-gap))]">
                 <div className="relative h-fit p-1">
-                    <div className="absolute top-0 left-0 z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
+                    <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
                     <h3 className="relative z-10 text-center text-theme-background">{infokarte_5}</h3>
                 </div>
 

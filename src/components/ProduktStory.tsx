@@ -19,8 +19,7 @@ const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
             </div>
 
             <div className="relative h-80 w-full">
-                <Carousel imageSources={bilder} displayCount={3} />
-                {/* <Slider images={bilder} visibleItemsCount={breakpoint === null ? 1 : breakpoint === 'sm' ? 2 : 3} /> */}
+                <Carousel imageSources={bilder} displayCount={breakpoint === null ? 1 : breakpoint === 'sm' ? 2 : 3} />
             </div>
 
             <p className="bg-white p-2">

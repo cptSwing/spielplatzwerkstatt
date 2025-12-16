@@ -1,63 +1,71 @@
 import { classNames } from 'cpts-javascript-utilities';
-import type { TargetedTransitionEvent } from 'preact';
-import { Fragment, useCallback, useEffect, useState, type FC } from 'preact/compat';
+import { useCallback, useEffect, useState, type FC } from 'preact/compat';
 
-const CAROUSEL_TIMEOUT_MS = 5000 as const;
+const CAROUSEL_INTERVAL_MS = 4000 as const;
 
-type DirectionType = 'forward' | 'backward' | 'paused';
+function nullInterval(intervalId: number, callback: () => void) {
+    clearInterval(intervalId);
+    callback();
+}
 
 const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ imageSources, displayCount = 1 }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [offset, setOffset] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const [timeoutId, setTimeoutId] = useState<number | null>(null);
-    const [duration, setDuration] = useState(1000);
+    const [isPaused, setIsPaused] = useState(false);
+    const [intervalId, setIntervalId] = useState<number | null>(null);
 
-    const moveImages_Cb = useCallback(
-        (direction: DirectionType) => {
-            setIsTransitioning(true);
-            setCurrentImageIndex((old) => wrapNumber(old + (direction === 'forward' ? 1 : -1), imageSources.length));
+    const moveBackward_Cb = useCallback(() => {
+        setIsTransitioning(true);
+        setOffset(-1);
+    }, []);
 
-            setTimeoutId(
-                doSetTimeouts(() => {
-                    setDuration(1000);
-                    moveImages_Cb('forward');
-                }),
-            );
-        },
-        [imageSources.length],
-    );
-
-    const paddedImageSources = padArray<string>(imageSources, currentImageIndex, displayCount);
+    const moveForward_Cb = useCallback(() => {
+        setIsTransitioning(true);
+        setOffset(1);
+    }, []);
 
     // Get the ball rollin'
     useEffect(() => {
-        setTimeoutId(doSetTimeouts(() => moveImages_Cb('forward')));
-    }, [moveImages_Cb]);
+        setIntervalId(doSetInterval(moveForward_Cb));
+    }, [moveForward_Cb]);
 
     useEffect(() => {
-        return () => {
-            timeoutId !== null && clearTimeout(timeoutId);
-        };
-    }, [timeoutId]);
+        if (isPaused) {
+            nullInterval(intervalId!, () => setIntervalId(null));
+        } else {
+            setIntervalId((old) => (old === null ? doSetInterval(offset === -1 ? moveBackward_Cb : moveForward_Cb, true) : old));
+        }
+    }, [isPaused, moveForward_Cb, intervalId, offset, moveBackward_Cb]);
+
+    const slotCount = displayCount + 2;
+    const slotWidth = 100 / displayCount;
+    const trackWidth = slotCount * slotWidth;
 
     return (
         <div className="size-full">
+            {/* Buttons */}
             <div className="absolute bottom-6 z-10 flex w-full items-center justify-between">
                 <button
-                    className="flex translate-x-6 cursor-pointer items-center justify-center rounded-xs rounded-l-md bg-white p-(--content-card-padding)"
+                    className="flex translate-x-6 cursor-pointer items-center justify-center rounded-xs rounded-l-md bg-neutral-400/80 p-(--content-card-padding)"
                     onClick={() => {
-                        if (!isTransitioning) {
-                            timeoutId !== null && clearTimeout(timeoutId);
-                            setDuration(200);
-                            moveImages_Cb('backward');
-                        }
+                        moveBackward_Cb();
+                        nullInterval(intervalId!, () => setIntervalId(null));
                     }}
                 >
                     <div className="size-3 bg-theme-primary [clip-path:polygon(0%_50%,100%_0%,100%_100%)]" />
                 </button>
 
                 <div className="relative">
-                    <div className="flex size-fit justify-between gap-2">
+                    <div className="flex size-fit items-center justify-between gap-2">
+                        <button
+                            className={classNames(
+                                'h-4 cursor-pointer border-0 border-transparent border-l-neutral-300/80',
+                                isPaused ? 'border-t-8 border-b-8 border-l-14 border-solid' : 'border-l-14 border-double',
+                            )}
+                            onClick={() => setIsPaused((old) => !old)}
+                        />
+
                         {imageSources.map((iSrc, idx) => (
                             <button
                                 key={`dot ${iSrc} ${idx}`}
@@ -65,65 +73,53 @@ const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ image
                             />
                         ))}
                     </div>
-
-                    <button
-                        className="absolute top-full left-8 z-20 cursor-pointer bg-red-200 px-2 py-1 disabled:bg-red-200/10"
-                        disabled={true}
-                        onClick={() => {
-                            if (timeoutId !== null) {
-                                clearTimeout(timeoutId);
-                                setTimeoutId(null);
-                            } else {
-                                moveImages_Cb('forward');
-                            }
-                        }}
-                    >
-                        {timeoutId !== null ? 'Pause' : 'Unpause'}
-                    </button>
                 </div>
 
                 <button
-                    className="flex -translate-x-6 cursor-pointer items-center justify-center rounded-xs rounded-r-md bg-white p-(--content-card-padding)"
+                    className="flex -translate-x-6 cursor-pointer items-center justify-center rounded-xs rounded-r-md bg-neutral-400/80 p-(--content-card-padding)"
                     onClick={() => {
-                        if (!isTransitioning) {
-                            timeoutId !== null && clearTimeout(timeoutId);
-                            setDuration(200);
-                            moveImages_Cb('forward');
-                        }
+                        moveForward_Cb();
+                        nullInterval(intervalId!, () => setIntervalId(null));
                     }}
                 >
                     <div className="size-3 bg-theme-primary [clip-path:polygon(0%_0%,100%_50%,0%_100%)]" />
                 </button>
             </div>
 
-            <div id="carousel" className="z-0 size-full">
-                <div className="relative size-full overflow-x-hidden">
-                    {paddedImageSources.map((source, idx, arr) => (
-                        <img
-                            key={idx === arr.length - 1 ? idx : source}
-                            src={source}
-                            alt={idx.toString()}
-                            className={classNames(
-                                'absolute size-full object-cover transition-transform',
-                                displayCount > 1 && 'border-r-7 border-l-7 border-white',
-                            )}
-                            style={{
-                                transitionDuration: `${duration}ms`,
-                                width: `${100 / displayCount}%`,
-                                transform: `translate(${idx === 0 ? -100 : (idx - 1) * 100}%, var(--tw-translate-y))`,
-                            }}
-                            onTransitionEnd={handleImageTransitionEnd}
-                        />
-                    ))}
+            {/* Carousel */}
+            <div className="h-full w-full overflow-hidden">
+                <div
+                    className="flex h-full transition-transform will-change-transform"
+                    style={{
+                        width: `${trackWidth}%`,
+                        transform: `translateX(${(-(offset + 1) * 100) / slotCount}%)`,
+                        transitionDuration: isTransitioning ? '1000ms' : '0ms',
+                    }}
+                    onTransitionEnd={handleTransitionEnd}
+                >
+                    {Array.from({ length: slotCount }).map((_, idx) => {
+                        const slotIndex = idx - 1;
+                        const imgIndex = wrapNumber(currentImageIndex + slotIndex, imageSources.length);
+                        return (
+                            <div
+                                key={idx}
+                                className="relative bg-cover bg-center"
+                                style={{
+                                    width: `${slotWidth}%`,
+                                    backgroundImage: `url(${imageSources[imgIndex]})`,
+                                }}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </div>
     );
 
-    function handleImageTransitionEnd(ev: TargetedTransitionEvent<HTMLImageElement>) {
-        if (ev.currentTarget === ev.target) {
-            setIsTransitioning(false);
-        }
+    function handleTransitionEnd() {
+        setIsTransitioning(false);
+        setOffset(0);
+        setCurrentImageIndex((old) => wrapNumber(old + offset, imageSources.length));
     }
 };
 
@@ -133,22 +129,8 @@ function wrapNumber(num: number, wrapAt: number) {
     return ((num % wrapAt) + wrapAt) % wrapAt;
 }
 
-function doSetTimeouts(callback: () => unknown) {
-    const timer = setTimeout(() => {
-        callback();
-    }, CAROUSEL_TIMEOUT_MS);
-
-    return timer;
-}
-
-function padArray<T>(arr: T[], currentIndex: number, count: number) {
-    const visibleElements = [];
-    const offscreenPrev = wrapNumber(currentIndex - 1, arr.length);
-    const offscreenNext = wrapNumber(currentIndex + count, arr.length);
-
-    for (let i = 0; i <= count; i++) {
-        visibleElements.push(arr[wrapNumber(currentIndex + i, arr.length)]);
-    }
-
-    return [arr[offscreenPrev], ...visibleElements, arr[offscreenNext]];
+function doSetInterval(callback: () => unknown, runInstantly = false) {
+    runInstantly && callback();
+    const interval = setInterval(() => callback(), CAROUSEL_INTERVAL_MS);
+    return interval;
 }
