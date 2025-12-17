@@ -34,7 +34,7 @@
 @layer base {
     html {
         @apply [scroll-padding-top:calc(var(--header-footer-height)+(var(--header-footer-margin)/2))] scroll-smooth md:[scroll-padding-top:calc(var(--header-footer-height)+var(--header-footer-margin))];
-        @apply [--header-footer-height:--spacing(28)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-offset:--spacing(8)];
+        @apply [--header-footer-height:--spacing(21)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-offset:--spacing(6)] xl:[--header-footer-height:--spacing(28)] xl:[--header-footer-offset:--spacing(8)];
     }
 
     body {
@@ -104,21 +104,21 @@
 
     /* input[name="input-radio-leistungen"] + label  */
     .header-menu-item {
-        @apply relative flex flex-row items-center drop-shadow-sm;
+        @apply relative flex flex-row items-center drop-shadow-xs;
     }
 
     .header-menu-item-label {
-        @apply rounded-xs border border-theme-primary text-theme-primary-variation peer-checked:text-theme-background hover:-translate-y-px hover:text-theme-background hover:**:no-underline! peer-checked:hover:-translate-y-0 peer-checked:hover:**:cursor-default!;
+        @apply rounded-xs border border-theme-primary py-px pr-0.5 text-theme-primary-variation peer-checked:text-theme-background hover:-translate-y-px hover:text-theme-background hover:**:no-underline! peer-checked:hover:-translate-y-0 peer-checked:hover:**:cursor-default! md:py-0 md:pr-2;
         @apply after:absolute after:top-0 after:left-0 after:-z-10 after:h-full after:w-full after:bg-theme-background after:transition-[transform,background-color] peer-checked:after:bg-theme-primary-variation hover:after:bg-theme-primary-variation;
         /* @apply  peer-checked:after:h-(--header-footer-height) ; */
     }
 
-    .header-menu-item-label > img {
-        @apply inline-block aspect-square h-8 -translate-x-1/4 -translate-y-px scale-130 object-cover;
+    .header-menu-item-label > a {
+        @apply block flex h-7 flex-row items-center text-xs leading-none text-inherit select-none md:text-sm;
     }
 
-    .header-menu-item-label > a {
-        @apply inline-block py-px pr-0.5 text-xs text-inherit select-none md:py-1 md:pr-2 md:text-sm;
+    .header-menu-item-label > a > img {
+        @apply inline-block aspect-square h-full -translate-x-1/4 -translate-y-px scale-130 object-cover;
     }
 
     /* Default Element Styles: */
