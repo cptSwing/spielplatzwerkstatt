@@ -61,4 +61,5 @@
     <a class="absolute border-2  border-theme-primary-variation hover:border-theme-primary rounded-xs -mb-3 bottom-0 h-full right-(--container-horizontal-margin) " href="../index.php">
         <img class="size-full object-contain image-hover p-1 pr-1.5 bg-white" src="../images/logo_spielplatzwerkstatt_209x204.png"/>
     </a>
+
 </header>

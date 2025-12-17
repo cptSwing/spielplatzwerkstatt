@@ -4,7 +4,9 @@ $slug = 'galabau';
 $layout = new WrapHTML(title: 'Garten- & Landschaftsbau - Spielplatzwerkstatt');
 $endpoint = CMSHOST . '/wp-json/acf/v3/leistung?slug[]=' . $slug;
 $result = file_get_contents($endpoint);
+
 require 'partials/header.php';
+
 ?>
 
 <div 
@@ -14,4 +16,4 @@ require 'partials/header.php';
 	style="--slug-color:var(--color-theme-weinrot)">
 </div>
 
-<?php require 'partials/footer.php';
+<?php require 'partials/footer.html';
