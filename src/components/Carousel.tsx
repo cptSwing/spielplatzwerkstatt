@@ -14,6 +14,7 @@ const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ image
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [intervalId, setIntervalId] = useState<number | null>(null);
+    const [touchPosition, setTouchPosition] = useState<number | null>(null);
 
     const moveBackward_Cb = useCallback(() => {
         setIsTransitioning(true);
@@ -96,6 +97,8 @@ const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ image
                         transitionDuration: isTransitioning ? '1000ms' : '0ms',
                     }}
                     onTransitionEnd={handleTransitionEnd}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
                 >
                     {Array.from({ length: slotCount }).map((_, idx) => {
                         const slotIndex = idx - 1;
@@ -120,6 +123,31 @@ const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ image
         setIsTransitioning(false);
         setOffset(0);
         setCurrentImageIndex((old) => wrapNumber(old + offset, imageSources.length));
+    }
+
+    function handleTouchStart(ev: TouchEvent) {
+        // Save the first position of the touch
+        const touchDown = ev.touches[0].clientX;
+        nullInterval(intervalId!, () => setIntervalId(null));
+        setTouchPosition(touchDown);
+    }
+
+    function handleTouchMove(ev: TouchEvent) {
+        if (touchPosition === null) {
+            return;
+        }
+        const currentTouchPosition = ev.touches[0].clientX;
+        const diff = touchPosition - currentTouchPosition;
+
+        if (diff > 5) {
+            moveForward_Cb();
+        } else if (diff < -5) {
+            moveBackward_Cb();
+        }
+
+        nullInterval(intervalId!, () => setIntervalId(null));
+        // reset
+        setTouchPosition(null);
     }
 };
 
