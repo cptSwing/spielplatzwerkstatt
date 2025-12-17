@@ -48,6 +48,9 @@ export default [
     {
         name: '@html-eslint/eslint-plugin/flat/recommended',
         ...htmlEslint.configs?.['flat/recommended'],
+        plugins: {
+            html: htmlEslint,
+        },
         files: ['**/*.html'],
         rules: {
             'html/no-duplicate-class': 'error',
