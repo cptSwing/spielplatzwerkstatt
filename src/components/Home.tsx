@@ -8,7 +8,7 @@ const Home = () => {
 
             {/* Anchored Elements: */}
             <div id="home-anchor-spielplatzbau" className="relative">
-                <div className="element-level-1 w-(--inner-container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(40)] md:[--anchored-content-image-width:--spacing(60)]">
+                <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(40)] md:[--anchored-content-image-width:--spacing(60)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
                         alt="spielplatzbau"
@@ -80,7 +80,7 @@ const Home = () => {
 
             {/* Ga-La Bau */}
             <div id="home-anchor-galabau" className="relative">
-                <div className="element-level-1 w-(--inner-container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(37)] md:[--anchored-content-image-width:--spacing(51)]">
+                <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(37)] md:[--anchored-content-image-width:--spacing(51)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
                         alt="galabau"
@@ -135,7 +135,7 @@ const Home = () => {
 
             {/* Naschgarten */}
             <div id="home-anchor-naschgarten" className="relative">
-                <div className="element-level-1 w-(--inner-container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
+                <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
                         alt="naschgarten"
@@ -197,7 +197,7 @@ const Home = () => {
             </div>
 
             <div id="home-anchor-workshops" className="relative">
-                <div className="element-level-1 w-(--inner-container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
+                <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
                         alt="workshops"

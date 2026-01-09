@@ -108,7 +108,7 @@
     }
 
     .header-menu-item-label {
-        @apply rounded-xs border border-theme-primary py-px pr-0.5 text-theme-primary-variation peer-checked:text-theme-background hover:-translate-y-px hover:text-theme-background hover:**:no-underline! peer-checked:hover:-translate-y-0 peer-checked:hover:**:cursor-default! md:py-0 md:pr-2;
+        @apply rounded-xs border border-theme-primary py-px pr-0.5 text-theme-primary-variation peer-checked:text-theme-background hover:text-theme-background hover:**:no-underline! peer-checked:hover:**:cursor-default! md:py-0 md:pr-2;
         @apply after:absolute after:top-0 after:left-0 after:-z-10 after:h-full after:w-full after:bg-theme-background after:transition-[transform,background-color] peer-checked:after:bg-theme-primary-variation hover:after:bg-theme-primary-variation;
         /* @apply  peer-checked:after:h-(--header-footer-height) ; */
     }
@@ -118,12 +118,14 @@
     }
 
     .header-menu-item-label > a > img {
-        @apply inline-block aspect-square h-full -translate-x-1/4 -translate-y-px scale-130 object-cover;
+        @apply inline-block aspect-square h-full -translate-x-1/4 scale-130 object-cover;
     }
-
-    /* Default Element Styles: */
 
     .image-hover {
         @apply transition-[filter] group-hover:brightness-110 group-hover:saturate-125 hover:brightness-110 hover:saturate-125 active:brightness-110 active:saturate-125;
+    }
+
+    .input-clip-hidden {
+        @apply absolute -z-1000 size-0 [clip-path:polygon(0%_0%,0%_0%,0%_0%)];
     }
 }
