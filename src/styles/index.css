@@ -40,7 +40,7 @@
     body {
         @apply h-auto w-dvw overflow-x-hidden bg-theme-background bg-[url(/svg/symbole_hintergrund.svg)] [background-size:100%] [background-position:0_var(--header-footer-margin)] font-roboto text-sm font-normal text-theme-text;
 
-        @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer:calc(100dvh-var(--header-footer-height)-2*var(--header-footer-margin))] [--page-height-no-header:calc(100dvh-var(--header-footer-height)-var(--header-footer-margin))];
+        @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer:calc(100dvh-var(--header-footer-height)-2*var(--header-footer-margin))];
 
         @apply [--container-horizontal-margin:--spacing(6)] md:[--container-horizontal-margin:--spacing(16)] lg:[--container-horizontal-margin:--spacing(32)] xl:[--container-horizontal-margin:--spacing(56)] 2xl:[--container-horizontal-margin:--spacing(76)];
 

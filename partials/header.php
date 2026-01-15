@@ -11,19 +11,19 @@
         <label for="input-radio-hamburger" class="relative peer-checked:flex bg-theme-background flex-col hidden pt-[calc(var(--header-footer-offset)/4)] pl-(--container-horizontal-margin) h-full w-1/2 cursor-pointer pointer-events-auto">
             <div class="self-end text-lg font-mono pr-(--container-horizontal-margin)">X</div>
 
-            <a href="../pages/spielplatzbau.php">
+            <a href="../index.php#home-anchor-spielplatzbau">
                 <h6>Spielplatzbau</h6>
             </a>
 
-            <a href="../pages/galabau.php">
+            <a href="../index.php#home-anchor-galabau">
                 <h6>Garten- & Landschaftsbau</h6>
             </a>
 
-            <a href="../pages/naschgarten.php">
+            <a href="../index.php#home-anchor-naschgarten">
                 <h6>Naschgarten</h6>
             </a>
 
-            <a href="../pages/workshops.php">
+            <a href="../index.php#home-anchor-workshops">
                 <h6>Workshops</h6>
             </a>
         </label>
@@ -33,6 +33,7 @@
         class="pt-[calc(var(--header-footer-offset)/4)] pl-(--container-horizontal-margin) [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)] flex flex-row gap-6  justify-start items-center h-full bg-white">
         <!-- Desktop Menu -->
         <div class="hidden md:flex left-2 top-0  flex-row gap-6  md:justify-start items-center">
+            <!-- Spielplatzbau -->
             <div class="header-menu-item group">
                 <input
                     id="input-radio-spielplatzbau"
@@ -43,7 +44,7 @@
                         echo 'checked="checked"';
                     } ?> />
                 <label for="input-radio-spielplatzbau" class="header-menu-item-label">
-                    <a href="../pages/spielplatzbau.php">
+                    <a href="../index.php#home-anchor-spielplatzbau">
                         <img
                             alt="naschgarten"
                             src="../images/symbol_geraet_238x240.png"
@@ -55,6 +56,7 @@
                 </label>
             </div>
 
+            <!-- Galabau -->
             <div class="header-menu-item group">
                 <input
                     id="input-radio-galabau"
@@ -65,7 +67,7 @@
                         echo 'checked="checked"';
                     } ?> />
                 <label for="input-radio-galabau" class="header-menu-item-label">
-                    <a href="../pages/galabau.php">
+                    <a href="../index.php#home-anchor-galabau">
                         <img
                             alt="naschgarten"
                             src="../images/symbol_spaten_203x205.png"
@@ -77,6 +79,7 @@
                 </label>
             </div>
 
+            <!-- Naschgarten -->
             <div class="header-menu-item group">
                 <input
                     id="input-radio-naschgarten"
@@ -87,7 +90,7 @@
                         echo 'checked="checked"';
                     } ?> />
                 <label for="input-radio-naschgarten" class="header-menu-item-label">
-                    <a href="../pages/naschgarten.php">
+                    <a href="../index.php#home-anchor-naschgarten">
                         <img
                             alt="naschgarten"
                             src="../images/symbol_baum_211x211.png"
@@ -99,6 +102,7 @@
                 </label>
             </div>
 
+            <!-- Workshops -->
             <div class="header-menu-item group">
                 <input
                     id="input-radio-workshops"
@@ -109,7 +113,7 @@
                         echo 'checked="checked"';
                     } ?> />
                 <label for="input-radio-workshops" class="header-menu-item-label">
-                    <a href="../pages/workshops.php">
+                    <a href="../index.php#home-anchor-workshops">
                         <img
                             alt="naschgarten"
                             src="../images/symbol_buch_210x213.png"
@@ -123,7 +127,7 @@
         </div>
     </div>
 
-    <a class="absolute border-2  border-theme-primary-variation hover:border-theme-primary rounded-xs -mb-3 bottom-0 h-full right-(--container-horizontal-margin) "
+    <a class="absolute border-2  border-theme-primary-variation hover:border-theme-primary rounded-xs -mb-3 bottom-0 h-full right-(--container-horizontal-margin) -mr-2"
         href="../index.php">
         <img class="size-full object-contain image-hover p-1 pr-1.5 bg-white"
             src="../images/logo_spielplatzwerkstatt_209x204.png" />

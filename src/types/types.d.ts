@@ -1,12 +1,22 @@
 import { WP_REST_API_Post } from 'wp-types';
 
+type ConstValues<T extends readonly unknown[]> = T[number];
 export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
 
 export type WP_REST_API_Post_With_ACF_Type = WP_REST_API_Post & ACF_Property;
 
 export type ACF_Property = {
-    acf: ACF_Leistung_Type;
+    acf: ACF_Leistung_Type | ACF_Leistungsbeschreibung_Type;
+    id: number;
+    slug?: string;
 };
+
+export type ACF_Leistungsbeschreibung_Type = {
+    beschreibungstext: string;
+    beschreibungsbild: string | false;
+};
+
+export type Leistungsbeschreibungen = Record<ConstValues<typeof LEISTUNGEN>, ACF_Leistungsbeschreibung_Type>;
 
 export type ACF_Leistung_Type = {
     vollbild_slider: ACF_Vollbild_Slider;

@@ -1,13 +1,31 @@
-const Home = () => {
-    return (
-        <main className="flex flex-col items-center justify-start gap-y-48 [--inner-container-width:calc(var(--container-width)-(var(--container-horizontal-margin)*1.5))] md:[--inner-container-width:calc(var(--container-width)-(var(--container-horizontal-margin)*2))] lg:[--inner-container-width:calc(var(--container-width)-(var(--container-horizontal-margin)*1.5))] xl:[--inner-container-width:calc(var(--container-width)-var(--container-horizontal-margin))]">
-            <AnchorLinks />
+import { useEffect } from 'preact/hooks';
+import type { Leistungsbeschreibungen } from '../types/types';
+import NewsItems from './NewsItems';
 
-            {/* News / Insta: */}
-            <NewsItems />
+const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leistungsbeschreibungen }) => {
+    // TODO Scrolls to <section> anchors when page is ready
+    // TODO Once hydration vs full-js content is implemented, this will not be necessary
+    useEffect(() => {
+        if (location.hash) {
+            const target = document.querySelector(location.hash);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, []);
+
+    return (
+        <main className="flex flex-col items-center justify-start gap-y-48">
+            {/* <AnchorLinks /> */}
+            <div className="h-(--page-height-no-header-no-footer) w-(--container-width)">
+                <h1 className="mb-12 text-center text-theme-primary">Willkommen bei der Spielplatzwerkstatt!</h1>
+
+                {/* News / Insta: */}
+                <NewsItems />
+            </div>
 
             {/* Anchored Elements: */}
-            <div id="home-anchor-spielplatzbau" className="relative">
+            <section id="home-anchor-spielplatzbau" className="relative">
                 <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(40)] md:[--anchored-content-image-width:--spacing(60)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
@@ -25,50 +43,15 @@ const Home = () => {
 
                         <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(30%_0%,100%_37.5%,50%_100%)]" />
-
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor. Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id neque. Donec mattis venenatis
-                                arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna, pellentesque ut imperdiet et,
-                                cursus ut urna.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna. Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et
-                                iaculis tortor. Suspendisse eros velit, rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis
-                                porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna.
-                            </p>
-                            <br />
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna.
-                            </p>
-                            <br />
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor.
-                            </p>
-                            <br />
+                            {leistungsBeschreibungsData['spielplatzbau'].beschreibungsbild && (
+                                <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
+                                    <img src={leistungsBeschreibungsData['spielplatzbau'].beschreibungsbild} alt="spielplatzbau beschreibungsbild" />
+                                </div>
+                            )}
+                            <span
+                                // eslint-disable-next-line react/no-danger
+                                dangerouslySetInnerHTML={{ __html: leistungsBeschreibungsData['spielplatzbau'].beschreibungstext }}
+                            />
                         </div>
 
                         <button className="button self-center">
@@ -76,10 +59,10 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </section>
 
             {/* Ga-La Bau */}
-            <div id="home-anchor-galabau" className="relative">
+            <section id="home-anchor-galabau" className="relative">
                 <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(37)] md:[--anchored-content-image-width:--spacing(51)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
@@ -95,35 +78,17 @@ const Home = () => {
                             <hr className="-mt-(--content-card-padding-half) w-[calc(100%-var(--anchored-content-hr-padding)+var(--content-card-padding-half))] text-theme-secondary" />
                         </div>
 
-                        <div className="text-justify text-pretty text-neutral-600">
+                        <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(14%_0%,75%_95%,27%_55%)]" />
-
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor. Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id neque. Donec mattis venenatis
-                                arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna, pellentesque ut imperdiet et,
-                                cursus ut urna.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna. Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et
-                                iaculis tortor. Suspendisse eros velit, rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis
-                                porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna.
-                            </p>
+                            {leistungsBeschreibungsData['galabau'].beschreibungsbild && (
+                                <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
+                                    <img src={leistungsBeschreibungsData['galabau'].beschreibungsbild} alt="galabau beschreibungsbild" />
+                                </div>
+                            )}
+                            <span
+                                // eslint-disable-next-line react/no-danger
+                                dangerouslySetInnerHTML={{ __html: leistungsBeschreibungsData['galabau'].beschreibungstext }}
+                            />
                         </div>
 
                         <button className="button self-center">
@@ -131,10 +96,10 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </section>
 
             {/* Naschgarten */}
-            <div id="home-anchor-naschgarten" className="relative">
+            <section id="home-anchor-naschgarten" className="relative">
                 <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
@@ -152,41 +117,15 @@ const Home = () => {
 
                         <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(10%_0%,90%_100%,50%_85%,20%_45%)]" />
-
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor. Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id neque. Donec mattis venenatis
-                                arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna, pellentesque ut imperdiet et,
-                                cursus ut urna.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna. Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et
-                                iaculis tortor. Suspendisse eros velit, rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis
-                                porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna. Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et
-                                iaculis tortor. Suspendisse eros velit, rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis
-                                porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna.
-                            </p>
+                            {leistungsBeschreibungsData['naschgarten'].beschreibungsbild && (
+                                <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
+                                    <img src={leistungsBeschreibungsData['naschgarten'].beschreibungsbild} alt="naschgarten beschreibungsbild" />
+                                </div>
+                            )}
+                            <span
+                                // eslint-disable-next-line react/no-danger
+                                dangerouslySetInnerHTML={{ __html: leistungsBeschreibungsData['naschgarten'].beschreibungstext }}
+                            />
                         </div>
 
                         <button className="button self-center">
@@ -194,9 +133,9 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div id="home-anchor-workshops" className="relative">
+            <section id="home-anchor-workshops" className="relative">
                 <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
@@ -214,41 +153,15 @@ const Home = () => {
 
                         <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(22%_0%,100%_75%,44%_95%,34.5%_48%,26%_44%)]" />
-
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor. Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id neque. Donec mattis venenatis
-                                arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna, pellentesque ut imperdiet et,
-                                cursus ut urna.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna. Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et
-                                iaculis tortor. Suspendisse eros velit, rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis
-                                porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et iaculis tortor. Suspendisse eros velit,
-                                rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna. Duis tincidunt tellus sit amet orci commodo, at gravida diam accumsan. Praesent et
-                                iaculis tortor. Suspendisse eros velit, rutrum non cursus vitae, scelerisque eu sapien. Praesent bibendum pharetra purus quis
-                                porttitor.
-                            </p>
-                            <br />
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pharetra mauris. Cras eu mi vitae purus bibendum egestas eu id
-                                neque. Donec mattis venenatis arcu et tincidunt. Cras eros magna, gravida in efficitur nec, ornare vel arcu. Fusce urna urna,
-                                pellentesque ut imperdiet et, cursus ut urna.
-                            </p>
+                            {leistungsBeschreibungsData['workshops'].beschreibungsbild && (
+                                <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
+                                    <img src={leistungsBeschreibungsData['workshops'].beschreibungsbild} alt="workshops beschreibungsbild" />
+                                </div>
+                            )}
+                            <span
+                                // eslint-disable-next-line react/no-danger
+                                dangerouslySetInnerHTML={{ __html: leistungsBeschreibungsData['workshops'].beschreibungstext }}
+                            />
                         </div>
 
                         <button className="button self-center">
@@ -256,7 +169,7 @@ const Home = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
     );
 };
@@ -321,41 +234,6 @@ const AnchorLinks = () => {
                 </div>
                 <h4 className="text-center text-theme-background">Workshops</h4>
             </a>
-        </div>
-    );
-};
-
-const NewsItems = () => {
-    return (
-        <div className="element-level-1 w-(--inner-container-width) p-(--content-card-padding-double)">
-            <h2 className="mb-(--content-card-padding) text-center">Neuigkeiten:</h2>
-
-            <div className="mx-auto grid w-full grid-cols-1 gap-(--content-card-padding-double) md:grid-cols-3">
-                <div className="element-level-2 h-auto cursor-pointer overflow-hidden p-(--content-card-padding) select-none hover:bg-theme-primary/90 active:bg-theme-primary/90">
-                    <h4 className="mb-(--content-card-padding-half) text-white">Newsitem 1</h4>
-                    <p className="text-xs text-theme-background">
-                        Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt..
-                        Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt...
-                        Lorem Ipsum Excerpt... Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt... Lorem Ipsum Excerpt...
-                        Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt..
-                    </p>
-                </div>
-                <div className="element-level-2 h-auto cursor-pointer overflow-hidden p-(--content-card-padding) select-none hover:bg-theme-primary/90 active:bg-theme-primary/90">
-                    <h4 className="mb-(--content-card-padding-half) text-white">Newsitem 2</h4>
-                    <p className="text-xs text-theme-background">
-                        Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt..
-                        Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt..
-                    </p>
-                </div>
-                <div className="element-level-2 h-auto cursor-pointer overflow-hidden p-(--content-card-padding) select-none hover:bg-theme-primary/90 active:bg-theme-primary/90">
-                    <h4 className="mb-(--content-card-padding-half) text-white">Newsitem 3</h4>
-                    <p className="text-xs text-theme-background">
-                        Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt..
-                        Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt... Lorem Ipsum Excerpt...
-                        Lorem Ipsum Excerpt... Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt.. Lorem Ipsum Excerpt..
-                    </p>
-                </div>
-            </div>
         </div>
     );
 };
