@@ -33,7 +33,7 @@
 
 @layer base {
     html {
-        @apply [scroll-padding-top:calc(var(--header-footer-height)+(var(--header-footer-margin)/2))] scroll-smooth md:[scroll-padding-top:calc(var(--header-footer-height)+var(--header-footer-margin))];
+        @apply [scroll-padding-top:calc(var(--header-footer-height)+(var(--header-footer-margin)/2))] scroll-smooth md:[scroll-padding-top:calc(var(--header-footer-height)+2*var(--header-footer-margin))];
         @apply [--header-footer-height:--spacing(21)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-offset:--spacing(6)] xl:[--header-footer-height:--spacing(28)] xl:[--header-footer-offset:--spacing(8)];
     }
 
@@ -48,7 +48,7 @@
     }
 
     main {
-        @apply mx-auto w-(--container-width);
+        @apply mx-auto;
     }
 
     h1 {

@@ -17,16 +17,23 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
     return (
         <main className="flex flex-col items-center justify-start gap-y-48">
             {/* <AnchorLinks /> */}
-            <div className="h-(--page-height-no-header-no-footer) w-(--container-width)">
-                <h1 className="mb-12 text-center text-theme-primary">Willkommen bei der Spielplatzwerkstatt!</h1>
+            <div className="relative mb-(--header-footer-margin) h-(--page-height-no-header-no-footer) w-dvw">
+                <div className="mx-auto flex h-full w-(--container-width) flex-col items-center justify-between">
+                    <h1 className="self-start text-theme-background">Willkommen bei der Spielplatzwerkstatt!</h1>
 
-                {/* News / Insta: */}
-                <NewsItems />
+                    {/* News / Insta: */}
+                    <NewsItems />
+                </div>
+
+                <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+2*(var(--header-footer-margin)+var(--header-footer-offset)))] w-full [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
+                    <div className="absolute size-full bg-linear-0 from-transparent via-neutral-600/10 to-transparent bg-size-[auto_1%] bg-repeat" />
+                    <video src="/videos/5372429_Coll_wavebreak_Sunny_1280x720.mp4" preload="auto" muted loop autoPlay className="size-full object-cover" />
+                </div>
             </div>
 
             {/* Anchored Elements: */}
-            <section id="home-anchor-spielplatzbau" className="relative">
-                <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(40)] md:[--anchored-content-image-width:--spacing(60)]">
+            <section id="home-anchor-spielplatzbau" className="relative w-(--container-width)">
+                <div className="element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(40)] md:[--anchored-content-image-width:--spacing(60)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
                         alt="spielplatzbau"
@@ -62,8 +69,8 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
             </section>
 
             {/* Ga-La Bau */}
-            <section id="home-anchor-galabau" className="relative">
-                <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(37)] md:[--anchored-content-image-width:--spacing(51)]">
+            <section id="home-anchor-galabau" className="relative w-(--container-width)">
+                <div className="element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(37)] md:[--anchored-content-image-width:--spacing(51)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
                         alt="galabau"
@@ -99,8 +106,8 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
             </section>
 
             {/* Naschgarten */}
-            <section id="home-anchor-naschgarten" className="relative">
-                <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
+            <section id="home-anchor-naschgarten" className="relative w-(--container-width)">
+                <div className="element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
                         alt="naschgarten"
@@ -135,8 +142,8 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
                 </div>
             </section>
 
-            <section id="home-anchor-workshops" className="relative">
-                <div className="element-level-1 w-(--container-width) p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
+            <section id="home-anchor-workshops" className="relative w-(--container-width)">
+                <div className="element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
                     <img
                         className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
                         alt="workshops"
