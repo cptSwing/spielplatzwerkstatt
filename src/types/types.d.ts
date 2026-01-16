@@ -6,9 +6,18 @@ export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
 export type WP_REST_API_Post_With_ACF_Type = WP_REST_API_Post & ACF_Property;
 
 export type ACF_Property = {
-    acf: ACF_Leistung_Type | ACF_Leistungsbeschreibung_Type;
+    acf: ACF_Leistung_Type | ACF_Leistungsbeschreibung_Type | ACF_Nachricht_Type;
     id: number;
     slug?: string;
+    title?: {
+        rendered: string;
+    };
+};
+
+export type ACF_Nachricht_Type = {
+    titel: string;
+    datum: string;
+    text: string;
 };
 
 export type ACF_Leistungsbeschreibung_Type = {
