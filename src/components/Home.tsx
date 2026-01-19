@@ -25,8 +25,8 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
                     <NewsItems />
                 </div>
 
-                <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+2*(var(--header-footer-margin)+var(--header-footer-offset)))] w-full [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
-                    <div className="absolute size-full bg-linear-0 from-transparent via-neutral-600/10 to-transparent bg-size-[auto_1%] bg-repeat" />
+                <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-full [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
+                    <div className="absolute size-full bg-linear-0 from-theme-background/25 via-theme-primary/50 to-theme-background/25 bg-size-[auto_5px] bg-repeat" />
                     <video src="/videos/5372429_Coll_wavebreak_Sunny_1280x720.mp4" preload="auto" muted loop autoPlay className="size-full object-cover" />
                 </div>
             </div>
@@ -183,7 +183,7 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
 
 export default Home;
 
-const AnchorLinks = () => {
+const _AnchorLinks = () => {
     return (
         <div className="-mt-(--content-card-padding-double) flex min-h-(--page-height-no-header-no-footer) w-full flex-col items-stretch justify-center gap-(--content-card-padding-double) sm:w-4/5 md:w-3/5 lg:w-1/2 2xl:w-1/3">
             <a
