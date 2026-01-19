@@ -16,4 +16,4 @@ require "partials/header.php";
 	style="--slug-color:var(--color-theme-dunkelgruen)">
 </div>
 
-<?php require "partials/footer.html";
+<?php require "partials/footer.php";

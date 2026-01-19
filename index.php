@@ -16,4 +16,4 @@ $result = file_get_contents($endpoint);
     data-route='home'>
 </div>
 
-<?php include("partials/footer.html"); ?>
+<?php include("partials/footer.php"); ?>
