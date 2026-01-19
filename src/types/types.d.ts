@@ -1,4 +1,5 @@
-import { WP_REST_API_Post } from 'wp-types';
+// Annoyingly, tsc spits out errors during build if I don't import this way: https://stackoverflow.com/a/74039065
+const { WP_REST_API_Post } = require('wp-types');
 
 type ConstValues<T extends readonly unknown[]> = T[number];
 export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
