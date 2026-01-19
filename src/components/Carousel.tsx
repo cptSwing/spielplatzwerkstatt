@@ -1,5 +1,6 @@
 import { classNames } from 'cpts-javascript-utilities';
 import { useCallback, useEffect, useState, type FC } from 'preact/compat';
+import type { ACF_Image } from '../types/types';
 
 const CAROUSEL_INTERVAL_MS = 4000 as const;
 
@@ -8,7 +9,7 @@ function nullInterval(intervalId: number, callback: () => void) {
     callback();
 }
 
-const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ imageSources, displayCount = 1 }) => {
+const Carousel: FC<{ images: ACF_Image[]; displayCount?: number }> = ({ images, displayCount = 1 }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [offset, setOffset] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
@@ -67,7 +68,7 @@ const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ image
                             onClick={() => setIsPaused((old) => !old)}
                         />
 
-                        {imageSources.map((iSrc, idx) => (
+                        {images.map((iSrc, idx) => (
                             <button
                                 key={`dot ${iSrc} ${idx}`}
                                 className={classNames('h-1.5 w-8 rounded-xs', idx === currentImageIndex ? 'bg-white/80' : 'bg-neutral-400/80')}
@@ -102,15 +103,16 @@ const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ image
                 >
                     {Array.from({ length: slotCount }).map((_, idx) => {
                         const slotIndex = idx - 1;
-                        const imgIndex = wrapNumber(currentImageIndex + slotIndex, imageSources.length);
+                        const imgIndex = wrapNumber(currentImageIndex + slotIndex, images.length);
                         return (
                             <div
                                 key={idx}
-                                className="relative bg-cover bg-center"
+                                className="relative bg-cover bg-center after:absolute after:top-0 after:left-12 after:size-full after:translate-y-[calc(100%---spacing(18))] after:text-neutral-700 after:content-[attr(data-description)]"
                                 style={{
                                     width: `${slotWidth}%`,
-                                    backgroundImage: `url(${imageSources[imgIndex]})`,
+                                    backgroundImage: `url(${images[imgIndex].url})`,
                                 }}
+                                data-description={images[imgIndex].beschreibung}
                             />
                         );
                     })}
@@ -122,7 +124,7 @@ const Carousel: FC<{ imageSources: string[]; displayCount?: number }> = ({ image
     function handleTransitionEnd() {
         setIsTransitioning(false);
         setOffset(0);
-        setCurrentImageIndex((old) => wrapNumber(old + offset, imageSources.length));
+        setCurrentImageIndex((old) => wrapNumber(old + offset, images.length));
     }
 
     function handleTouchStart(ev: TouchEvent) {

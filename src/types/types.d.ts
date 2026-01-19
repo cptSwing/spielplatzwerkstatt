@@ -28,44 +28,68 @@ export type ACF_Leistungsbeschreibung_Type = {
 export type Leistungsbeschreibungen = Record<ConstValues<typeof LEISTUNGEN>, ACF_Leistungsbeschreibung_Type>;
 
 export type ACF_Leistung_Type = {
-    vollbild_slider: ACF_Vollbild_Slider;
-    info_kaertchen: ACF_Info_Karten;
-    produkt_story_a: ACF_Produkt_Story;
+    header_text: string;
+    header_bild_1: ACF_Header_Slider_Bild;
+    header_bild_2: ACF_Header_Slider_Bild;
+    header_bild_3: ACF_Header_Slider_Bild;
+
+    banderole: ACF_Info_Karte;
+
+    infokarte_1: ACF_Info_Karte;
+    infokarte_2: ACF_Info_Karte;
+    infokarte_3: ACF_Info_Karte;
+    infokarte_4: ACF_Info_Karte;
+    infokarte_5: ACF_Info_Karte;
+
+    produkt_story_a?: ACF_Produkt_Story;
     produkt_story_b?: ACF_Produkt_Story;
     produkt_story_c?: ACF_Produkt_Story;
+
+    zweite_produkt_story: boolean;
+    dritte_produkt_story?: boolean;
 };
 
-export type ACF_Vollbild_Slider = {
+export type ACF_Header_Slider_Bild = {
+    beschreibung: string;
+    bild: ACF_Image;
+};
+
+export type ACF_Info_Karte = {
     titel: string;
-    bild_1: string;
-    bild_2: string;
-    bild_3: string;
-};
-
-export type ACF_Info_Karten = {
-    infokarte_1: string;
-    infokarte_2: string;
-    infokarte_3: string;
-    infokarte_4: string;
-    infokarte_5: string;
+    text: string;
 };
 
 export type ACF_Produkt_Story = {
     titel: string;
     beschreibung: string;
-    bild_1: string;
-    bild_2: string;
-    bild_3: string;
-    bild_4: string;
-    bild_5?: string;
-    bild_6?: string;
-    bild_7?: string;
-    bild_8?: string;
-    bild_9?: string;
-    bild_10?: string;
-    bild_11?: string;
-    bild_12?: string;
-    bild_13?: string;
-    bild_14?: string;
-    bild_15?: string;
+    bilder?: {
+        bild_1: ACF_Image;
+        bild_2: ACF_Image;
+        bild_3: ACF_Image;
+        bild_4: ACF_Image;
+        bild_5?: ACF_Image;
+        bild_6?: ACF_Image;
+        bild_7?: ACF_Image;
+        bild_8?: ACF_Image;
+        bild_9?: ACF_Image;
+        bild_10?: ACF_Image;
+        bild_11?: ACF_Image;
+        bild_12?: ACF_Image;
+        bild_13?: ACF_Image;
+        bild_14?: ACF_Image;
+        bild_15?: ACF_Image;
+    };
+};
+
+export type ACF_Image = {
+    beschreibung?: string;
+    ID: number;
+    date: string;
+    sizes: {
+        large: string;
+        medium: string;
+        thumbnail: string;
+    };
+    type: 'image';
+    url: string;
 };
