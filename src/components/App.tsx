@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'preact/compat';
 import ErrorMessage from './ErrorMessage';
 import LoadingMessage from './LoadingMessage';
 import useParseApi from '../hooks/useParseApi';
-import type { ACF_Leistung_Type, Leistungsbeschreibungen } from '../types/types';
+import type { ACF_Home_Type, ACF_Leistung_Type } from '../types/types';
 
 const Home = lazy(() => import('./Home'));
 const Leistungen = lazy(() => import('./Leistungen'));
@@ -20,7 +20,7 @@ const App = () => {
 
     return route === 'home' ? (
         <Suspense fallback={<LoadingMessage />}>
-            <Home leistungsBeschreibungsData={apiResult as Leistungsbeschreibungen} />
+            <Home homeData={apiResult as ACF_Home_Type} />
         </Suspense>
     ) : (
         <Suspense fallback={<LoadingMessage />}>

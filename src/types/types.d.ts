@@ -7,13 +7,17 @@ export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
 export type WP_REST_API_Post_With_ACF_Type = WP_REST_API_Post & ACF_Property;
 
 export type ACF_Property = {
-    acf: ACF_Leistung_Type | ACF_Leistungsbeschreibung_Type | ACF_Nachricht_Type;
+    acf: ACF_Leistung_Type | ACF_Home_Type | ACF_Nachricht_Type;
     id: number;
     slug?: string;
     title?: {
         rendered: string;
     };
 };
+
+export type Leistungsbeschreibungen = Record<ConstValues<typeof LEISTUNGEN>, ACF_Leistungsbeschreibung_Type>;
+
+export type ACF_Home_Type = Leistungsbeschreibungen & { video: ACF_Video };
 
 export type ACF_Nachricht_Type = {
     titel: string;
@@ -22,11 +26,9 @@ export type ACF_Nachricht_Type = {
 };
 
 export type ACF_Leistungsbeschreibung_Type = {
-    beschreibungstext: string;
-    beschreibungsbild: string | false;
+    text: string;
+    bild: ACF_Image | false;
 };
-
-export type Leistungsbeschreibungen = Record<ConstValues<typeof LEISTUNGEN>, ACF_Leistungsbeschreibung_Type>;
 
 export type ACF_Leistung_Type = {
     header_text: string;
@@ -82,15 +84,37 @@ export type ACF_Produkt_Story = {
     };
 };
 
-export type ACF_Image = {
-    beschreibung?: string;
+type ACF_File = {
     ID: number;
     date: string;
+    url: string;
+};
+
+export type ACF_Image = ACF_File & {
+    beschreibung?: string;
     sizes: {
         large: string;
         medium: string;
         thumbnail: string;
     };
     type: 'image';
-    url: string;
+};
+
+export type ACF_Video = ACF_File & {
+    description: string;
+    filename: string;
+    filesize: number;
+    width: number;
+    height: number;
+    sizes: {
+        large: string;
+        medium: string;
+        thumbnail: string;
+    };
+    type: 'video';
+    name: string;
+    title: string;
+    mime_type: string;
+    alt: string;
+    author: string;
 };

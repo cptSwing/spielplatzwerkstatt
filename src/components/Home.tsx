@@ -1,8 +1,10 @@
 import { useEffect } from 'preact/hooks';
-import type { Leistungsbeschreibungen } from '../types/types';
+import type { ACF_Home_Type } from '../types/types';
 import NewsItems from './NewsItems';
 
-const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leistungsbeschreibungen }) => {
+const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
+    const { spielplatzbau, galabau, naschgarten, workshops, video } = homeData;
+
     // TODO Scrolls to <section> anchors when page is ready
     // TODO Once hydration vs full-js content is implemented, this will not be necessary
     useEffect(() => {
@@ -27,7 +29,7 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
 
                 <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-full [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
                     <div className="absolute size-full bg-linear-0 from-theme-background/25 via-theme-primary/50 to-theme-background/25 bg-size-[auto_5px] bg-repeat" />
-                    <video src="/videos/5372429_Coll_wavebreak_Sunny_1280x720.mp4" preload="auto" muted loop autoPlay className="size-full object-cover" />
+                    <video src={video.url} preload="auto" muted loop autoPlay className="size-full object-cover" />
                 </div>
             </div>
 
@@ -50,14 +52,14 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
 
                         <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(30%_0%,100%_37.5%,50%_100%)]" />
-                            {leistungsBeschreibungsData['spielplatzbau'].beschreibungsbild && (
+                            {spielplatzbau.bild && (
                                 <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
-                                    <img src={leistungsBeschreibungsData['spielplatzbau'].beschreibungsbild} alt="spielplatzbau beschreibungsbild" />
+                                    <img src={spielplatzbau.bild.url} alt="spielplatzbau beschreibungsbild" />
                                 </div>
                             )}
                             <span
                                 // eslint-disable-next-line react/no-danger
-                                dangerouslySetInnerHTML={{ __html: leistungsBeschreibungsData['spielplatzbau'].beschreibungstext }}
+                                dangerouslySetInnerHTML={{ __html: spielplatzbau.text }}
                             />
                         </div>
 
@@ -87,14 +89,14 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
 
                         <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(14%_0%,75%_95%,27%_55%)]" />
-                            {leistungsBeschreibungsData['galabau'].beschreibungsbild && (
+                            {galabau.bild && (
                                 <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
-                                    <img src={leistungsBeschreibungsData['galabau'].beschreibungsbild} alt="galabau beschreibungsbild" />
+                                    <img src={galabau.bild.url} alt="galabau beschreibungsbild" />
                                 </div>
                             )}
                             <span
                                 // eslint-disable-next-line react/no-danger
-                                dangerouslySetInnerHTML={{ __html: leistungsBeschreibungsData['galabau'].beschreibungstext }}
+                                dangerouslySetInnerHTML={{ __html: galabau.text }}
                             />
                         </div>
 
@@ -124,14 +126,14 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
 
                         <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(10%_0%,90%_100%,50%_85%,20%_45%)]" />
-                            {leistungsBeschreibungsData['naschgarten'].beschreibungsbild && (
+                            {naschgarten.bild && (
                                 <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
-                                    <img src={leistungsBeschreibungsData['naschgarten'].beschreibungsbild} alt="naschgarten beschreibungsbild" />
+                                    <img src={naschgarten.bild.url} alt="naschgarten beschreibungsbild" />
                                 </div>
                             )}
                             <span
                                 // eslint-disable-next-line react/no-danger
-                                dangerouslySetInnerHTML={{ __html: leistungsBeschreibungsData['naschgarten'].beschreibungstext }}
+                                dangerouslySetInnerHTML={{ __html: naschgarten.text }}
                             />
                         </div>
 
@@ -160,14 +162,14 @@ const Home = ({ leistungsBeschreibungsData }: { leistungsBeschreibungsData: Leis
 
                         <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(22%_0%,100%_75%,44%_95%,34.5%_48%,26%_44%)]" />
-                            {leistungsBeschreibungsData['workshops'].beschreibungsbild && (
+                            {workshops.bild && (
                                 <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
-                                    <img src={leistungsBeschreibungsData['workshops'].beschreibungsbild} alt="workshops beschreibungsbild" />
+                                    <img src={workshops.bild.url} alt="workshops beschreibungsbild" />
                                 </div>
                             )}
                             <span
                                 // eslint-disable-next-line react/no-danger
-                                dangerouslySetInnerHTML={{ __html: leistungsBeschreibungsData['workshops'].beschreibungstext }}
+                                dangerouslySetInnerHTML={{ __html: workshops.text }}
                             />
                         </div>
 

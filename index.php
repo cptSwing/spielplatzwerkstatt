@@ -1,9 +1,7 @@
 <?php
 require('partials/includes.php');
 $layout = new WrapHTML(title: 'Home - Spielplatzwerkstatt');
-$slug = null;
-// $endpoint = CMSHOST . '/wp-json/acf/v3/leistungsbeschr';
-$endpoint = CMSHOST . '/wp-json/wp/v2/leistungsbeschr';
+$endpoint = CMSHOST . '/wp-json/wp/v2/homepage';
 $result = file_get_contents($endpoint);
 
 ?>
