@@ -3,7 +3,7 @@ require('partials/includes.php');
 $layout = new WrapHTML(title: 'Home - Spielplatzwerkstatt');
 $endpoint = CMSHOST . '/wp-json/wp/v2/homepage';
 $result = file_get_contents($endpoint);
-
+$slug = null;
 ?>
 
 <?php include("partials/header.php"); ?>

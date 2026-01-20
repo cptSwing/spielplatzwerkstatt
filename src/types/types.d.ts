@@ -7,7 +7,7 @@ export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
 export type WP_REST_API_Post_With_ACF_Type = WP_REST_API_Post & ACF_Property;
 
 export type ACF_Property = {
-    acf: ACF_Leistung_Type | ACF_Home_Type | ACF_Nachricht_Type;
+    acf: ACF_Leistung_Type | ACF_Home_Type | ACF_Nachricht_Type | ACF_Contacts_Type;
     id: number;
     slug?: string;
     title?: {
@@ -15,14 +15,27 @@ export type ACF_Property = {
     };
 };
 
-export type Leistungsbeschreibungen = Record<ConstValues<typeof LEISTUNGEN>, ACF_Leistungsbeschreibung_Type>;
-
+type Leistungsbeschreibungen = Record<ConstValues<typeof LEISTUNGEN>, ACF_Leistungsbeschreibung_Type>;
 export type ACF_Home_Type = Leistungsbeschreibungen & { video: ACF_Video };
 
 export type ACF_Nachricht_Type = {
     titel: string;
     datum: string;
     text: string;
+};
+
+export type ACF_Contacts_Type = {
+    chef_1: ACF_Contact_Type;
+    chef_2: ACF_Contact_Type;
+};
+
+export type ACF_Contact_Type = {
+    name: string;
+    aufgabe: string;
+    text: string;
+    bild: ACF_Image;
+    email: string;
+    telefonnummer: string;
 };
 
 export type ACF_Leistungsbeschreibung_Type = {

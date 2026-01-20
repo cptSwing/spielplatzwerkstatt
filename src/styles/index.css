@@ -14,15 +14,9 @@
     --color-theme-text: var(--color-slate-800);
     --color-theme-link: var(--color-slate-700);
 
-    /* --color-theme-primary: var(--color-theme-dunkelgruen); */
-    /* --color-theme-secondary: var(--color-theme-gelb); */
-    /* --color-theme-primary-variation: var(--color-theme-hellgruen); */
-
     --color-theme-primary: #619961;
     --color-theme-secondary: var(--color-theme-weinrot);
     --color-theme-accent: #ffd82d;
-    /* --color-theme-primary-variation: #9dbb90; */
-    /* --color-theme-primary-variation: #9dbb90; */
     --color-theme-primary-variation: #76ad85;
 
     --drop-shadow-centered-xs: 0 0 1px var(--tw-drop-shadow-color, rgb(0 0 0 / 0.15));
@@ -95,8 +89,8 @@
     }
 
     .button {
-        @apply relative inline-block cursor-pointer rounded-xl border-2 border-blue-300 bg-blue-400 py-1 pr-2 pl-6 font-gabarito text-base text-theme-text shadow-md outline-offset-1 outline-theme-secondary transition-[border-color] **:text-theme-text hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:**:no-underline focus:-translate-y-0.5 focus:border-blue-200 focus:outline-2 focus-visible:-translate-y-0.5 focus-visible:border-blue-200 focus-visible:outline-4 active:border-blue-200;
-        @apply before:absolute before:top-1/2 before:left-2 before:size-3 before:-translate-y-1/2 before:bg-theme-accent before:[clip-path:polygon(0%_0%,100%_50%,0%_100%)];
+        @apply relative inline-block cursor-pointer rounded-xl border-1 border-t-2 border-emerald-300/50 bg-emerald-400 py-1 pr-2 pl-6 font-gabarito text-base text-emerald-50! no-underline shadow-md outline-2 outline-offset-2 outline-transparent transition-[outline-color,transform] hover:-translate-y-px hover:text-white! hover:shadow-lg hover:outline-emerald-600/10 focus:-translate-y-px focus:outline-emerald-600;
+        @apply before:absolute before:top-1/2 before:left-2 before:size-3 before:-translate-y-1/2 before:bg-theme-accent/75 before:transition-[background-color] before:[clip-path:polygon(0%_0%,100%_50%,0%_100%)] hover:before:animate-pulse hover:before:bg-theme-accent;
     }
 
     .element-level-1 {
