@@ -37,7 +37,7 @@ const App = () => {
         default:
             return (
                 <Suspense fallback={<LoadingMessage />}>
-                    <Leistungen leistungsData={apiResult as ACF_Leistung_Type} />
+                    <Leistungen leistungsData={apiResult as ACF_Leistung_Type} route={route} />
                 </Suspense>
             );
     }

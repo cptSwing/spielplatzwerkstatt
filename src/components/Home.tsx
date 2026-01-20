@@ -18,18 +18,17 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
 
     return (
         <main className="flex flex-col items-center justify-start gap-y-48">
-            {/* <AnchorLinks /> */}
-            <div className="relative mb-(--header-footer-margin) h-(--page-height-no-header-no-footer) w-dvw">
+            <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
+                <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-full [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
+                    <div className="absolute size-full bg-linear-0 from-theme-background/25 via-theme-primary/50 to-theme-background/25 bg-size-[auto_5px] bg-repeat" />
+                    <video src={video.url} preload="auto" muted loop autoPlay className="size-full object-cover" />
+                </div>
+
                 <div className="mx-auto flex h-full w-(--container-width) flex-col items-center justify-between">
                     <h1 className="self-start text-theme-background">Willkommen bei der Spielplatzwerkstatt!</h1>
 
                     {/* News / Insta: */}
                     <NewsItems />
-                </div>
-
-                <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-full [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
-                    <div className="absolute size-full bg-linear-0 from-theme-background/25 via-theme-primary/50 to-theme-background/25 bg-size-[auto_5px] bg-repeat" />
-                    <video src={video.url} preload="auto" muted loop autoPlay className="size-full object-cover" />
                 </div>
             </div>
 

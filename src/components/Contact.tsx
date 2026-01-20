@@ -4,7 +4,7 @@ const Contact = ({ contactData }: { contactData: ACF_Contacts_Type }) => {
     const { chef_1, chef_2 } = contactData;
 
     return (
-        <main className="relative flex w-(--container-width) flex-col items-center justify-start gap-12 md:flex-row md:items-start">
+        <main className="relative flex min-h-[calc(var(--page-height-no-header-no-footer)-var(--header-footer-height)-(var(--header-footer-offset)/2))] w-(--container-width) flex-col items-center justify-start gap-12 md:flex-row md:items-start">
             <DisplayContact data={chef_1} />
             <DisplayContact data={chef_2} />
         </main>

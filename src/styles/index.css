@@ -27,14 +27,15 @@
 
 @layer base {
     html {
-        @apply [scroll-padding-top:calc(var(--header-footer-height)+(var(--header-footer-margin)/2))] scroll-smooth md:[scroll-padding-top:calc(var(--header-footer-height)+2*var(--header-footer-margin))];
         @apply [--header-footer-height:--spacing(21)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-offset:--spacing(6)] xl:[--header-footer-height:--spacing(28)] xl:[--header-footer-offset:--spacing(8)];
+        @apply [scroll-padding-top:calc(var(--header-footer-height)+(var(--header-footer-margin)/2))] scroll-smooth md:[scroll-padding-top:calc(var(--header-footer-height)+2*var(--header-footer-margin))];
     }
 
     body {
         @apply h-auto w-dvw overflow-x-hidden bg-theme-background bg-[url(/svg/symbole_hintergrund.svg)] [background-size:100%] [background-position:0_var(--header-footer-margin)] font-roboto text-sm font-normal text-theme-text;
 
-        @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer:calc(100dvh-var(--header-footer-height)-2*var(--header-footer-margin))];
+        /* @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer:calc(100dvh-var(--header-footer-height)-2*var(--header-footer-margin))]; */
+        @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer:calc(100dvh-2*var(--header-footer-height))];
 
         @apply [--container-horizontal-margin:--spacing(6)] md:[--container-horizontal-margin:--spacing(16)] lg:[--container-horizontal-margin:--spacing(32)] xl:[--container-horizontal-margin:--spacing(56)] 2xl:[--container-horizontal-margin:--spacing(76)];
 
@@ -91,6 +92,10 @@
     .button {
         @apply relative inline-block cursor-pointer rounded-xl border-1 border-t-2 border-emerald-300/50 bg-emerald-400 py-1 pr-2 pl-6 font-gabarito text-base text-emerald-50! no-underline shadow-md outline-2 outline-offset-2 outline-transparent transition-[outline-color,transform] hover:-translate-y-px hover:text-white! hover:shadow-lg hover:outline-emerald-600/10 focus:-translate-y-px focus:outline-emerald-600;
         @apply before:absolute before:top-1/2 before:left-2 before:size-3 before:-translate-y-1/2 before:bg-theme-accent/75 before:transition-[background-color] before:[clip-path:polygon(0%_0%,100%_50%,0%_100%)] hover:before:animate-pulse hover:before:bg-theme-accent;
+    }
+
+    .floating-button {
+        @apply relative inline-block cursor-pointer rounded-full border-1 border-emerald-400 bg-emerald-400/50 p-2 font-gabarito text-base text-theme-background no-underline shadow-md outline-2 outline-offset-2 outline-transparent transition-[outline-color,transform] hover:-translate-y-px hover:text-white! hover:shadow-lg hover:outline-emerald-600/10 focus:-translate-y-px focus:outline-emerald-600;
     }
 
     .element-level-1 {

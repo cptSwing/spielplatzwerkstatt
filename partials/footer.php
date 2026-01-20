@@ -1,10 +1,10 @@
 
 <footer class="mt-(--header-footer-margin) flex h-(--header-footer-height) w-full flex-row items-center justify-between bg-theme-primary-variation px-(--container-horizontal-margin) text-theme-text [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_100%,0%_100%)]">
-    <p  >Impressum lalala ldfsdfds lalalaaa</p>
+    <p class="basis-1/3">Impressum lalala ldfsdfds lalalaaa</p>
 
-    <div class="max-w-1/3 ">
+    <div class="basis-1/3">
         <div class="font-gabarito italic text-theme-text/50 text-center w-full text-xs mb-1">Unsere Partner:</div>
-        <div class="flex items-start justify-between  gap-x-4">
+        <div class="flex items-start justify-center gap-x-4">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="size-10 stroke-theme-primary cursor-pointer hover:stroke-theme-text/40">
                     <path
@@ -37,7 +37,5 @@
         </div>
     </div>
 
-    <a href="/pages/kontakt.php" class="button self-center">
-        Kontakt!
-    </a>
+    <div class="basis-1/3"></div>
 </footer>

@@ -1,10 +1,11 @@
-import type { ACF_Leistung_Type } from '../types/types';
+import type { ACF_Leistung_Type, ArrayElement } from '../types/types';
 import InfoKarten from './InfoKarten';
 import ProduktStory from './ProduktStory';
 import LeistungHeader from './LeistungHeader';
 import TextBlock from './TextBlock';
+import type { ROUTES } from '../types/consts';
 
-const Leistungen = ({ leistungsData }: { leistungsData: ACF_Leistung_Type }) => {
+const Leistungen = ({ leistungsData, route }: { leistungsData: ACF_Leistung_Type; route: ArrayElement<typeof ROUTES> }) => {
     const {
         header_text,
         header_bild_1,
@@ -21,8 +22,27 @@ const Leistungen = ({ leistungsData }: { leistungsData: ACF_Leistung_Type }) => 
         produkt_story_c,
     } = leistungsData;
 
+    let slugColor: string = '';
+    switch (route) {
+        case 'spielplatzbau':
+            slugColor = 'var(--color-theme-dunkelgruen)';
+            break;
+
+        case 'galabau':
+            slugColor = 'var(--color-theme-weinrot)';
+            break;
+
+        case 'naschgarten':
+            slugColor = 'var(--color-theme-gelb)';
+            break;
+
+        case 'workshops':
+            slugColor = 'var(--color-theme-hellgruen)';
+            break;
+    }
+
     return (
-        <main className="relative flex flex-col items-center justify-start gap-y-24">
+        <main className="relative flex flex-col items-center justify-start gap-y-24" style={{ '--slug-color': slugColor }}>
             <LeistungHeader headerData={{ titel: header_text, header_bild_1, header_bild_2, header_bild_3 }} />
             <TextBlock textBlockData={banderole} />
             <InfoKarten kartenData={{ infokarte_1, infokarte_2, infokarte_3, infokarte_4, infokarte_5 }} />
