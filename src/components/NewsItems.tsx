@@ -69,7 +69,7 @@ const NewsItems = () => {
                         news.map((newsItem) => (
                             <button
                                 key={newsItem.titel + newsItem.datum}
-                                className="element-level-2 relative flex min-h-fit cursor-pointer flex-col items-start overflow-hidden p-(--content-card-padding) text-left outline-2 outline-transparent transition-[outline-color] select-none hover:outline-theme-primary"
+                                className="element-level-2-interactive relative flex min-h-fit cursor-pointer flex-col items-start overflow-hidden p-(--content-card-padding) text-left select-none"
                                 onClick={() => handleClick(newsItem)}
                             >
                                 <h4 className="mb-(--content-card-padding-half) text-white">{newsItem.titel}</h4>
@@ -93,7 +93,7 @@ const NewsItems = () => {
                 )}
             >
                 {newsModalContent && (
-                    <div className="element-level-1 mx-auto mt-[calc(var(--header-footer-margin)+2*var(--header-footer-offset))] flex h-3/4 w-1/2 cursor-default flex-col items-start justify-start gap-y-(--content-card-padding-half) p-(--content-card-padding)">
+                    <div className="element-level-1 mx-auto mt-[calc(var(--header-footer-margin)+2*var(--header-footer-offset))] flex h-3/4 w-1/2 cursor-default flex-col items-start justify-start gap-y-(--content-card-padding-half) p-(--content-card-padding) shadow-level-4">
                         <div className="pointer-events-auto flex w-full items-start justify-between">
                             <h4 className="cursor-text text-theme-primary">{newsModalContent.titel}</h4>
                             {/* {totalPages && (

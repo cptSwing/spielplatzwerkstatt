@@ -1,5 +1,5 @@
 <header
-    class="sticky top-0 z-50 w-full h-(--header-footer-height) mb-(--header-footer-margin) drop-shadow-md drop-shadow-black/30">
+    class="sticky top-0 z-50 w-full h-(--header-footer-height) mb-(--header-footer-margin) drop-shadow-xl drop-shadow-black/20">
     <!-- Hamburger Menu -->
     <div class="md:hidden w-dvh h-dvh absolute z-10 pointer-events-none">
         <input id="input-radio-hamburger" name="input-hamburger" type="checkbox" class="peer input-clip-hidden" />
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <a class="absolute border-2  border-theme-primary-variation hover:border-theme-primary rounded-xs -mb-3 bottom-0 h-full right-(--container-horizontal-margin) -mr-2"
+    <a class="absolute border-2  border-theme-primary-variation drop-shadow-sm drop-shadow-black/20 hover:border-theme-primary rounded-xs -mb-3 bottom-0 h-full right-(--container-horizontal-margin) -mr-2"
         href="../index.php">
         <img class="size-full object-contain image-hover p-1 pr-1.5 bg-white"
             src="../images/logo_spielplatzwerkstatt_209x204.png" />

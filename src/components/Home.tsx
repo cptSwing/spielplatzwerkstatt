@@ -36,7 +36,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
             <section id="home-anchor-spielplatzbau" className="relative w-(--container-width)">
                 <div className="element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(40)] md:[--anchored-content-image-width:--spacing(60)]">
                     <img
-                        className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
+                        className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md drop-shadow-black/40"
                         alt="spielplatzbau"
                         src="../images/symbol_geraet_238x240.png"
                     />
@@ -52,7 +52,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
                         <div className="text-justify text-pretty">
                             <div className="float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] [shape-outside:polygon(30%_0%,100%_37.5%,50%_100%)]" />
                             {spielplatzbau.bild && (
-                                <div className="float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
+                                <div className="element-level-2 float-left mr-(--content-card-padding-double) mb-(--content-card-padding) max-w-(--anchored-content-image-width)">
                                     <img src={spielplatzbau.bild.url} alt="spielplatzbau beschreibungsbild" />
                                 </div>
                             )}
@@ -73,7 +73,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
             <section id="home-anchor-galabau" className="relative w-(--container-width)">
                 <div className="element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(37)] md:[--anchored-content-image-width:--spacing(51)]">
                     <img
-                        className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
+                        className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md drop-shadow-black/40"
                         alt="galabau"
                         src="../images/symbol_spaten_203x205.png"
                     />
@@ -110,7 +110,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
             <section id="home-anchor-naschgarten" className="relative w-(--container-width)">
                 <div className="element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
                     <img
-                        className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
+                        className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md drop-shadow-black/40"
                         alt="naschgarten"
                         src="../images/symbol_baum_211x211.png"
                     />
@@ -146,7 +146,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
             <section id="home-anchor-workshops" className="relative w-(--container-width)">
                 <div className="element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] [--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]">
                     <img
-                        className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md"
+                        className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md drop-shadow-black/40"
                         alt="workshops"
                         src="../images/symbol_buch_210x213.png"
                     />

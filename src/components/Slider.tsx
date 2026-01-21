@@ -218,7 +218,7 @@ const ImageWrapper = ({
                 width: `calc(100% / ${visibleItemsCount})`,
             }}
         >
-            <img src={src} alt={`slider ${imageIndex + 1}`} className="element-level-2 size-full object-cover" />
+            <img src={src} alt={`slider ${imageIndex + 1}`} className="size-full object-cover" />
         </div>
     );
 };

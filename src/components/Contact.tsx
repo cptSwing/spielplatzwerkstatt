@@ -18,9 +18,13 @@ const DisplayContact = ({ data }: { data: ACF_Contact_Type }) => {
 
     return (
         <div className="element-level-1 relative w-full md:w-1/3">
-            <h5 className="element-level-2 mb-(--content-card-padding) !rounded-none p-(--content-card-padding) text-theme-background">{name}</h5>
+            {/* Name */}
+            <h5 className="element-level-2 mb-(--content-card-padding) w-[calc(100%+2px)] -translate-x-px -translate-y-px p-(--content-card-padding) text-theme-background">
+                {name}
+            </h5>
 
-            <div className="element-level-1 absolute top-0 right-0 w-1/4 translate-x-5 -translate-y-1/5 overflow-clip rounded-full border-3 outline-2 -outline-offset-5 outline-white">
+            {/* Profilbild */}
+            <div className="element-level-1 absolute top-0 right-0 w-1/4 translate-x-5 -translate-y-1/5 overflow-clip rounded-full border-4 shadow-black/25 outline-2 -outline-offset-5 outline-white">
                 <img alt="chef portrait" src={bild.url} className="aspect-square object-cover" />
             </div>
 
@@ -30,6 +34,7 @@ const DisplayContact = ({ data }: { data: ACF_Contact_Type }) => {
             <p className="mb-(--content-card-padding-double) px-(--content-card-padding) text-xs whitespace-pre text-neutral-500">{text}</p>
 
             <div className="my-(--content-card-padding) px-(--content-card-padding)">
+                {/* Mail */}
                 <div className="font-gabarito text-neutral-600">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="mr-3 inline-block size-5">
                         <path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z" />
@@ -39,6 +44,7 @@ const DisplayContact = ({ data }: { data: ACF_Contact_Type }) => {
                     <a href={`mailto:${email}`}>{email}</a>
                 </div>
 
+                {/* Telefon */}
                 <div className="font-gabarito text-neutral-600">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="mr-3 inline-block size-5">
                         <path
