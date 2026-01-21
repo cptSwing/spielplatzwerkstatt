@@ -5,9 +5,12 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "rm -rf ./dist && tsc -b && vite build",
+        "build": "yarn lint:check && tsc -b && yarn prettier-php:check && rm -rf ./dist && vite build",
         "preview": "vite preview",
-        "lint": "eslint --fix"
+        "lint:check": "eslint",
+        "lint:fix": "eslint --fix",
+        "prettier-php:check": "prettier **/*.php --check",
+        "prettier-php:fix": "prettier **/*.php --write --log-level warn"
     },
     "dependencies": {
         "preact": "^10.27.2"

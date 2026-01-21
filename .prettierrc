@@ -5,6 +5,11 @@
     "singleAttributePerLine": false,
     "singleQuote": true,
     "tabWidth": 4,
-    "plugins": ["prettier-plugin-tailwindcss"],
-    "tailwindStylesheet": "./src/styles/index.css"
+    "plugins": [
+        "prettier-plugin-tailwindcss",
+        "@prettier/plugin-php"
+    ],
+    "tailwindStylesheet": "./src/styles/index.css",
+    "phpVersion": "8.3",
+    "braceStyle": "1tbs"
 }
