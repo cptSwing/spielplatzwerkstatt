@@ -38,10 +38,12 @@
         <div class="hidden md:flex left-2 top-0  flex-row gap-6  md:justify-start items-center">
             <!-- Spielplatzbau -->
             <div class="header-menu-item group">
-                <input id="input-radio-spielplatzbau" name="input-radio-leistungen" type="radio"
-                    class="peer input-clip-hidden" <?php if ($route == 'spielplatzbau') {
-                        echo 'checked="checked"';
-                    } ?> />
+                <input id="input-radio-spielplatzbau" name="input-radio-leistungen" type="radio" class="peer input-clip-hidden" <?php if (
+                    $route == 'spielplatzbau'
+                ) {
+                    echo 'checked="checked"';
+                } ?> 
+                    />
                 <label for="input-radio-spielplatzbau" class="header-menu-item-label">
                     <a href="../index.php#home-anchor-spielplatzbau">
                         <img alt="naschgarten" src="../images/symbol_geraet_238x240.png" <?php if ($route != 'spielplatzbau') {

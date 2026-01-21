@@ -1,16 +1,13 @@
 <?php
-class WrapHTML
-{
-    public function __construct(public string $title, public string $route, public string $queryString, public string $lang = 'de')
-    {
+class WrapHTML {
+    public function __construct(public string $title, public string $route, public string $queryString, public string $lang = 'de') {
         ob_start();
     }
 
-    public function __destruct()
-    {
+    public function __destruct() {
         $output = ob_get_clean();
         $route = $this->route;
-        $result = file_get_contents($this->queryString);
+        $result = @file_get_contents($this->queryString) ?: '{}';
         ob_start();
         ?>
 
@@ -24,7 +21,8 @@ class WrapHTML
             </head>
 
             <body>
-                <?php require 'partials/header.php'; ?>
+                <?php require __DIR__ . '/../partials/header.php'; ?>
+
                 <div 
                     id="frontend-root" 
                     class="contents"
@@ -32,13 +30,17 @@ class WrapHTML
                     data-route='<?= $route ?>'
                 ></div>
 
-                <?php require 'partials/floater.php';?>
-                <?php require 'partials/footer.php';?>
+                <?php
+                require __DIR__ . '/../partials/floater.php';
+                require __DIR__ . '/../partials/footer.php';
+                ?>
             </body>
+            
             <script type="module" src="/src/index.tsx"></script>
-
         </html>
 
-        <?php die(ob_get_clean());
+        <?php
+        echo ob_get_clean();
+        exit();
     }
 } ?>
