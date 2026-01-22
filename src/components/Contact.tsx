@@ -17,15 +17,16 @@ const DisplayContact = ({ data }: { data: ACF_Contact_Type }) => {
     const { name, aufgabe, bild, email, telefonnummer, text } = data;
 
     return (
-        <div className="element-level-1 relative w-full md:w-1/3">
+        <div className="element-level-1 w-full md:w-1/3">
             {/* Name */}
-            <h5 className="element-level-2 mb-(--content-card-padding) w-[calc(100%+2px)] -translate-x-px -translate-y-px p-(--content-card-padding) text-theme-background">
-                {name}
-            </h5>
-
-            {/* Profilbild */}
-            <div className="element-level-1 absolute top-0 right-0 w-1/4 translate-x-5 -translate-y-1/5 overflow-clip rounded-full border-4 shadow-black/25 outline-2 -outline-offset-5 outline-white">
-                <img alt="chef portrait" src={bild.url} className="aspect-square object-cover" />
+            <div className="element-level-2 mb-(--content-card-padding) flex w-[calc(100%+2px)] -translate-x-px -translate-y-px flex-row items-start justify-between p-(--content-card-padding) text-theme-background">
+                <h5 className="">{name}</h5>
+                <div className="relative w-1/5 self-center">
+                    {/* Profilbild */}
+                    <div className="element-level-1 absolute top-0 right-0 h-fit w-20 translate-x-1/4 -translate-y-1/2 overflow-clip rounded-full border-4 shadow-black/25 outline-2 -outline-offset-5 outline-white">
+                        <img alt="chef portrait" src={bild.url} className="aspect-square object-cover" />
+                    </div>
+                </div>
             </div>
 
             <div className="px-(--content-card-padding) font-gabarito text-neutral-600">{aufgabe}</div>

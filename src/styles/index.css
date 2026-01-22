@@ -15,7 +15,6 @@
     --color-theme-link: var(--color-slate-700);
 
     --color-theme-primary: #619961;
-    --color-theme-secondary: var(--color-theme-weinrot);
     --color-theme-accent: #ffd82d;
     --color-theme-primary-variation: #76ad85;
 
@@ -30,6 +29,10 @@
     --drop-shadow-centered-sm: 0 0 2px var(--tw-drop-shadow-color, rgb(0 0 0 / 0.15));
     --drop-shadow-centered-md: 0 0 3px var(--tw-drop-shadow-color, rgb(0 0 0 / 0.15));
     --drop-shadow-centered-lg: 0 0 4px var(--tw-drop-shadow-color, rgb(0 0 0 / 0.15));
+}
+
+@theme inline {
+    --color-theme-secondary: var(--color-theme-weinrot);
 }
 
 @layer base {
@@ -102,7 +105,7 @@
     }
 
     .floating-button {
-        @apply relative inline-block cursor-pointer rounded-full border-1 border-emerald-400 bg-emerald-400/50 p-2 font-gabarito text-base text-theme-background no-underline shadow-level-3 shadow-black/20 outline-2 outline-offset-2 outline-transparent transition-[outline-color,transform] hover:-translate-y-px hover:text-white! hover:shadow-black/25 focus:-translate-y-px focus:outline-emerald-600;
+        @apply relative inline-block cursor-pointer rounded-full border-1 border-emerald-400 bg-emerald-400/75 p-2 font-gabarito text-base text-theme-background no-underline shadow-level-3 shadow-black/20 outline-2 outline-offset-2 outline-transparent transition-[outline-color,transform] hover:-translate-y-px hover:text-white! hover:shadow-black/25 focus:-translate-y-px focus:outline-emerald-600;
     }
 
     .element-level-1 {
@@ -110,7 +113,7 @@
     }
 
     .element-level-2 {
-        @apply rounded-xs border-1 border-t-white/80 border-r-white/50 border-b-white/25 border-l-white/50 bg-theme-primary-variation text-theme-text shadow-level-3;
+        @apply rounded-xs bg-theme-primary [background-image:linear-gradient(0deg,--alpha(var(--color-black)/5%)_0%,transparent_5px,transparent_calc(100%-5px),--alpha(var(--color-black)/5%)_100%),linear-gradient(90deg,--alpha(var(--color-black)/5%)_0%,transparent_5px,transparent_calc(100%-5px),--alpha(var(--color-black)/5%)_100%)] text-theme-text shadow-level-3;
     }
 
     .element-level-2-interactive {

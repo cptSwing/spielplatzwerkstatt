@@ -1,5 +1,5 @@
 <header
-    class="sticky top-0 z-50 w-full h-(--header-footer-height) mb-(--header-footer-margin) drop-shadow-xl drop-shadow-black/20">
+    class="sticky top-0 z-50 w-full h-(--header-footer-height) mb-(--header-footer-margin) drop-shadow-lg drop-shadow-black/20">
     <!-- Hamburger Menu -->
     <div class="md:hidden w-dvh h-dvh absolute z-10 pointer-events-none">
         <input id="input-radio-hamburger" name="input-hamburger" type="checkbox" class="peer input-clip-hidden" />
