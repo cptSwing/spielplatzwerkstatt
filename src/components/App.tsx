@@ -3,10 +3,10 @@ import ErrorMessage from './ErrorMessage';
 import LoadingMessage from './LoadingMessage';
 import useParseApi from '../hooks/useParseApi';
 import type { ACF_Contacts_Type, ACF_Home_Type, ACF_Leistung_Type } from '../types/types';
-import Contact from './Contact';
 
 const Home = lazy(() => import('./Home'));
 const Leistungen = lazy(() => import('./Leistungen'));
+const Contact = lazy(() => import('./Contact'));
 
 const App = () => {
     const { route, hasLoaded, apiResult } = useParseApi();
