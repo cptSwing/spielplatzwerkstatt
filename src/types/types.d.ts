@@ -1,3 +1,5 @@
+import { type LEISTUNGEN } from '../types/consts';
+
 // Annoyingly, tsc spits out errors during build if I don't import this way: https://stackoverflow.com/a/74039065
 const { WP_REST_API_Post } = require('wp-types');
 
