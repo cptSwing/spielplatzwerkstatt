@@ -19,7 +19,7 @@ const DisplayContact = ({ data }: { data: ACF_Contact_Type }) => {
     return (
         <div className="element-level-1 w-full md:w-1/3">
             {/* Name */}
-            <div className="element-level-2 mb-(--content-card-padding) flex w-[calc(100%+2px)] -translate-x-px -translate-y-px flex-row items-start justify-between p-(--content-card-padding) text-theme-background">
+            <div className="mb-(--content-card-padding) flex w-[calc(100%+2px)] -translate-x-px -translate-y-px flex-row items-start justify-between element-level-2 p-(--content-card-padding) text-theme-background">
                 <h5 className="">{name}</h5>
                 <div className="relative w-1/5 self-center">
                     {/* Profilbild */}
