@@ -49,7 +49,7 @@
                         <img alt="naschgarten" src="../images/symbol_geraet_238x240.png" <?php if ($route != 'spielplatzbau') {
                             echo 'class="group-hover:-translate-y-0.5"';
                         } ?> />
-                        <h6>Spielplatzbau</h6>
+                        <h6 class="my-0">Spielplatzbau</h6>
                     </a>
                 </label>
             </div>
@@ -65,7 +65,7 @@
                         <img alt="naschgarten" src="../images/symbol_spaten_203x205.png" <?php if ($route != 'galabau') {
                             echo 'class="group-hover:-translate-y-0.5"';
                         } ?> />
-                        <h6>Garten- & Landschaftsbau</h6>
+                        <h6 class="my-0">Garten- & Landschaftsbau</h6>
                     </a>
                 </label>
             </div>
@@ -81,7 +81,7 @@
                         <img alt="naschgarten" src="../images/symbol_baum_211x211.png" <?php if ($route != 'naschgarten') {
                             echo 'class="group-hover:-translate-y-0.5"';
                         } ?> />
-                        <h6>Naschgarten</h6>
+                        <h6 class="my-0">Naschgarten</h6>
                     </a>
                 </label>
             </div>
@@ -97,7 +97,7 @@
                         <img alt="naschgarten" src="../images/symbol_buch_210x213.png" <?php if ($route != 'workshops') {
                             echo 'class="group-hover:-translate-y-0.5"';
                         } ?> />
-                        <h6>Workshops</h6>
+                        <h6 class="my-0">Workshops</h6>
                     </a>
                 </label>
             </div>

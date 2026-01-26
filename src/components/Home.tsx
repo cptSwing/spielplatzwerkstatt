@@ -20,13 +20,11 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
         <main className="flex flex-col items-center justify-start gap-y-48">
             <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
                 <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-full [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
-                    <div className="absolute size-full bg-linear-0 from-theme-background/25 via-theme-primary/50 to-theme-background/25 bg-size-[auto_5px] bg-repeat" />
+                    <div className="absolute size-full" />
                     <video src={video.url} preload="auto" muted loop autoPlay className="size-full object-cover" />
                 </div>
 
-                <div className="mx-auto flex h-full w-(--container-width) flex-col items-center justify-between">
-                    <h1 className="self-start text-theme-background">Willkommen bei der Spielplatzwerkstatt!</h1>
-
+                <div className="mx-auto flex h-full w-(--container-width) flex-col items-center justify-end">
                     {/* News / Insta: */}
                     <NewsItems />
                 </div>
@@ -68,7 +66,7 @@ const Leistungsbeschreibung = ({
 
                 <div className="flex flex-col flex-wrap items-start justify-start gap-(--content-card-padding-double)">
                     <div className="-mt-(--content-card-padding-half) -ml-(--content-card-padding) w-full">
-                        <h5 className="relative z-0 w-fit pr-10 pl-(--content-card-padding) text-theme-background capitalize before:absolute before:top-0 before:left-0 before:-z-10 before:size-full before:bg-theme-dunkelgruen">
+                        <h5 className="relative z-0 my-0 w-fit pr-10 pl-(--content-card-padding) text-theme-background capitalize before:absolute before:top-0 before:left-0 before:-z-10 before:size-full before:bg-theme-dunkelgruen">
                             {leistung}
                         </h5>
                         <hr className="-mt-(--content-card-padding-half) w-[calc(100%-var(--anchored-content-hr-padding)+var(--content-card-padding-double))] text-theme-dunkelgruen" />
@@ -91,7 +89,7 @@ const Leistungsbeschreibung = ({
                         />
                     </div>
 
-                    <a href={`/pages/${leistung}.php`} className="button self-center">
+                    <a href={`/pages/${leistung}.php`} className="button-cta self-center">
                         Mehr erfahren!
                     </a>
                 </div>

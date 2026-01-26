@@ -31,7 +31,7 @@ const InfoKarte = ({ titel, text }: { titel: string; text: string }) => {
         <div className="element-level-1 h-40 shrink-0 basis-full overflow-hidden md:basis-1/3 lg:basis-[calc(33.333%-var(--info-karten-gap))]">
             <div className="relative h-fit p-1 pb-2">
                 <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
-                <h3 className="relative z-10 text-center text-theme-background">{titel}</h3>
+                <h4 className="relative z-10 my-0 text-center text-theme-background">{titel}</h4>
             </div>
 
             <div
