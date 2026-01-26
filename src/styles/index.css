@@ -79,6 +79,10 @@
         @apply mt-4 mb-2 font-gabarito text-lg;
     }
 
+    p {
+        @apply my-4 first-of-type:mt-0 last-of-type:mb-0;
+    }
+
     a {
         @apply text-theme-link hover:underline active:underline;
     }
@@ -89,7 +93,19 @@
 
     ol,
     ul {
-        @apply ml-6 [list-style:auto];
+        @apply ml-6 list-outside marker:text-theme-accent;
+    }
+
+    ul {
+        @apply list-[disclosure-closed];
+    }
+
+    ol {
+        @apply list-decimal;
+    }
+
+    li {
+        @apply my-1.5;
     }
 }
 
@@ -113,7 +129,7 @@
     }
 
     .floating-button {
-        @apply relative inline-block cursor-pointer rounded-full bg-theme-cta/95 p-2 font-gabarito text-base text-white no-underline shadow-level-3 shadow-black/20 outline-2 outline-offset-0 outline-theme-accent transition-[outline-color,outline-width,outline-offset,scale] hover:scale-110 hover:shadow-black/25 hover:outline-4 hover:outline-offset-4 focus:-translate-y-px;
+        @apply relative inline-block cursor-pointer rounded-full bg-theme-cta/95 px-2 py-1.5 font-gabarito text-base text-white no-underline shadow-level-3 shadow-black/20 outline-2 outline-offset-0 outline-theme-accent transition-[outline-color,outline-width,outline-offset,scale] hover:scale-110 hover:shadow-black/25 hover:outline-4 hover:outline-offset-4 hover:outline-theme-accent/75 focus:-translate-y-px;
     }
 
     .element-level-1 {
@@ -161,5 +177,5 @@
 
 /* Added as utility to allow it to be used in others' @apply  */
 @utility element-level-2 {
-    @apply rounded-xs bg-theme-primary-variation bg-repeating-linear-[359deg] from-transparent from-[0px] via-white/50 via-[10px] to-transparent to-[60px] text-theme-text shadow-level-3;
+    @apply rounded-xs bg-theme-primary-variation text-theme-text shadow-level-3;
 }

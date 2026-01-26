@@ -37,5 +37,9 @@
         </div>
     </div>
 
-    <div class="basis-1/3"></div>
+    <div class="basis-1/3">
+        <a href="/pages/kontakt.php" class="w-full block text-right">
+            Kontakt
+        </a>
+    </div>
 </footer>

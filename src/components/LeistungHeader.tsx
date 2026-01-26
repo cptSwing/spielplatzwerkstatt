@@ -12,7 +12,7 @@ const LeistungHeader = ({
     return (
         <div className="element-level-1 relative h-(--page-height-no-header-no-footer) w-(--container-width) border border-theme-primary bg-white! p-(--content-card-padding)">
             <div className="absolute top-12 left-12 z-20 bg-(--slug-color) p-2 shadow-lg">
-                <h2 className="text-white">{titel}</h2>
+                <h2 className="my-0 leading-none text-white">{titel}</h2>
             </div>
 
             <Carousel images={bilder} />
