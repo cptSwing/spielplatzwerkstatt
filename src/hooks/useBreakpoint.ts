@@ -1,5 +1,5 @@
+import { useEffect, useRef, useState } from 'preact/hooks';
 import defaultTheme from 'tailwindcss/defaultTheme';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 /* https://github.com/cptSwing/cpts-react-utilities/blob/main/hooks/useBreakPoint.ts */
 
@@ -44,13 +44,15 @@ export const useBreakpoint = (callback?: (breakpoint: BreakpointName | null) => 
         return () => lists.forEach(({ mediaQueryList }) => mediaQueryList.removeEventListener('change', onChange));
     }, []);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (callback) {
             callback(breakpoint);
         }
     }, [breakpoint, callback]);
 
     return breakpoint;
+
+    /* Local functions: */
 
     function onChange(this: MediaQueryList, e: MediaQueryListEvent) {
         const breakpointIndex = mediaQueryLists_Ref.current.findIndex(({ mediaQueryList }) => this === mediaQueryList);
