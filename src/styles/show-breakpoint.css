@@ -1,0 +1,9 @@
+@layer base {
+    :root {
+        @apply show-breakpoint;
+    }
+}
+
+@utility show-breakpoint {
+    @apply after:fixed after:right-[2dvw] after:bottom-[2dvh] after:h-fit after:rounded-xs after:border-1 after:border-blue-200 after:bg-blue-300/75 after:px-2 after:text-center after:text-sm after:leading-tight after:whitespace-pre-wrap after:text-neutral-500 after:shadow after:content-['Breakpoint:\A_Mobile'] sm:after:content-['Breakpoint:\A_SM'] md:after:content-['Breakpoint:\A_MD'] lg:after:content-['Breakpoint:\A_LG'] xl:after:content-['Breakpoint:\A_XL'] 2xl:after:content-['Breakpoint:\A_2XL'];
+}
