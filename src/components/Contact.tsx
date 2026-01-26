@@ -20,7 +20,7 @@ const DisplayContact = ({ data }: { data: ACF_Contact_Type }) => {
         <div className="element-level-1 w-full md:w-1/3">
             {/* Name */}
             <div className="mb-(--content-card-padding) flex w-[calc(100%+2px)] -translate-x-px -translate-y-px flex-row items-start justify-between element-level-2 p-(--content-card-padding) text-theme-background">
-                <h5 className="">{name}</h5>
+                <h5 className="my-0">{name}</h5>
                 <div className="relative w-1/5 self-center">
                     {/* Profilbild */}
                     <div className="element-level-1 absolute top-0 right-0 h-fit w-20 translate-x-1/4 -translate-y-1/2 overflow-clip rounded-full border-4 shadow-black/25 outline-2 -outline-offset-5 outline-white">
