@@ -24,6 +24,7 @@ export type ACF_Nachricht_Type = {
     titel: string;
     datum: string;
     text: string;
+    bild?: ACF_Image;
 };
 
 export type ACF_Contacts_Type = {
