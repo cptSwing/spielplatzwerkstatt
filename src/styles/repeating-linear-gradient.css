@@ -1,0 +1,34 @@
+@utility bg-repeating-linear-* {
+    @theme {
+        --tw-repeating-linear-to-tl: to top left;
+        --tw-repeating-linear-to-t: to top;
+        --tw-repeating-linear-to-tr: to top right;
+        --tw-repeating-linear-to-l: to left;
+        --tw-repeating-linear-to-r: to right;
+        --tw-repeating-linear-to-bl: to bottom left;
+        --tw-repeating-linear-to-b: to bottom;
+        --tw-repeating-linear-to-br: to bottom right;
+    }
+
+    --tw-gradient-position: --value(--tw-repeating-linear-*);
+    --tw-gradient-position: calc(--value(integer) * 1deg);
+    --tw-gradient-position: --value([angle]);
+
+    @supports (background-image: repeating-linear-gradient(in lab, red, red)) {
+        --tw-gradient-position: calc(--value(integer) * 1deg) in oklab;
+        --tw-gradient-position: --value([angle]) in oklab;
+    }
+    background-image: repeating-linear-gradient(var(--tw-gradient-stops));
+}
+
+@utility -bg-repeating-linear-* {
+    --tw-gradient-position: calc(--value(integer) * -1deg);
+    --tw-gradient-position: --value([angle]);
+
+    @supports (background-image: repeating-linear-gradient(in lab, red, red)) {
+        --tw-gradient-position: calc(--value(integer) * -1deg) in oklab;
+        --tw-gradient-position: calc(--value([angle]) * -1) in oklab;
+    }
+
+    background-image: repeating-linear-gradient(var(--tw-gradient-stops));
+}
