@@ -53,7 +53,7 @@ const NewsItems = () => {
                             {/* Back (newer) */}
                             <button
                                 className={classNames(
-                                    'group size-6 rounded-full p-1',
+                                    'group size-6 rounded-full p-1 transition-[background-color]',
                                     newsPage <= totalPages && newsPage > 1 ? 'cursor-pointer bg-neutral-200' : 'cursor-not-allowed bg-neutral-100',
                                 )}
                                 onClick={() => {
@@ -62,29 +62,20 @@ const NewsItems = () => {
                                     }
                                 }}
                             >
-                                <div>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth={2}
-                                        stroke="currentColor"
-                                        className={classNames(
-                                            'mx-auto size-full -translate-x-px',
-                                            newsPage <= totalPages && newsPage > 1
-                                                ? 'text-theme-text/50 group-hover:text-theme-text group-active:text-theme-text'
-                                                : 'text-theme-text/20',
-                                        )}
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                                    </svg>
-                                </div>
+                                <div
+                                    className={classNames(
+                                        'size-full transition-[background-color] duration-100 [mask:url("/svg/ChevronLeftOutline.svg")]',
+                                        newsPage <= totalPages && newsPage > 1
+                                            ? 'bg-theme-text/50 group-hover:bg-theme-text group-active:bg-theme-text'
+                                            : 'bg-theme-text/20',
+                                    )}
+                                />
                             </button>
 
                             {/* Forward (older) */}
                             <button
                                 className={classNames(
-                                    'group size-6 rounded-full p-1',
+                                    'group size-6 rounded-full p-1 transition-[background-color]',
                                     newsPage < totalPages ? 'cursor-pointer bg-neutral-200' : 'cursor-not-allowed bg-neutral-100',
                                 )}
                                 onClick={() => {
@@ -93,21 +84,12 @@ const NewsItems = () => {
                                     }
                                 }}
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={2}
-                                    stroke="currentColor"
+                                <div
                                     className={classNames(
-                                        'mx-auto size-full translate-x-px',
-                                        newsPage < totalPages
-                                            ? 'text-theme-text/50 group-hover:text-theme-text group-active:text-theme-text'
-                                            : 'text-theme-text/20',
+                                        'size-full transition-[background-color] duration-100 [mask:url("/svg/ChevronRightOutline.svg")]',
+                                        newsPage < totalPages ? 'bg-theme-text/50 group-hover:bg-theme-text group-active:bg-theme-text' : 'bg-theme-text/20',
                                     )}
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                                </svg>
+                                />
                             </button>
                         </div>
                     )}
@@ -199,16 +181,7 @@ const NewsItems = () => {
                                 className="group -mt-(--content-card-padding) -mr-(--content-card-padding) size-6 cursor-pointer rounded-full bg-neutral-200 p-1"
                                 onClick={() => handleClick(null)}
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={2}
-                                    stroke="currentColor"
-                                    className="size-full text-theme-text/50 transition-[color] group-hover:text-theme-text group-active:text-theme-text"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
+                                <div className='size-full bg-theme-text/50 [mask:url("/svg/XMarkOutline.svg")] group-hover:bg-theme-text group-active:bg-theme-text' />
                             </button>
 
                             <h6 className="my-0 basis-full cursor-text text-theme-primary-variation">{newsModalContent.datum}</h6>
