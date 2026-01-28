@@ -1,9 +1,9 @@
 import { classNames } from 'cpts-javascript-utilities';
-import { useCallback, useContext, useEffect, useRef, useState, type FC } from 'preact/compat';
+import { useCallback, useEffect, useMemo, useRef, useState, type FC } from 'preact/compat';
 import type { ACF_Image } from '../types/types';
 import { usePrevious } from '../hooks/usePrevious';
 import type { MutableRef } from 'preact/hooks';
-import { BreakpointContext } from '../lib/BreakpointContext';
+import { useWordpressImageBackground } from '../hooks/useWordpressImageBackground';
 
 const CAROUSEL_INTERVAL_MS = 5000 as const;
 
@@ -21,12 +21,21 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
     const [touchPosition, setTouchPosition] = useState<number | null>(null);
     const intervalId_Ref = useRef<number | null>(null);
 
+    const carouselImagesSlotIndices_Memo = useMemo(
+        () =>
+            Array.from({ length: slotCount }).map((_, idx) => {
+                const slotIndex = idx - 1;
+                return slotIndex;
+            }),
+        [slotCount],
+    );
+
     const runSetInterval_Cb = useCallback(
         (callback: () => unknown, runInstantly = false) => {
             cancelInterval(intervalId_Ref);
 
             if (runInstantly) {
-                setTransitionLength(150);
+                setTransitionLength(100);
                 callback();
             } else {
                 setTransitionLength(intervalLength);
@@ -60,8 +69,6 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
         }
     }, [commitMovement_Cb, intervalLength, intervalLengthPrevious, isPaused, movementOffset, runSetInterval_Cb]);
 
-    const breakpoint = useContext(BreakpointContext);
-
     return (
         <div className="flex size-full flex-col items-center justify-between gap-y-1">
             {/* Carousel */}
@@ -77,34 +84,15 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                 >
-                    {Array.from({ length: slotCount }).map((_, idx) => {
-                        const slotIndex = idx - 1;
+                    {carouselImagesSlotIndices_Memo.map((slotIndex, idx) => {
                         const imgIndex = wrapNumber(currentImageIndex + slotIndex, images.length);
-                        const imgSizes = { ...images[imgIndex].sizes, orig: images[imgIndex].url };
-                        const srcSetString = `${imgSizes.thumbnail} 150w, ${imgSizes.medium} 300w, ${imgSizes.large} 600w, ${imgSizes.orig} 1000w`;
-                        const sizesString = '(width <= 150px) 150px, (width <= 300px) 300px, (width <= 600px) 600px, 1000px';
-                        console.log('%c[Carousel]', 'color: #464b18', `imgSizes :`, imgSizes);
 
                         return (
-                            <div
-                                key={idx}
-                                className="relative bg-cover bg-center after:absolute after:top-0 after:left-12 after:size-full after:translate-y-[calc(100%---spacing(18))] after:text-neutral-700 after:content-[attr(data-description)]"
-                                style={{
-                                    width: `${slotWidth}%`,
-                                    backgroundImage: `url(${imgSizes.orig})`,
-                                }}
-                                data-description={images[imgIndex].beschreibung}
+                            <CarouselImage
+                                key={`${idx}${slotIndex} ${imgIndex} ${images[imgIndex]}`}
+                                image={images[imgIndex]}
+                                imageWidthPercentage={slotWidth}
                             />
-                            // <div
-                            //     key={idx}
-                            //     className="relative h-auto"
-                            //     style={{
-                            //         width: `${slotWidth}%`,
-                            //     }}
-                            // >
-                            //     {/* <img srcSet={srcSetString} sizes={sizesString} alt="lol" className="size-full object-cover" /> */}
-                            //     <img src={imgSizes.orig} alt="lol" className="size-full object-cover" />
-                            // </div>
                         );
                     })}
                 </div>
@@ -203,3 +191,28 @@ function cancelInterval(idRef: MutableRef<number | null>) {
     }
     idRef.current = null;
 }
+
+const CarouselImage = ({ image, imageWidthPercentage }: { image: ACF_Image; imageWidthPercentage: number }) => {
+    const imgSizes = { ...image.sizes, full: image.url };
+
+    const { ref, backgroundImageSrc } = useWordpressImageBackground<HTMLDivElement>({
+        'thumbnail': imgSizes.thumbnail,
+        'medium': imgSizes.medium,
+        'large': imgSizes.large,
+        '1536x1536': imgSizes['1536x1536'],
+        '2048x2048': imgSizes['2048x2048'],
+        'full': imgSizes.full,
+    });
+
+    return (
+        <div
+            ref={ref}
+            className="relative bg-cover bg-center after:absolute after:top-0 after:left-12 after:size-full after:translate-y-[calc(100%---spacing(18))] after:text-neutral-700 after:content-[attr(data-description)]"
+            style={{
+                width: `${imageWidthPercentage}%`,
+                backgroundImage: `url("${backgroundImageSrc}")`,
+            }}
+            data-description={image.beschreibung}
+        />
+    );
+};
