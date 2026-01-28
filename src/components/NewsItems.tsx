@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useEffect, useRef, useState } from 'preact/hooks';
+import { useContext, useEffect, useRef, useState } from 'preact/hooks';
 import useFetchNews from '../hooks/useFetchNews';
 import { classNames, keyDownA11y } from 'cpts-javascript-utilities';
 import type { TargetedKeyboardEvent } from 'preact';
 import type { ACF_Nachricht_Type } from '../types/types';
-import { useBreakpoint } from '../hooks/useBreakpoint';
 import { LoadingSpinner } from './LoadingMessage';
+import { BreakpointContext } from '../lib/BreakpointContext';
 
 const newsItemsPerBreakpoint = new Map([
     [null, 1],
@@ -17,7 +17,7 @@ const newsItemsPerBreakpoint = new Map([
 ]);
 
 const NewsItems = () => {
-    const breakpoint = useBreakpoint();
+    const breakpoint = useContext(BreakpointContext);
     const [newsItemsPerPage, setnewsItemsPerPage] = useState(1);
     useEffect(() => {
         if (breakpoint) {

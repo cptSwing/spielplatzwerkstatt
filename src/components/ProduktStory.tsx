@@ -1,11 +1,12 @@
 import type { ACF_Produkt_Story } from '../types/types';
-import { useBreakpoint } from '../hooks/useBreakpoint';
 import Carousel from './Carousel';
+import { BreakpointContext } from '../lib/BreakpointContext';
+import { useContext } from 'preact/hooks';
 
 const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
     const { titel, beschreibung, bilder } = storyData;
 
-    const breakpoint = useBreakpoint();
+    const breakpoint = useContext(BreakpointContext);
 
     const imageSources = bilder ? Object.values(bilder).filter(Boolean) : [];
 
