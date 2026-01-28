@@ -108,11 +108,7 @@ type ACF_File = {
 
 export type ACF_Image = ACF_File & {
     beschreibung?: string;
-    sizes: {
-        large: string;
-        medium: string;
-        thumbnail: string;
-    };
+    sizes: ACF_Media_Sizes;
     type: 'image';
 };
 
@@ -122,15 +118,19 @@ export type ACF_Video = ACF_File & {
     filesize: number;
     width: number;
     height: number;
-    sizes: {
-        large: string;
-        medium: string;
-        thumbnail: string;
-    };
+    sizes: ACF_Media_Sizes;
     type: 'video';
     name: string;
     title: string;
     mime_type: string;
     alt: string;
     author: string;
+};
+
+export type ACF_Media_Sizes = {
+    '2048x2048': string;
+    '1536x1536': string;
+    'large': string;
+    'medium': string;
+    'thumbnail': string;
 };
