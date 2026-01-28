@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 /* https://github.com/cptSwing/cpts-react-utilities/blob/main/hooks/useBreakPoint.ts */
@@ -6,38 +6,40 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 const { screens } = defaultTheme;
 
 type Breakpoints = typeof screens;
-export type BreakpointName = keyof Breakpoints;
+export type BreakpointName = keyof Breakpoints | 'base';
 type BreakpointQueryList = {
-    breakpoint: BreakpointName;
+    value: number;
+    unit: string;
+    breakpointName: BreakpointName;
     mediaQuery: string;
     mediaQueryList: MediaQueryList;
 };
 
-export const useBreakpoint = (callback?: (breakpoint: BreakpointName | null) => void): BreakpointName | null => {
-    console.log('%c[useBreakpoint]', 'color: #0c7308', `screens :`, screens);
+export const tailwindMediaQueryLists: BreakpointQueryList[] = Object.entries(screens)
+    .map(([breakpoint, width]) => {
+        const { value, unit } = parseLengthString(width);
 
-    const mediaQueryLists_Ref = useRef<BreakpointQueryList[]>(
-        Object.entries(screens)
-            .sort((a, b) => {
-                const aLength = parseLengthString(a[1]);
-                const bLength = parseLengthString(b[1]);
-                if (aLength.unit !== bLength.unit) throw new Error(`Incompatible CSS Length units: "${aLength.unit}" and "${bLength.unit}`);
-                return aLength.value - bLength.value;
-            })
-            .map(([breakpoint, width]) => ({
-                breakpoint: breakpoint as BreakpointName,
-                mediaQuery: `(min-width: ${width})`,
-                mediaQueryList: window.matchMedia(`(min-width: ${width})`),
-            })),
-    );
+        return {
+            value,
+            unit,
+            breakpointName: breakpoint as BreakpointName,
+            mediaQuery: `(min-width: ${width})`,
+            mediaQueryList: window.matchMedia(`(min-width: ${width})`),
+        };
+    })
+    .sort((a, b) => {
+        if (a.unit !== b.unit) throw new Error(`Incompatible CSS Length units: "${a.unit}" and "${b.unit}`);
+        return a.value - b.value;
+    });
 
-    const [breakpoint, setBreakpoint] = useState<BreakpointName | null>(null);
+export const useBreakpoint = (callback?: (breakpoint: BreakpointName) => void): BreakpointName => {
+    const [breakpoint, setBreakpoint] = useState<BreakpointName>('base');
 
     useEffect(() => {
-        const lists = mediaQueryLists_Ref.current;
-        lists.forEach(({ breakpoint, mediaQueryList }) => {
+        const lists = tailwindMediaQueryLists;
+        lists.forEach(({ breakpointName, mediaQueryList }) => {
             if (mediaQueryList.matches) {
-                setBreakpoint(breakpoint);
+                setBreakpoint(breakpointName);
             }
 
             mediaQueryList.addEventListener('change', onChange);
@@ -56,20 +58,20 @@ export const useBreakpoint = (callback?: (breakpoint: BreakpointName | null) => 
 
     /* Local functions: */
 
-    function onChange(this: MediaQueryList, e: MediaQueryListEvent) {
-        const breakpointIndex = mediaQueryLists_Ref.current.findIndex(({ mediaQueryList }) => this === mediaQueryList);
+    function onChange(this: MediaQueryList, ev: MediaQueryListEvent) {
+        const breakpointIndex = tailwindMediaQueryLists.findIndex(({ mediaQueryList }) => this === mediaQueryList);
 
-        if (e.matches) {
-            const currentBreakpoint = breakpointIndex >= 0 ? mediaQueryLists_Ref.current[breakpointIndex]!.breakpoint : null;
+        if (ev.matches) {
+            const currentBreakpoint = breakpointIndex >= 0 ? tailwindMediaQueryLists[breakpointIndex]!.breakpointName : 'base';
             setBreakpoint(currentBreakpoint);
         } else {
-            const smallerBreakpoint = mediaQueryLists_Ref.current[breakpointIndex - 1] ? mediaQueryLists_Ref.current[breakpointIndex - 1]!.breakpoint : null;
+            const smallerBreakpoint = tailwindMediaQueryLists[breakpointIndex - 1] ? tailwindMediaQueryLists[breakpointIndex - 1]!.breakpointName : 'base';
             setBreakpoint(smallerBreakpoint);
         }
     }
 };
 
-export const useSpecificBreakpoint = (query: BreakpointName): boolean => {
+export const useSpecificBreakpoint = (query: keyof Breakpoints): boolean => {
     const mediaQuery = `(min-width: ${screens[query]})`;
     const matchQueryList = window.matchMedia(mediaQuery);
 
