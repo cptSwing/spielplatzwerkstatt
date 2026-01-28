@@ -15,7 +15,7 @@ const LeistungHeader = ({
                 <h2 className="my-0 leading-none text-white">{titel}</h2>
             </div>
 
-            <Carousel images={bilder} />
+            <Carousel images={bilder} showMenu={false} />
         </div>
     );
 };

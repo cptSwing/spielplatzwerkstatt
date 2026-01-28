@@ -14,6 +14,8 @@ type BreakpointQueryList = {
 };
 
 export const useBreakpoint = (callback?: (breakpoint: BreakpointName | null) => void): BreakpointName | null => {
+    console.log('%c[useBreakpoint]', 'color: #0c7308', `screens :`, screens);
+
     const mediaQueryLists_Ref = useRef<BreakpointQueryList[]>(
         Object.entries(screens)
             .sort((a, b) => {

@@ -1,8 +1,9 @@
 import { classNames } from 'cpts-javascript-utilities';
-import { useCallback, useEffect, useRef, useState, type FC } from 'preact/compat';
+import { useCallback, useContext, useEffect, useRef, useState, type FC } from 'preact/compat';
 import type { ACF_Image } from '../types/types';
 import { usePrevious } from '../hooks/usePrevious';
 import type { MutableRef } from 'preact/hooks';
+import { BreakpointContext } from '../lib/BreakpointContext';
 
 const CAROUSEL_INTERVAL_MS = 5000 as const;
 
@@ -59,6 +60,8 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
         }
     }, [commitMovement_Cb, intervalLength, intervalLengthPrevious, isPaused, movementOffset, runSetInterval_Cb]);
 
+    const breakpoint = useContext(BreakpointContext);
+
     return (
         <div className="flex size-full flex-col items-center justify-between gap-y-1">
             {/* Carousel */}
@@ -77,7 +80,10 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                     {Array.from({ length: slotCount }).map((_, idx) => {
                         const slotIndex = idx - 1;
                         const imgIndex = wrapNumber(currentImageIndex + slotIndex, images.length);
-                        const imgSize = displayCount === 1 ? images[imgIndex].sizes.large : images[imgIndex].sizes.medium;
+                        const imgSizes = { ...images[imgIndex].sizes, orig: images[imgIndex].url };
+                        const srcSetString = `${imgSizes.thumbnail} 150w, ${imgSizes.medium} 300w, ${imgSizes.large} 600w, ${imgSizes.orig} 1000w`;
+                        const sizesString = '(width <= 150px) 150px, (width <= 300px) 300px, (width <= 600px) 600px, 1000px';
+                        console.log('%c[Carousel]', 'color: #464b18', `imgSizes :`, imgSizes);
 
                         return (
                             <div
@@ -85,10 +91,20 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                                 className="relative bg-cover bg-center after:absolute after:top-0 after:left-12 after:size-full after:translate-y-[calc(100%---spacing(18))] after:text-neutral-700 after:content-[attr(data-description)]"
                                 style={{
                                     width: `${slotWidth}%`,
-                                    backgroundImage: `url(${imgSize})`,
+                                    backgroundImage: `url(${imgSizes.orig})`,
                                 }}
                                 data-description={images[imgIndex].beschreibung}
                             />
+                            // <div
+                            //     key={idx}
+                            //     className="relative h-auto"
+                            //     style={{
+                            //         width: `${slotWidth}%`,
+                            //     }}
+                            // >
+                            //     {/* <img srcSet={srcSetString} sizes={sizesString} alt="lol" className="size-full object-cover" /> */}
+                            //     <img src={imgSizes.orig} alt="lol" className="size-full object-cover" />
+                            // </div>
                         );
                     })}
                 </div>
