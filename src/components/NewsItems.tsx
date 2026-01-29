@@ -8,7 +8,7 @@ import { LoadingSpinner } from './LoadingMessage';
 import { BreakpointContext } from '../lib/BreakpointContext';
 
 const newsItemsPerBreakpoint = new Map([
-    [null, 1],
+    ['base', 1],
     ['sm', 1],
     ['md', 2],
     ['lg', 3],
@@ -18,10 +18,10 @@ const newsItemsPerBreakpoint = new Map([
 
 const NewsItems = () => {
     const breakpoint = useContext(BreakpointContext);
-    const [newsItemsPerPage, setnewsItemsPerPage] = useState(1);
+    const [newsItemsPerPage, setNewsItemsPerPage] = useState(1);
     useEffect(() => {
         if (breakpoint) {
-            setnewsItemsPerPage(newsItemsPerBreakpoint.get(breakpoint)!);
+            setNewsItemsPerPage(newsItemsPerBreakpoint.get(breakpoint)!);
         }
     }, [breakpoint]);
 
@@ -146,36 +146,6 @@ const NewsItems = () => {
                     <div className="element-level-1 md:4/5 relative mx-auto mt-[calc(var(--header-footer-margin)+2*var(--header-footer-offset))] flex h-4/5 w-[90%] cursor-default flex-col items-start justify-start gap-y-(--content-card-padding-half) shadow-level-4 lg:w-2/3 xl:w-1/2">
                         <div className="pointer-events-auto flex w-full flex-wrap items-start justify-between p-(--content-card-padding-double)">
                             <h4 className="-mt-(--content-card-padding) mb-0 cursor-text text-theme-primary">{newsModalContent.titel}</h4>
-                            {/* {totalPages && (
-                                <div className="flex items-center justify-between gap-4">
-                                    <button
-                                        className={classNames(
-                                            'text-xl',
-                                            totalPages <= newsPage ? 'cursor-pointer text-theme-text' : 'cursor-not-allowed text-theme-text/50',
-                                        )}
-                                        onClick={() => {
-                                            if (totalPages <= newsPage) {
-                                                setNewsPage((old) => old - 1);
-                                            }
-                                        }}
-                                    >
-                                        &lt;
-                                    </button>
-                                    <button
-                                        className={classNames(
-                                            'text-xl',
-                                            totalPages > newsPage ? 'cursor-pointer text-theme-text' : 'cursor-not-allowed text-theme-text/50',
-                                        )}
-                                        onClick={() => {
-                                            if (totalPages > newsPage) {
-                                                setNewsPage((old) => old + 1);
-                                            }
-                                        }}
-                                    >
-                                        &gt;
-                                    </button>
-                                </div>
-                            )} */}
 
                             <button
                                 className="group -mt-(--content-card-padding) -mr-(--content-card-padding) size-6 cursor-pointer rounded-full bg-neutral-200 p-1"
