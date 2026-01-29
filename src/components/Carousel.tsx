@@ -1,6 +1,6 @@
 import { classNames } from 'cpts-javascript-utilities';
 import { useCallback, useEffect, useMemo, useRef, useState, type FC } from 'preact/compat';
-import type { ACF_Image } from '../types/types';
+import type { ACF_Image, ACF_Media_Sizes } from '../types/types';
 import { usePrevious } from '../hooks/usePrevious';
 import type { MutableRef } from 'preact/hooks';
 import { useWordpressImageBackground } from '../hooks/useWordpressImageBackground';
@@ -46,7 +46,7 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
         [intervalLength],
     );
 
-    const startMovement_Cb = useCallback(
+    const manuallyStartMovement_Cb = useCallback(
         (direction: 'forward' | 'backward') => {
             setCurrentImageIndex((oldIndex) => wrapNumber(oldIndex + movementOffset, images.length));
             setMovementOffset(direction === 'forward' ? 1 : -1);
@@ -69,10 +69,12 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
         }
     }, [commitMovement_Cb, intervalLength, intervalLengthPrevious, isPaused, movementOffset, runSetInterval_Cb]);
 
+    const { ref: size_Ref, sizeValue } = useWordpressImageBackground<HTMLDivElement>(displayCount);
+
     return (
         <div className="flex size-full flex-col items-center justify-between gap-y-1">
             {/* Carousel */}
-            <div className="relative h-full w-full overflow-hidden">
+            <div ref={size_Ref} className="relative h-full w-full overflow-hidden">
                 <div
                     className="flex h-full transition-transform will-change-transform"
                     style={{
@@ -84,16 +86,9 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                 >
-                    {carouselImagesSlotIndices_Memo.map((slotIndex, idx) => {
+                    {carouselImagesSlotIndices_Memo.map((slotIndex) => {
                         const imgIndex = wrapNumber(currentImageIndex + slotIndex, images.length);
-
-                        return (
-                            <CarouselImage
-                                key={`${idx}${slotIndex} ${imgIndex} ${images[imgIndex]}`}
-                                image={images[imgIndex]}
-                                imageWidthPercentage={slotWidth}
-                            />
-                        );
+                        return <CarouselImage key={slotIndex} sizeValue={sizeValue} image={images[imgIndex]} imageWidthPercentage={slotWidth} />;
                     })}
                 </div>
 
@@ -118,7 +113,7 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                     <button
                         className="group size-6 cursor-pointer rounded-full bg-neutral-200 p-1.5"
                         onClick={() => {
-                            runSetInterval_Cb(() => startMovement_Cb('backward'), true);
+                            runSetInterval_Cb(() => manuallyStartMovement_Cb('backward'), true);
                         }}
                     >
                         <div className='size-full bg-theme-text/50 transition-[background-color] duration-100 [mask:url("/svg/ChevronLeftOutline.svg")] group-hover:bg-theme-text group-active:bg-theme-text' />
@@ -137,7 +132,7 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                     <button
                         className="group size-6 cursor-pointer rounded-full bg-neutral-200 p-1.5"
                         onClick={() => {
-                            runSetInterval_Cb(() => startMovement_Cb('forward'), true);
+                            runSetInterval_Cb(() => manuallyStartMovement_Cb('forward'), true);
                         }}
                     >
                         <div className='size-full bg-theme-text/50 transition-[background-color] duration-100 [mask:url("/svg/ChevronRightOutline.svg")] group-hover:bg-theme-text group-active:bg-theme-text' />
@@ -168,9 +163,9 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
         const diff = touchPosition - currentTouchPosition;
 
         if (diff > 5) {
-            startMovement_Cb('forward');
+            manuallyStartMovement_Cb('forward');
         } else if (diff < -5) {
-            startMovement_Cb('backward');
+            manuallyStartMovement_Cb('backward');
         }
 
         cancelInterval(intervalId_Ref);
@@ -192,27 +187,29 @@ function cancelInterval(idRef: MutableRef<number | null>) {
     idRef.current = null;
 }
 
-const CarouselImage = ({ image, imageWidthPercentage }: { image: ACF_Image; imageWidthPercentage: number }) => {
-    const imgSizes = { ...image.sizes, full: image.url };
-
-    const { ref, backgroundImageSrc } = useWordpressImageBackground<HTMLDivElement>({
-        'thumbnail': imgSizes.thumbnail,
-        'medium': imgSizes.medium,
-        'large': imgSizes.large,
-        '1536x1536': imgSizes['1536x1536'],
-        '2048x2048': imgSizes['2048x2048'],
-        'full': imgSizes.full,
-    });
+const CarouselImage = ({
+    image,
+    sizeValue,
+    imageWidthPercentage,
+}: {
+    image: ACF_Image;
+    sizeValue: keyof ACF_Media_Sizes | 'full';
+    imageWidthPercentage: number;
+}) => {
+    const imageSource = sizeValue === 'full' ? image.url : image.sizes[sizeValue];
 
     return (
-        <div
-            ref={ref}
-            className="relative bg-cover bg-center after:absolute after:top-0 after:left-12 after:size-full after:translate-y-[calc(100%---spacing(18))] after:text-neutral-700 after:content-[attr(data-description)]"
+        <a
+            href={image.url}
+            target="_blank"
+            rel="noreferrer"
+            className="relative block bg-cover bg-center no-underline"
             style={{
                 width: `${imageWidthPercentage}%`,
-                backgroundImage: `url("${backgroundImageSrc}")`,
+                backgroundImage: `url("${imageSource}")`,
             }}
-            data-description={image.beschreibung}
-        />
+        >
+            <span className="absolute bottom-12 left-12 bg-neutral-300/50 px-1 py-0.5">{image.beschreibung}</span>
+        </a>
     );
 };
