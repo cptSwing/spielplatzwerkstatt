@@ -28,7 +28,7 @@ const HamburgerMenu = () => {
 
             <label
                 for="input-radio-hamburger"
-                className="pointer-events-none absolute top-0 right-0 z-10 block h-full translate-x-full bg-theme-background px-(--container-horizontal-margin) pt-(--header-footer-margin) transition-transform peer-checked:pointer-events-auto peer-checked:translate-x-0"
+                className="pointer-events-none absolute top-0 right-0 z-10 block h-full translate-x-[120%] bg-theme-background px-(--container-horizontal-margin) pt-(--header-footer-margin) shadow-level-3 transition-transform peer-checked:pointer-events-auto peer-checked:translate-x-0"
             >
                 <button className="group pointer-events-auto mr-0 ml-auto block size-8 rounded-full bg-neutral-200 p-1" onClick={() => setIsChecked(false)}>
                     <div className='size-full bg-theme-text/50 [mask:url("/svg/XMarkOutline.svg")] group-hover:bg-theme-text group-active:bg-theme-text' />
@@ -38,29 +38,25 @@ const HamburgerMenu = () => {
                     <hr className="border-1 border-dashed opacity-10" />
 
                     <a href="../index.php#home-anchor-spielplatzbau" className="w-full no-underline">
-                        <h6 className="my-0 bg-theme-dunkelgruen/50 px-1 text-right text-neutral-600 active:bg-theme-dunkelgruen active:text-white">
-                            Spielplatzbau
-                        </h6>
+                        <h6 className="my-0 bg-theme-dunkelgruen pr-1 pl-6 text-right text-white active:bg-theme-dunkelgruen/50">Spielplatzbau</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
 
                     <a href="../index.php#home-anchor-galabau" className="w-full no-underline">
-                        <h6 className="my-0 bg-theme-weinrot/50 px-1 text-right text-neutral-600 active:bg-theme-weinrot active:text-white">
-                            Garten- & Landschaftsbau
-                        </h6>
+                        <h6 className="my-0 bg-theme-weinrot pr-1 pl-6 text-right text-white active:bg-theme-weinrot/50">Garten- & Landschaftsbau</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
 
                     <a href="../index.php#home-anchor-naschgarten" className="w-full no-underline">
-                        <h6 className="my-0 bg-theme-gelb/50 px-1 text-right text-neutral-600 active:bg-theme-gelb active:text-white">Naschgarten</h6>
+                        <h6 className="my-0 bg-theme-gelb pr-1 pl-6 text-right text-white active:bg-theme-gelb/50">Naschgarten</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
 
                     <a href="../index.php#home-anchor-workshops" className="w-full no-underline">
-                        <h6 className="my-0 bg-theme-hellgruen/50 px-1 text-right text-neutral-600 active:bg-theme-hellgruen active:text-white">Workshops</h6>
+                        <h6 className="my-0 bg-theme-hellgruen pr-1 pl-6 text-right text-white active:bg-theme-hellgruen/50">Workshops</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
