@@ -1,36 +1,6 @@
 <header
     class="sticky top-0 z-50 overflow-x-clip left-0 h-(--header-footer-height) mb-(--header-footer-margin) drop-shadow-lg drop-shadow-black/20">
-    <!-- Hamburger Menu -->
-    <div class="md:hidden w-full h-dvh absolute right-0 z-10 pointer-events-none">
-        <input id="input-radio-hamburger" name="input-hamburger" type="checkbox" class="peer input-clip-hidden" />
-        <label for="input-radio-hamburger"
-            class="relative peer-checked:hidden flex ml-auto mr-(--container-horizontal-margin) h-(--header-footer-height) flex-col justify-center items-start gap-y-1 w-7 cursor-pointer pointer-events-auto">
-            <div class="w-full h-1 bg-neutral-400"></div>
-            <div class="w-full h-1 bg-neutral-400"></div>
-            <div class="w-full h-1 bg-neutral-400"></div>
-        </label>
 
-        <label for="input-radio-hamburger"
-            class="relative peer-checked:flex bg-theme-background flex-col hidden pt-[calc(var(--header-footer-offset)/4)] ml-auto mr-0 px-(--container-horizontal-margin) h-full w-1/2 cursor-pointer pointer-events-auto">
-            <div class="self-end text-lg font-mono px-(--container-horizontal-margin)">X</div>
-
-            <a href="../index.php#home-anchor-spielplatzbau">
-                <h6>Spielplatzbau</h6>
-            </a>
-
-            <a href="../index.php#home-anchor-galabau">
-                <h6>Garten- & Landschaftsbau</h6>
-            </a>
-
-            <a href="../index.php#home-anchor-naschgarten">
-                <h6>Naschgarten</h6>
-            </a>
-
-            <a href="../index.php#home-anchor-workshops">
-                <h6>Workshops</h6>
-            </a>
-        </label>
-    </div>
 
     <div
         class="pt-[calc(var(--header-footer-offset)/4)] pr-(--container-horizontal-margin) -mr-2 [clip-path:var(--clip-path-angled-bottom)] flex flex-row gap-6 justify-end items-center h-full bg-white">

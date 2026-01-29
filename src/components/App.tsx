@@ -5,14 +5,30 @@ import useParseApi from '../hooks/useParseApi';
 import type { ACF_Contacts_Type, ACF_Home_Type, ACF_Leistung_Type } from '../types/types';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import { BreakpointContext } from '../lib/BreakpointContext';
+import HamburgerMenu from './HamburgerMenu';
 
 const Home = lazy(() => import('./Home'));
 const Leistungen = lazy(() => import('./Leistungen'));
 const Contact = lazy(() => import('./Contact'));
 
 const App = () => {
-    const { route, hasLoaded, apiResult } = useParseApi();
     const breakpoint = useBreakpoint();
+
+    return (
+        <BreakpointContext value={breakpoint}>
+            <HamburgerMenu />
+
+            <Suspense fallback={<LoadingMessage />}>
+                <Routes />
+            </Suspense>
+        </BreakpointContext>
+    );
+};
+
+export default App;
+
+const Routes = () => {
+    const { route, hasLoaded, apiResult } = useParseApi();
 
     if (!hasLoaded) {
         return <LoadingMessage />;
@@ -24,32 +40,12 @@ const App = () => {
 
     switch (route) {
         case 'home':
-            return (
-                <Suspense fallback={<LoadingMessage />}>
-                    <BreakpointContext value={breakpoint}>
-                        <Home homeData={apiResult as ACF_Home_Type} />
-                    </BreakpointContext>
-                </Suspense>
-            );
+            return <Home homeData={apiResult as ACF_Home_Type} />;
 
         case 'kontakt':
-            return (
-                <Suspense fallback={<LoadingMessage />}>
-                    <BreakpointContext value={breakpoint}>
-                        <Contact contactData={apiResult as ACF_Contacts_Type} />
-                    </BreakpointContext>
-                </Suspense>
-            );
+            return <Contact contactData={apiResult as ACF_Contacts_Type} />;
 
         default:
-            return (
-                <Suspense fallback={<LoadingMessage />}>
-                    <BreakpointContext value={breakpoint}>
-                        <Leistungen leistungsData={apiResult as ACF_Leistung_Type} route={route} />
-                    </BreakpointContext>
-                </Suspense>
-            );
+            return <Leistungen leistungsData={apiResult as ACF_Leistung_Type} route={route} />;
     }
 };
-
-export default App;
