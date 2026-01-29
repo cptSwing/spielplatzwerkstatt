@@ -60,7 +60,7 @@ const Leistungsbeschreibung = ({
                 }`}
             >
                 <img
-                    className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/3 -translate-y-1/3 object-cover drop-shadow-md drop-shadow-black/40"
+                    className="absolute right-0 size-(--anchored-content-image-width) translate-x-1/5 -translate-y-1/3 object-cover drop-shadow-md drop-shadow-black/40 md:translate-x-1/3"
                     alt={leistung}
                     src={imgSrc}
                 />
@@ -77,13 +77,13 @@ const Leistungsbeschreibung = ({
                         </h5>
                         <hr
                             className={classNames(
-                                '-mt-(--content-card-padding-half) w-[calc(100%-var(--anchored-content-hr-padding)+var(--content-card-padding-double))]',
+                                '-mt-(--content-card-padding-half) w-[calc(100%-var(--anchored-content-hr-padding)+var(--content-card-padding))]',
                                 hrColorClass,
                             )}
                         />
                     </div>
 
-                    <div className="text-justify text-pretty">
+                    <div className="text-pretty">
                         <div
                             className={`float-right h-[calc(var(--anchored-content-image-width)*0.5)] w-(--anchored-content-hr-padding) [shape-margin:var(--content-card-padding-double)] ${
                                 shapeOutside
@@ -112,28 +112,28 @@ const Leistungsbeschreibung = ({
 const leistungsbeschreibungenCustom = {
     spielplatzbau: {
         imgSrc: '../images/symbol_geraet_238x240.png',
-        anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(40)] md:[--anchored-content-image-width:--spacing(60)]',
+        anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(16)] md:[--anchored-content-image-width:--spacing(60)]',
         shapeOutside: /* tw */ '[shape-outside:polygon(30%_0%,100%_37.5%,50%_100%)]',
         headerBgClass: /* tw */ 'before:bg-theme-dunkelgruen',
         hrColorClass: /* tw */ 'text-theme-dunkelgruen',
     },
     galabau: {
         imgSrc: '../images/symbol_spaten_203x205.png',
-        anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(37)] md:[--anchored-content-image-width:--spacing(51)]',
+        anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(16)] md:[--anchored-content-image-width:--spacing(51)]',
         shapeOutside: /* tw */ '[shape-outside:polygon(14%_0%,75%_95%,27%_55%)]',
         headerBgClass: /* tw */ 'before:bg-theme-weinrot',
         hrColorClass: /* tw */ 'text-theme-weinrot',
     },
     naschgarten: {
         imgSrc: '../images/symbol_baum_211x211.png',
-        anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]',
+        anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(16)] md:[--anchored-content-image-width:--spacing(52)]',
         shapeOutside: /* tw */ '[shape-outside:polygon(10%_0%,90%_100%,50%_85%,20%_45%)]',
         headerBgClass: /* tw */ 'before:bg-theme-gelb',
         hrColorClass: /* tw */ 'text-theme-gelb',
     },
     workshops: {
         imgSrc: '../images/symbol_buch_210x213.png',
-        anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]',
+        anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(16)] md:[--anchored-content-image-width:--spacing(52)]',
         shapeOutside: /* tw */ '[shape-outside:polygon(22%_0%,100%_75%,44%_95%,34.5%_48%,26%_44%)]',
         headerBgClass: /* tw */ 'before:bg-theme-hellgruen',
         hrColorClass: /* tw */ 'text-theme-hellgruen',

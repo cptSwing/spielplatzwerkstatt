@@ -1,4 +1,4 @@
-<div class="fixed bottom-[calc(var(--header-footer-height)-var(--header-footer-offset))] right-(--container-horizontal-margin) translate-x-full z-50"
+<div class="fixed bottom-[calc(var(--header-footer-height)-var(--header-footer-offset))] right-(--container-horizontal-margin) md:translate-x-full z-50"
     <?php if ($route == 'kontakt') {
         echo 'style="display:none;"';
     } ?>

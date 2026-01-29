@@ -83,8 +83,8 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                         transitionDuration: movementOffset !== 0 ? `${transitionLength}ms` : '0ms',
                     }}
                     onTransitionEnd={handleTransitionEnd}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
+                    onTouchStart={showMenu ? handleTouchStart : undefined}
+                    onTouchMove={showMenu ? handleTouchMove : undefined}
                 >
                     {carouselImagesSlotIndices_Memo.map((slotIndex) => {
                         const imgIndex = wrapNumber(currentImageIndex + slotIndex, images.length);
@@ -163,9 +163,9 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
         const diff = touchPosition - currentTouchPosition;
 
         if (diff > 5) {
-            manuallyStartMovement_Cb('forward');
+            runSetInterval_Cb(() => manuallyStartMovement_Cb('forward'), true);
         } else if (diff < -5) {
-            manuallyStartMovement_Cb('backward');
+            runSetInterval_Cb(() => manuallyStartMovement_Cb('backward'), true);
         }
 
         cancelInterval(intervalId_Ref);

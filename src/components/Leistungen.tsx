@@ -42,7 +42,7 @@ const Leistungen = ({ leistungsData, route }: { leistungsData: ACF_Leistung_Type
     }
 
     return (
-        <main className="relative flex flex-col items-center justify-start gap-y-24" style={{ '--slug-color': slugColor }}>
+        <main className="relative flex flex-col items-center justify-start gap-y-12 md:gap-y-24" style={{ '--slug-color': slugColor }}>
             <LeistungHeader headerData={{ titel: header_text, header_bild_1, header_bild_2, header_bild_3 }} />
             <TextBlock textBlockData={banderole} />
             <InfoKarten kartenData={{ infokarte_1, infokarte_2, infokarte_3, infokarte_4, infokarte_5 }} />
