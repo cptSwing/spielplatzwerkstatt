@@ -28,14 +28,14 @@ export default InfoKarten;
 
 const InfoKarte = ({ titel, text }: { titel: string; text: string }) => {
     return (
-        <div className="element-level-1 h-40 shrink-0 basis-full overflow-hidden md:basis-1/3 lg:basis-[calc(33.333%-var(--info-karten-gap))]">
-            <div className="relative h-fit p-1 pb-2">
-                <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-theme-primary [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]" />
-                <h4 className="relative z-10 my-0 text-center text-theme-background">{titel}</h4>
+        <div className="element-level-1 h-42 shrink-0 basis-full overflow-hidden md:basis-1/3 lg:basis-[calc(33.333%-var(--info-karten-gap))]">
+            <div className="relative mb-1 h-fit p-1 pb-6">
+                <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-(--slug-color) [clip-path:var(--clip-path-angled-bottom)]" />
+                <h5 className="relative z-10 my-0 text-center text-theme-background">{titel}</h5>
             </div>
 
             <div
-                className="p-2 text-justify text-xs text-pretty"
+                className="-mt-3 p-2 pt-0 text-justify text-xs text-pretty"
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: text }}
             />

@@ -5,7 +5,7 @@ import { usePrevious } from '../hooks/usePrevious';
 import type { MutableRef } from 'preact/hooks';
 import { useWordpressImageBackground } from '../hooks/useWordpressImageBackground';
 
-const CAROUSEL_INTERVAL_MS = 5000 as const;
+const CAROUSEL_INTERVAL_MS = 10000 as const;
 
 const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: boolean }> = ({ images, displayCount = 1, showMenu = true }) => {
     const slotCount = displayCount + 2;
@@ -93,7 +93,7 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                 </div>
 
                 {/* 'Chips' */}
-                <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 flex-row items-end justify-between gap-x-2">
+                <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 flex-row items-end justify-between gap-x-2">
                     {images.map((iSrc, idx) => (
                         <div
                             key={`dot ${iSrc} ${idx}`}

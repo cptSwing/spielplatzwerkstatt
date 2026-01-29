@@ -33,7 +33,7 @@
     </div>
 
     <div
-        class="pt-[calc(var(--header-footer-offset)/4)] pl-(--container-horizontal-margin) [clip-path:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)] flex flex-row gap-6  justify-start items-center h-full bg-white">
+        class="pt-[calc(var(--header-footer-offset)/4)] pr-(--container-horizontal-margin) -mr-2 [clip-path:var(--clip-path-angled-bottom)] flex flex-row gap-6 justify-end items-center h-full bg-white">
         <!-- Desktop Menu -->
         <div class="hidden md:flex left-2 top-0  flex-row gap-6  md:justify-start items-center">
             <!-- Spielplatzbau -->
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <a class="absolute border-2  border-theme-primary-variation drop-shadow-sm drop-shadow-black/20 hover:border-theme-primary rounded-xs -mb-3 bottom-0 h-full right-(--container-horizontal-margin) -mr-2"
+    <a class="absolute border-2 border-theme-primary-variation drop-shadow-sm drop-shadow-black/20 hover:border-theme-primary rounded-xs -mb-3 bottom-0 h-full left-(--container-horizontal-margin) -ml-2"
         href="../index.php">
         <img class="size-full object-contain image-hover p-1 pr-1.5 bg-white"
             src="../images/logo_spielplatzwerkstatt_209x204.png" />

@@ -1,5 +1,5 @@
 
-<footer class="mt-(--header-footer-margin) flex h-(--header-footer-height) w-full flex-row items-center justify-between bg-theme-primary-variation px-(--container-horizontal-margin) text-theme-text [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_100%,0%_100%)]">
+<footer class="mt-(--header-footer-margin) flex h-(--header-footer-height) w-full flex-row items-center justify-between bg-theme-primary-variation px-(--container-horizontal-margin) text-theme-text [clip-path:var(--clip-path-angled-top)]">
     <p class="basis-1/3">Impressum lalala ldfsdfds lalalaaa</p>
 
     <div class="basis-1/3">

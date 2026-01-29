@@ -1,6 +1,7 @@
 import { useEffect } from 'preact/hooks';
 import type { ACF_Home_Type, ACF_Image, Leistungsbeschreibungen } from '../types/types';
 import NewsItems from './NewsItems';
+import { classNames } from 'cpts-javascript-utilities';
 
 const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     const { spielplatzbau, galabau, naschgarten, workshops, video } = homeData;
@@ -19,7 +20,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     return (
         <main className="flex flex-col items-center justify-start gap-y-48">
             <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
-                <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-full [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
+                <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-full [clip-path:var(--clip-path-angled-bottom)]">
                     <div className="absolute size-full" />
                     <video src={video.url} preload="auto" muted loop autoPlay className="size-full object-cover" />
                 </div>
@@ -49,7 +50,7 @@ const Leistungsbeschreibung = ({
     beschreibungsData: { text: string; bild: ACF_Image | false };
 }) => {
     const { text, bild } = beschreibungsData;
-    const { imgSrc, anchoredContent, shapeOutside } = leistungsbeschreibungenCustom[leistung];
+    const { imgSrc, anchoredContent, shapeOutside, headerBgClass, hrColorClass } = leistungsbeschreibungenCustom[leistung];
 
     return (
         <section id={`home-anchor-${leistung}`} className="relative w-(--container-width)">
@@ -66,10 +67,20 @@ const Leistungsbeschreibung = ({
 
                 <div className="flex flex-col flex-wrap items-start justify-start gap-(--content-card-padding-double)">
                     <div className="-mt-(--content-card-padding-half) -ml-(--content-card-padding) w-full">
-                        <h5 className="relative z-0 my-0 w-fit pr-10 pl-(--content-card-padding) text-theme-background capitalize before:absolute before:top-0 before:left-0 before:-z-10 before:size-full before:bg-theme-dunkelgruen">
+                        <h5
+                            className={classNames(
+                                'relative z-0 my-0 w-fit pr-10 pl-(--content-card-padding) text-theme-background capitalize before:absolute before:top-0 before:left-0 before:-z-10 before:size-full',
+                                headerBgClass,
+                            )}
+                        >
                             {leistung}
                         </h5>
-                        <hr className="-mt-(--content-card-padding-half) w-[calc(100%-var(--anchored-content-hr-padding)+var(--content-card-padding-double))] text-theme-dunkelgruen" />
+                        <hr
+                            className={classNames(
+                                '-mt-(--content-card-padding-half) w-[calc(100%-var(--anchored-content-hr-padding)+var(--content-card-padding-double))]',
+                                hrColorClass,
+                            )}
+                        />
                     </div>
 
                     <div className="text-justify text-pretty">
@@ -103,20 +114,28 @@ const leistungsbeschreibungenCustom = {
         imgSrc: '../images/symbol_geraet_238x240.png',
         anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(40)] md:[--anchored-content-image-width:--spacing(60)]',
         shapeOutside: /* tw */ '[shape-outside:polygon(30%_0%,100%_37.5%,50%_100%)]',
+        headerBgClass: /* tw */ 'before:bg-theme-dunkelgruen',
+        hrColorClass: /* tw */ 'text-theme-dunkelgruen',
     },
     galabau: {
         imgSrc: '../images/symbol_spaten_203x205.png',
         anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(37)] md:[--anchored-content-image-width:--spacing(51)]',
         shapeOutside: /* tw */ '[shape-outside:polygon(14%_0%,75%_95%,27%_55%)]',
+        headerBgClass: /* tw */ 'before:bg-theme-weinrot',
+        hrColorClass: /* tw */ 'text-theme-weinrot',
     },
     naschgarten: {
         imgSrc: '../images/symbol_baum_211x211.png',
         anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]',
         shapeOutside: /* tw */ '[shape-outside:polygon(10%_0%,90%_100%,50%_85%,20%_45%)]',
+        headerBgClass: /* tw */ 'before:bg-theme-gelb',
+        hrColorClass: /* tw */ 'text-theme-gelb',
     },
     workshops: {
         imgSrc: '../images/symbol_buch_210x213.png',
         anchoredContent: /* tw */ '[--anchored-content-image-width:--spacing(38)] md:[--anchored-content-image-width:--spacing(52)]',
         shapeOutside: /* tw */ '[shape-outside:polygon(22%_0%,100%_75%,44%_95%,34.5%_48%,26%_44%)]',
+        headerBgClass: /* tw */ 'before:bg-theme-hellgruen',
+        hrColorClass: /* tw */ 'text-theme-hellgruen',
     },
 };

@@ -4,8 +4,8 @@ const TextBlock = ({ textBlockData }: { textBlockData: ACF_Info_Karte }) => {
     const { titel, text } = textBlockData;
     return (
         <div className="drop-shadow-md drop-shadow-black/30">
-            <div className="element-level-1 my-(--header-footer-margin) h-auto w-dvw bg-(--slug-color) px-(--container-horizontal-margin) py-(--header-footer-offset) [clip-path:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)]">
-                <h2 className="text-left text-white">{titel}</h2>
+            <div className="element-level-1 my-(--header-footer-margin) h-auto w-dvw bg-(--slug-color) px-(--container-horizontal-margin) py-(--header-footer-offset) [clip-path:var(--clip-path-angled-full)]">
+                <h2 className="my-0 text-left leading-none text-white">{titel}</h2>
                 <div
                     className="text-justify text-pretty text-white"
                     // eslint-disable-next-line react/no-danger

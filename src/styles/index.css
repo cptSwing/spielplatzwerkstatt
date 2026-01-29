@@ -40,8 +40,10 @@
 /* "If you want to add your own default base styles for specific HTML elements, use the @layer directive to add those styles to Tailwind's base layer" */
 @layer base {
     html {
-        @apply [--header-footer-height:--spacing(21)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-offset:--spacing(6)] xl:[--header-footer-height:--spacing(28)] xl:[--header-footer-offset:--spacing(8)];
-        @apply [scroll-padding-top:calc(var(--header-footer-height)+(var(--header-footer-margin)/2))] scroll-smooth md:[scroll-padding-top:calc(var(--header-footer-height)+2*var(--header-footer-margin))];
+        @apply [--header-footer-height:--spacing(21)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-offset:--spacing(6)] xl:[--header-footer-height:--spacing(28)] xl:[--header-footer-offset:--spacing(5)];
+        @apply [scroll-padding-top:var(--scroll-padding-top-value)] scroll-smooth [--scroll-padding-top-value:calc(var(--header-footer-height)+(var(--header-footer-margin)/2))] md:[--scroll-padding-top-value:calc(var(--header-footer-height)+2*var(--header-footer-margin))];
+        /* @apply [--clip-path-angled-bottom:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)] [--clip-path-angled-full:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)] [--clip-path-angled-top:polygon(0%_var(--header-footer-offset),100%_0%,100%_100%,0%_100%)]; */
+        @apply [--clip-path-angled-bottom:polygon(0%_0%,100%_0%,100%_100%,0%_calc(100%-var(--header-footer-offset)))] [--clip-path-angled-full:polygon(0%_0%,100%_var(--header-footer-offset),100%_100%,0%_calc(100%-var(--header-footer-offset)))] [--clip-path-angled-top:polygon(0%_0%,100%_var(--header-footer-offset),100%_100%,0%_100%)];
     }
 
     body {

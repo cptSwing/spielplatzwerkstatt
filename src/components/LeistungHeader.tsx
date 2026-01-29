@@ -10,8 +10,8 @@ const LeistungHeader = ({
     const bilder = Object.values(rest).map((headerImage) => ({ ...headerImage.bild, beschreibung: headerImage.beschreibung }));
 
     return (
-        <div className="element-level-1 relative h-(--page-height-no-header-no-footer) w-(--container-width) border border-theme-primary bg-white! p-(--content-card-padding)">
-            <div className="absolute top-12 left-12 z-20 bg-(--slug-color) p-2 shadow-lg">
+        <div className="relative -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-dvw [clip-path:var(--clip-path-angled-bottom)]">
+            <div className="absolute top-[calc(var(--scroll-padding-top-value)-var(--header-footer-height)+var(--header-footer-offset))] left-(--container-horizontal-margin) z-20 bg-(--slug-color) p-2 shadow-lg">
                 <h2 className="my-0 leading-none text-white">{titel}</h2>
             </div>
 
