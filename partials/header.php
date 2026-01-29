@@ -35,7 +35,7 @@
     <div
         class="pt-[calc(var(--header-footer-offset)/4)] pr-(--container-horizontal-margin) -mr-2 [clip-path:var(--clip-path-angled-bottom)] flex flex-row gap-6 justify-end items-center h-full bg-white">
         <!-- Desktop Menu -->
-        <div class="hidden md:flex left-2 top-0  flex-row gap-6  md:justify-start items-center">
+        <div class="hidden md:flex left-2 top-0  flex-row gap-4 lg:gap-6  md:justify-start items-center">
             <!-- Spielplatzbau -->
             <div class="header-menu-item group">
                 <input id="input-radio-spielplatzbau" name="input-radio-leistungen" type="radio" class="peer input-clip-hidden" <?php if (
