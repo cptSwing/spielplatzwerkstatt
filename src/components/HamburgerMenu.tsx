@@ -37,6 +37,12 @@ const HamburgerMenu = () => {
                 <div className="mt-4 flex flex-col items-end justify-start gap-y-2 pr-0.5 font-gabarito leading-none text-nowrap">
                     <hr className="border-1 border-dashed opacity-10" />
 
+                    <a href="../index.php#home-anchor-news" className="w-full no-underline">
+                        <h6 className="my-0 bg-neutral-300 pr-1 pl-6 text-right text-white active:bg-neutral-300/50">Neuigkeiten</h6>
+                    </a>
+
+                    <hr className="border-1 border-dashed opacity-10" />
+
                     <a href="../index.php#home-anchor-spielplatzbau" className="w-full no-underline">
                         <h6 className="my-0 bg-theme-dunkelgruen pr-1 pl-6 text-right text-white active:bg-theme-dunkelgruen/50">Spielplatzbau</h6>
                     </a>

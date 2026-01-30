@@ -5,20 +5,20 @@ import useParseApi from '../hooks/useParseApi';
 import type { ACF_Contacts_Type, ACF_Home_Type, ACF_Leistung_Type } from '../types/types';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import { BreakpointContext } from '../lib/BreakpointContext';
-import HamburgerMenu from './HamburgerMenu';
 
 const Home = lazy(() => import('./Home'));
 const Leistungen = lazy(() => import('./Leistungen'));
 const Contact = lazy(() => import('./Contact'));
+const HamburgerMenu = lazy(() => import('./HamburgerMenu'));
 
 const App = () => {
     const breakpoint = useBreakpoint();
 
     return (
         <BreakpointContext value={breakpoint}>
-            <HamburgerMenu />
-
             <Suspense fallback={<LoadingMessage />}>
+                {(breakpoint === 'base' || breakpoint === 'sm') && <HamburgerMenu />}
+
                 <Routes />
             </Suspense>
         </BreakpointContext>
