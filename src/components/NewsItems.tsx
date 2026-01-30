@@ -43,7 +43,7 @@ const NewsItems = () => {
 
     return (
         <>
-            <div className="element-level-1 flex h-3/5 w-full flex-col p-(--content-card-padding-double)">
+            <div id="home-anchor-news" className="element-level-1 flex h-3/5 w-full flex-col p-(--content-card-padding-double)">
                 <div className="mb-(--content-card-padding) flex items-start justify-between">
                     <h2 className="my-0 text-left text-theme-primary-variation">Neuigkeiten:</h2>
 

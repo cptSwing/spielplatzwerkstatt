@@ -47,7 +47,7 @@
     }
 
     body {
-        @apply mx-auto w-dvw bg-theme-background bg-[url(/svg/symbole_hintergrund.svg)] [background-size:100%] [background-position:0_var(--header-footer-margin)] font-roboto text-sm font-normal text-theme-text;
+        @apply mx-auto w-dvw overflow-x-clip bg-theme-background bg-[url(/svg/symbole_hintergrund.svg)] [background-size:100%] [background-position:0_var(--header-footer-margin)] font-roboto text-sm font-normal text-theme-text;
         @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer:calc(100dvh-2*var(--header-footer-height))];
         @apply [--container-horizontal-margin:--spacing(4)] md:[--container-horizontal-margin:--spacing(16)] lg:[--container-horizontal-margin:--spacing(32)] xl:[--container-horizontal-margin:--spacing(56)] 2xl:[--container-horizontal-margin:--spacing(76)];
         @apply [--content-card-padding-double:calc(var(--content-card-padding)*2)] [--content-card-padding-half:calc(var(--content-card-padding)/2)] [--content-card-padding:--spacing(2)];

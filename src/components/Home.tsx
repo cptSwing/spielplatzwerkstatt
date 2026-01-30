@@ -21,7 +21,6 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
         <main className="flex flex-col items-center justify-start gap-y-48">
             <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
                 <div className="absolute top-0 left-0 -z-10 -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-full [clip-path:var(--clip-path-angled-bottom)]">
-                    <div className="absolute size-full" />
                     <video src={video.url} preload="auto" muted loop autoPlay className="size-full object-cover" />
                 </div>
 

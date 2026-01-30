@@ -14,7 +14,7 @@ const InfoKarten = ({
     const { infokarte_1, infokarte_2, infokarte_3, infokarte_4, infokarte_5 } = kartenData;
 
     return (
-        <div className="my-16 flex w-(--container-width) flex-wrap items-start justify-center gap-(--info-karten-gap) [--info-karten-gap:--spacing(12)]">
+        <div className="my-16 flex w-(--container-width) flex-wrap items-start justify-center gap-(--info-karten-gap) [--info-karten-gap:--spacing(8)] md:[--info-karten-gap:--spacing(6)] xl:[--info-karten-gap:--spacing(12)]">
             <InfoKarte titel={infokarte_1.titel} text={infokarte_1.text} />
             <InfoKarte titel={infokarte_2.titel} text={infokarte_2.text} />
             <InfoKarte titel={infokarte_3.titel} text={infokarte_3.text} />
