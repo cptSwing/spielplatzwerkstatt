@@ -28,17 +28,38 @@ export type ACF_Nachricht_Type = {
 };
 
 export type ACF_Contacts_Type = {
-    chef_1: ACF_Contact_Type;
-    chef_2: ACF_Contact_Type;
+    angestellter_1: ACF_Contact_Type;
+    angestellter_2: ACF_Contact_Type;
+} & ACF_Optional_Contacts_Toggles &
+    ACF_Optional_Contacts_Type;
+
+export type ACF_Optional_Contacts_Type = {
+    angestellter_3?: ACF_Contact_Type;
+    angestellter_4?: ACF_Contact_Type;
+    angestellter_5?: ACF_Contact_Type;
+    angestellter_6?: ACF_Contact_Type;
+    angestellter_7?: ACF_Contact_Type;
+    angestellter_8?: ACF_Contact_Type;
+    angestellter_9?: ACF_Contact_Type;
+};
+
+export type ACF_Optional_Contacts_Toggles = {
+    show_angestellter_3?: boolean;
+    show_angestellter_4?: boolean;
+    show_angestellter_5?: boolean;
+    show_angestellter_6?: boolean;
+    show_angestellter_7?: boolean;
+    show_angestellter_8?: boolean;
+    show_angestellter_9?: boolean;
 };
 
 export type ACF_Contact_Type = {
     name: string;
     aufgabe: string;
-    text: string;
-    bild: ACF_Image;
-    email: string;
-    telefonnummer: string;
+    text?: string;
+    bild?: ACF_Image;
+    email?: string;
+    telefonnummer?: string;
 };
 
 export type ACF_Leistungsbeschreibung_Type = {
@@ -70,7 +91,7 @@ export type ACF_Leistung_Type = {
 
 export type ACF_Header_Slider_Bild = {
     beschreibung: string;
-    bild: ACF_Image;
+    bild?: ACF_Image;
 };
 
 export type ACF_Info_Karte = {
