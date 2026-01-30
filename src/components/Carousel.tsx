@@ -176,17 +176,6 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
 
 export default Carousel;
 
-function wrapNumber(num: number, wrapAt: number) {
-    return ((num % wrapAt) + wrapAt) % wrapAt;
-}
-
-function cancelInterval(idRef: MutableRef<number | null>) {
-    if (idRef.current) {
-        clearInterval(idRef.current);
-    }
-    idRef.current = null;
-}
-
 const CarouselImage = ({
     image,
     sizeValue,
@@ -198,7 +187,7 @@ const CarouselImage = ({
 }) => {
     const imageSource = sizeValue === 'full' ? image.url : image.sizes[sizeValue];
 
-    return (
+    return imageSource ? (
         <a
             href={image.url}
             target="_blank"
@@ -211,5 +200,25 @@ const CarouselImage = ({
         >
             <span className="absolute bottom-12 left-12 bg-neutral-300/50 px-1 py-0.5">{image.beschreibung}</span>
         </a>
+    ) : (
+        <div
+            className='bg-neutral-400 [mask:url("/svg/PhotoOutline.svg")]'
+            style={{
+                width: `${imageWidthPercentage}%`,
+            }}
+        />
     );
 };
+
+/* Local Functions */
+
+function wrapNumber(num: number, wrapAt: number) {
+    return ((num % wrapAt) + wrapAt) % wrapAt;
+}
+
+function cancelInterval(idRef: MutableRef<number | null>) {
+    if (idRef.current) {
+        clearInterval(idRef.current);
+    }
+    idRef.current = null;
+}

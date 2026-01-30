@@ -4,9 +4,8 @@ import { BreakpointContext } from '../lib/BreakpointContext';
 import { useContext } from 'preact/hooks';
 
 const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
-    const { titel, beschreibung, bilder } = storyData;
-
     const breakpoint = useContext(BreakpointContext);
+    const { titel, beschreibung, bilder } = storyData;
     const imageSources = bilder ? Object.values(bilder).filter(Boolean) : [];
 
     return (
@@ -18,11 +17,17 @@ const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
                 <hr className="-mt-(--content-card-padding-half) w-full text-(--slug-color)" />
             </div>
 
-            {imageSources.length && (
-                <div className="relative h-80 w-full">
+            <div className="relative h-80 w-full">
+                {imageSources.length ? (
                     <Carousel images={imageSources} displayCount={breakpoint === 'base' ? 1 : breakpoint === 'sm' ? 2 : 3} />
-                </div>
-            )}
+                ) : (
+                    <div className="grid size-full grid-cols-1 grid-rows-1 sm:grid-cols-2 md:grid-cols-3">
+                        <div className='bg-neutral-400 [mask:url("/svg/PhotoOutline.svg")]' />
+                        <div className='bg-neutral-400 [mask:url("/svg/PhotoOutline.svg")]' />
+                        <div className='bg-neutral-400 [mask:url("/svg/PhotoOutline.svg")]' />
+                    </div>
+                )}
+            </div>
 
             <div
                 // eslint-disable-next-line react/no-danger
