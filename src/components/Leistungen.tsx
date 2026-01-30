@@ -43,7 +43,7 @@ const Leistungen = ({ leistungsData, route }: { leistungsData: ACF_Leistung_Type
 
     return (
         <main
-            className="relative flex min-h-[calc(var(--page-height-no-header-no-footer)-2*var(--header-footer-margin))] flex-col items-center justify-start gap-y-12 md:gap-y-24"
+            className="relative flex min-h-(--page-height-no-header-no-footer-without-margins) flex-col items-center justify-start gap-y-12 md:gap-y-24"
             style={{ '--slug-color': slugColor }}
         >
             <LeistungHeader headerData={{ titel: header_text, header_bild_1, header_bild_2, header_bild_3 }} />

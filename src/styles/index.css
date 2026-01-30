@@ -40,21 +40,21 @@
 /* "If you want to add your own default base styles for specific HTML elements, use the @layer directive to add those styles to Tailwind's base layer" */
 @layer base {
     html {
-        @apply [--header-footer-height:--spacing(18)] [--header-footer-margin:calc(var(--header-footer-offset)*2)] [--header-footer-offset:--spacing(3)] md:[--header-footer-offset:--spacing(4)] xl:[--header-footer-height:--spacing(28)] xl:[--header-footer-offset:--spacing(4)];
-        @apply [scroll-padding-top:var(--scroll-padding-top-value)] scroll-smooth [--scroll-padding-top-value:calc(var(--header-footer-height)+(var(--header-footer-margin)))] md:[--scroll-padding-top-value:calc(var(--header-footer-height)+2*var(--header-footer-margin))];
-        /* @apply [--clip-path-angled-bottom:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)] [--clip-path-angled-full:polygon(0%_var(--header-footer-offset),100%_0%,100%_calc(100%-var(--header-footer-offset)),0%_100%)] [--clip-path-angled-top:polygon(0%_var(--header-footer-offset),100%_0%,100%_100%,0%_100%)]; */
-        @apply [--clip-path-angled-bottom:polygon(0%_0%,100%_0%,100%_100%,0%_calc(100%-var(--header-footer-offset)))] [--clip-path-angled-full:polygon(0%_0%,100%_var(--header-footer-offset),100%_100%,0%_calc(100%-var(--header-footer-offset)))] [--clip-path-angled-top:polygon(0%_0%,100%_var(--header-footer-offset),100%_100%,0%_100%)];
+        @apply [--clip-path-angled-bottom:polygon(0%_0%,100%_0%,100%_100%,0%_calc(100%-var(--header-footer-clip-offset)))] [--clip-path-angled-full:polygon(0%_0%,100%_var(--header-footer-clip-offset),100%_100%,0%_calc(100%-var(--header-footer-clip-offset)))] [--clip-path-angled-top:polygon(0%_0%,100%_var(--header-footer-clip-offset),100%_100%,0%_100%)] [--clipped-margin-and-offset:calc(var(--header-footer-margin)+var(--header-footer-clip-offset))] [--header-footer-clip-offset:--spacing(3)] md:[--header-footer-clip-offset:--spacing(4)] xl:[--header-footer-clip-offset:--spacing(4)];
+        @apply [--header-footer-height:--spacing(18)] [--header-footer-margin:calc(var(--header-footer-clip-offset)*3)] xl:[--header-footer-height:--spacing(28)];
+        @apply [scroll-padding-top:var(--scroll-padding-top-value)] scroll-smooth [--scroll-padding-top-value:calc(var(--header-footer-height)+(var(--header-footer-margin)))] md:[--scroll-padding-top-value:calc(var(--header-footer-height)+1.5*var(--header-footer-margin))];
+        /* @apply [--clip-path-angled-bottom:polygon(0%_0%,100%_0%,100%_calc(100%-var(--header-footer-clip-offset)),0%_100%)] [--clip-path-angled-full:polygon(0%_var(--header-footer-clip-offset),100%_0%,100%_calc(100%-var(--header-footer-clip-offset)),0%_100%)] [--clip-path-angled-top:polygon(0%_var(--header-footer-clip-offset),100%_0%,100%_100%,0%_100%)]; */
     }
 
     body {
         @apply mx-auto w-dvw overflow-x-clip bg-theme-background bg-[url(/svg/symbole_hintergrund.svg)] [background-size:100%] [background-position:0_var(--header-footer-margin)] font-roboto text-sm font-normal text-theme-text;
-        @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer:calc(100dvh-2*var(--header-footer-height))];
+        @apply [--container-width:calc(100dvw-(2*var(--container-horizontal-margin)))] [--page-height-no-header-no-footer-without-margins:calc(100dvh-2*var(--header-footer-height)-2*var(--header-footer-margin))] [--page-height-no-header-no-footer:calc(100dvh-2*var(--header-footer-height))];
         @apply [--container-horizontal-margin:--spacing(4)] md:[--container-horizontal-margin:--spacing(16)] lg:[--container-horizontal-margin:--spacing(32)] xl:[--container-horizontal-margin:--spacing(56)] 2xl:[--container-horizontal-margin:--spacing(76)];
         @apply [--content-card-padding-double:calc(var(--content-card-padding)*2)] [--content-card-padding-half:calc(var(--content-card-padding)/2)] [--content-card-padding:--spacing(2)];
     }
 
     main {
-        @apply mx-auto;
+        @apply mx-auto min-h-(--page-height-no-header-no-footer-without-margins);
     }
 
     h1 {
@@ -117,7 +117,7 @@
 */
 @layer components {
     #frontend-root {
-        @apply min-h-(--page-height-no-header-no-footer) w-full;
+        @apply min-h-(--page-height-no-header-no-footer-without-margins) w-full;
     }
 
     .button {

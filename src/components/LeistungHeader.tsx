@@ -18,9 +18,9 @@ const LeistungHeader = ({
         .filter(isDefined);
 
     return (
-        <div className="relative -mt-[calc(var(--header-footer-margin)+var(--header-footer-offset))] h-[calc(var(--page-height-no-header-no-footer)+var(--header-footer-margin))] w-dvw bg-neutral-300 [clip-path:var(--clip-path-angled-full)]">
+        <div className="relative -mt-(--clipped-margin-and-offset) h-(--page-height-no-header-no-footer) w-dvw bg-neutral-300 [clip-path:var(--clip-path-angled-bottom)]">
             {titel && (
-                <div className="absolute top-[calc(var(--scroll-padding-top-value)-var(--header-footer-height)+var(--header-footer-offset))] left-(--container-horizontal-margin) z-20 bg-(--slug-color) p-2 shadow-lg">
+                <div className="absolute top-(--clipped-margin-and-offset) z-20 mx-(--container-horizontal-margin) bg-(--slug-color) p-2 shadow-lg">
                     <h2 className="my-0 leading-none text-white">{titel}</h2>
                 </div>
             )}

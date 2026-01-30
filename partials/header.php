@@ -1,7 +1,7 @@
 <header
     class="sticky top-0 z-50 w-dvw left-0 h-(--header-footer-height) mb-(--header-footer-margin) drop-shadow-lg drop-shadow-black/20">
     <div
-        class="pt-[calc(var(--header-footer-offset)/4)] w-dvw pr-(--container-horizontal-margin) -mr-2 [clip-path:var(--clip-path-angled-bottom)] flex flex-row gap-6 justify-end items-center h-full bg-white">
+        class="w-dvw pr-(--container-horizontal-margin) -mr-2 [clip-path:var(--clip-path-angled-bottom)] flex flex-row gap-6 justify-end items-center h-full bg-white">
         <!-- Desktop Menu -->
         <div class="hidden md:flex flex-row -mr-2 gap-4 lg:gap-6 justify-start items-center">
             <!-- Spielplatzbau -->

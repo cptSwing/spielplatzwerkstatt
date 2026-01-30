@@ -13,7 +13,7 @@ const Contact = ({ contactData }: { contactData: ACF_Contacts_Type }) => {
         .filter(isDefined);
 
     return (
-        <main className="relative min-h-[calc(var(--page-height-no-header-no-footer)-2*var(--header-footer-margin))] w-(--container-width)">
+        <main className="relative w-(--container-width)">
             <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:flex-row md:items-start xl:grid-cols-3">
                 {angData.map((cData, idx) => (
                     <DisplayContact key={idx + cData.name} data={cData} />
