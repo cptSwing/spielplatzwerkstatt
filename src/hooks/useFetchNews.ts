@@ -11,9 +11,7 @@ const useFetchNews = (pageNumber: number, resultsPerPage: number) => {
         setHasLoaded(false);
 
         try {
-            fetch(
-                `http://spielplatzwerkstatt.de.w020ef07.kasserver.com/cms/wp-json/wp/v2/nachricht?orderby=datum&order=desc&per_page=${resultsPerPage}&page=${pageNumber}`,
-            )
+            fetch(`https://spielplatzwerkstatt.eu/cms/wp-json/wp/v2/nachricht?orderby=datum&order=desc&per_page=${resultsPerPage}&page=${pageNumber}`)
                 .then((response) => {
                     const totalPosts = response.headers.get('X-WP-Total');
                     const totalPages = response.headers.get('X-WP-TotalPages');
