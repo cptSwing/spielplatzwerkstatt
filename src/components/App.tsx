@@ -34,7 +34,7 @@ const Routes = () => {
         return <LoadingMessage />;
     } else if (!route) {
         return <ErrorMessage message={'No route slug specified!'} />;
-    } else if (!apiResult && route !== 'home') {
+    } else if (!apiResult && route !== 'home' && route !== 'impressum') {
         return <ErrorMessage message={'No API results!'} />;
     }
 
@@ -42,10 +42,16 @@ const Routes = () => {
         case 'home':
             return <Home homeData={apiResult as ACF_Home_Type} />;
 
+        case 'spielplatzbau':
+        case 'galabau':
+        case 'naschgarten':
+        case 'workshops':
+            return <Leistungen leistungsData={apiResult as ACF_Leistung_Type} route={route} />;
+
         case 'kontakt':
             return <Contact contactData={apiResult as ACF_Contacts_Type} />;
 
         default:
-            return <Leistungen leistungsData={apiResult as ACF_Leistung_Type} route={route} />;
+            return null;
     }
 };

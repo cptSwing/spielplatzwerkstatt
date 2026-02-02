@@ -37,35 +37,39 @@ const HamburgerMenu = () => {
                 <div className="mt-4 flex flex-col items-end justify-start gap-y-2 pr-0.5 font-gabarito leading-none text-nowrap">
                     <hr className="border-1 border-dashed opacity-10" />
 
-                    <a href="../index.php#home-anchor-news" className="w-full no-underline">
+                    <a href="/index.php#home-anchor-news" className="w-full no-underline">
                         <h6 className="my-0 bg-neutral-300 pr-1 pl-6 text-right text-white active:bg-neutral-300/50">Neuigkeiten</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
 
-                    <a href="../index.php#home-anchor-spielplatzbau" className="w-full no-underline">
+                    <a href="/index.php#home-anchor-spielplatzbau" className="w-full no-underline">
                         <h6 className="my-0 bg-theme-dunkelgruen pr-1 pl-6 text-right text-white active:bg-theme-dunkelgruen/50">Spielplatzbau</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
 
-                    <a href="../index.php#home-anchor-galabau" className="w-full no-underline">
+                    <a href="/index.php#home-anchor-galabau" className="w-full no-underline">
                         <h6 className="my-0 bg-theme-weinrot pr-1 pl-6 text-right text-white active:bg-theme-weinrot/50">Garten- & Landschaftsbau</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
 
-                    <a href="../index.php#home-anchor-naschgarten" className="w-full no-underline">
+                    <a href="/index.php#home-anchor-naschgarten" className="w-full no-underline">
                         <h6 className="my-0 bg-theme-gelb pr-1 pl-6 text-right text-white active:bg-theme-gelb/50">Naschgarten</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
 
-                    <a href="../index.php#home-anchor-workshops" className="w-full no-underline">
+                    <a href="/index.php#home-anchor-workshops" className="w-full no-underline">
                         <h6 className="my-0 bg-theme-hellgruen pr-1 pl-6 text-right text-white active:bg-theme-hellgruen/50">Workshops</h6>
                     </a>
 
                     <hr className="border-1 border-dashed opacity-10" />
+
+                    <a href="/pages/impressum.php" className="w-full no-underline">
+                        <h6 className="my-0 bg-white pr-1 pl-6 text-right text-theme-text/50 active:bg-theme-background">Impressum</h6>
+                    </a>
                 </div>
             </label>
         </div>

@@ -1,10 +1,13 @@
 
-<footer class="mt-(--header-footer-margin) flex h-(--header-footer-height) w-full flex-row items-center justify-between bg-theme-primary-variation px-(--container-horizontal-margin) text-theme-text [clip-path:var(--clip-path-angled-top)]">
-    <p class="basis-1/3">Impressum lalala ldfsdfds lalalaaa</p>
+<footer class="mt-(--header-footer-margin) flex h-(--header-footer-height) w-full flex-row items-start justify-between bg-theme-primary-variation px-(--container-horizontal-margin) text-theme-text [clip-path:var(--clip-path-angled-top)]">
+    <div class="mt-(--header-footer-clip-offset)">
+        <a href="/pages/impressum.php" class="text-xs italic w-full block text-left">Impressum</a>
+        <a href="/pages/kontakt.php" class="text-xs italic w-full block text-left">Kontakt</a>
+    </div>
 
-    <div class="basis-1/3">
-        <div class="font-gabarito italic text-theme-text/50 text-center w-full mb-1">Unsere Partner:</div>
-        <div class="flex items-start justify-center gap-x-1 md:gap-x-4">
+    <div class="mt-(--header-footer-clip-offset)">
+        <div class="font-gabarito italic text-theme-text/50 text-right w-full mb-1">Unsere Partner:</div>
+        <div class="flex items-start justify-end gap-x-1 md:gap-x-4">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="size-8 md:size-10 stroke-theme-primary cursor-pointer hover:stroke-theme-text/40">
                     <path
@@ -35,11 +38,5 @@
                 </svg>
             </div>
         </div>
-    </div>
-
-    <div class="basis-1/3">
-        <a href="/pages/kontakt.php" class="w-full block text-right">
-            Kontakt
-        </a>
     </div>
 </footer>
