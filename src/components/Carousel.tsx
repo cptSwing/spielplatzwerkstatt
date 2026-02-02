@@ -1,9 +1,8 @@
 import { classNames } from 'cpts-javascript-utilities';
 import { useCallback, useEffect, useMemo, useRef, useState, type FC } from 'preact/compat';
-import type { ACF_Image, ACF_Media_Sizes } from '../types/types';
+import type { ACF_Image } from '../types/types';
 import { usePrevious } from '../hooks/usePrevious';
 import type { MutableRef } from 'preact/hooks';
-import { useWordpressImageBackground } from '../hooks/useWordpressImageBackground';
 
 const CAROUSEL_INTERVAL_MS = 10000 as const;
 
@@ -69,12 +68,10 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
         }
     }, [commitMovement_Cb, intervalLength, intervalLengthPrevious, isPaused, movementOffset, runSetInterval_Cb]);
 
-    const { ref: size_Ref, sizeValue } = useWordpressImageBackground<HTMLDivElement>(displayCount);
-
     return (
         <div className="flex size-full flex-col items-center justify-between gap-y-1">
             {/* Carousel */}
-            <div ref={size_Ref} className="relative h-full w-full overflow-hidden">
+            <div className="relative h-full w-full overflow-hidden">
                 <div
                     className="flex h-full transition-transform will-change-transform"
                     style={{
@@ -88,7 +85,7 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
                 >
                     {carouselImagesSlotIndices_Memo.map((slotIndex) => {
                         const imgIndex = wrapNumber(currentImageIndex + slotIndex, images.length);
-                        return <CarouselImage key={slotIndex} sizeValue={sizeValue} image={images[imgIndex]} imageWidthPercentage={slotWidth} />;
+                        return <CarouselImage key={slotIndex} image={images[imgIndex]} imageWidthPercentage={slotWidth} />;
                     })}
                 </div>
 
@@ -162,9 +159,9 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
         const currentTouchPosition = ev.touches[0].clientX;
         const diff = touchPosition - currentTouchPosition;
 
-        if (diff > 5) {
+        if (diff > 10) {
             runSetInterval_Cb(() => manuallyStartMovement_Cb('forward'), true);
-        } else if (diff < -5) {
+        } else if (diff < -10) {
             runSetInterval_Cb(() => manuallyStartMovement_Cb('backward'), true);
         }
 
@@ -176,18 +173,8 @@ const Carousel: FC<{ images: ACF_Image[]; displayCount?: number; showMenu?: bool
 
 export default Carousel;
 
-const CarouselImage = ({
-    image,
-    sizeValue,
-    imageWidthPercentage,
-}: {
-    image: ACF_Image;
-    sizeValue: keyof ACF_Media_Sizes | 'full';
-    imageWidthPercentage: number;
-}) => {
-    const imageSource = sizeValue === 'full' ? image.url : image.sizes[sizeValue];
-
-    return imageSource ? (
+const CarouselImage = ({ image, imageWidthPercentage }: { image: ACF_Image; imageWidthPercentage: number }) => {
+    return image ? (
         <a
             href={image.url}
             target="_blank"
@@ -195,9 +182,15 @@ const CarouselImage = ({
             className="relative block bg-cover bg-center no-underline"
             style={{
                 width: `${imageWidthPercentage}%`,
-                backgroundImage: `url("${imageSource}")`,
             }}
         >
+            <img
+                src={image.url}
+                srcSet={`${image.sizes.thumbnail} 150w, ${image.sizes.medium} 300w, ${image.sizes.large} 1024w, ${image.sizes['1536x1536']} 1536w,  ${image.sizes['2048x2048']} 2048w, ${image.url} 9999w`}
+                sizes="(width < 40rem) 95vw, (width >= 40rem) 40vw, (width >= 40rem) 30vw"
+                alt="imageSource"
+                className="size-full object-cover"
+            />
             <span className="absolute bottom-12 left-12 bg-neutral-300/50 px-1 py-0.5">{image.beschreibung}</span>
         </a>
     ) : (
