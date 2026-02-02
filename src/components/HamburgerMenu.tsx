@@ -17,20 +17,24 @@ const HamburgerMenu = () => {
             />
             <label
                 for="input-radio-hamburger"
-                className="pointer-events-auto absolute top-(--header-footer-margin) right-(--container-horizontal-margin) block flex flex-col items-start justify-center gap-y-1 peer-checked:hidden"
+                className="pointer-events-auto absolute top-[calc(var(--header-footer-height)/2)] right-(--container-horizontal-margin) block flex -translate-y-1/2 flex-col items-start justify-center gap-y-1 peer-checked:hidden"
             >
                 <div className="h-0.75 w-7 bg-theme-primary-variation" />
                 <div className="h-0.75 w-7 bg-theme-primary-variation" />
                 <div className="h-0.75 w-7 bg-theme-primary-variation" />
             </label>
 
+            {/* Full screen clickable for closing: */}
             <button className="pointer-events-none -z-50 block h-full w-full peer-checked:pointer-events-auto" onClick={() => setIsChecked(false)} />
 
             <label
                 for="input-radio-hamburger"
-                className="pointer-events-none absolute top-0 right-0 z-10 block h-full translate-x-[120%] bg-theme-background px-(--container-horizontal-margin) pt-(--header-footer-margin) shadow-level-3 transition-transform peer-checked:pointer-events-auto peer-checked:translate-x-0"
+                className="pointer-events-none absolute top-0 right-0 z-10 block h-full translate-x-[120%] bg-theme-background px-(--container-horizontal-margin) pt-[calc(var(--header-footer-height)/2)] shadow-level-3 transition-transform peer-checked:pointer-events-auto peer-checked:translate-x-0"
             >
-                <button className="group pointer-events-auto mr-0 ml-auto block size-8 rounded-full bg-neutral-200 p-1" onClick={() => setIsChecked(false)}>
+                <button
+                    className="group pointer-events-auto mr-0 ml-auto block size-8 -translate-y-1/2 rounded-full bg-neutral-200 p-1"
+                    onClick={() => setIsChecked(false)}
+                >
                     <div className='size-full bg-theme-text/50 [mask:url("/svg/XMarkOutline.svg")] group-hover:bg-theme-text group-active:bg-theme-text' />
                 </button>
 
@@ -70,6 +74,8 @@ const HamburgerMenu = () => {
                     <a href="/pages/impressum.php" className="w-full no-underline">
                         <h6 className="my-0 bg-white pr-1 pl-6 text-right text-theme-text/50 active:bg-theme-background">Impressum</h6>
                     </a>
+
+                    <hr className="border-1 border-dashed opacity-10" />
                 </div>
             </label>
         </div>
