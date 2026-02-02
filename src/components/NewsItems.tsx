@@ -43,9 +43,9 @@ const NewsItems = () => {
 
     return (
         <>
-            <div id="home-anchor-news" className="element-level-1 flex h-3/5 w-full flex-col p-(--content-card-padding-double)">
+            <div id="home-anchor-news" className="element-level-1 flex h-2/5 w-full flex-col p-(--content-card-padding-double) md:h-1/2">
                 <div className="mb-(--content-card-padding) flex items-start justify-between">
-                    <h2 className="my-0 text-left text-theme-primary-variation">Neuigkeiten:</h2>
+                    <h3 className="my-0 text-left text-theme-primary-variation">Neuigkeiten:</h3>
 
                     {/* Left / Right Buttons */}
                     {totalPages && (
@@ -104,12 +104,12 @@ const NewsItems = () => {
                                   className="element-level-2-interactive flex cursor-pointer flex-col items-start p-(--content-card-padding) text-left select-none"
                                   onClick={() => handleClick(newsItem)}
                               >
-                                  <h4 className="mt-0 mb-1 text-white">{newsItem.titel}</h4>
-                                  <h6 className="mt-0 mb-1 font-thin text-neutral-200">{newsItem.datum}</h6>
+                                  <h5 className="my-0 text-white">{newsItem.titel}</h5>
+                                  <h6 className="my-0 font-thin text-neutral-200">{newsItem.datum}</h6>
 
                                   <div className="w-full overflow-hidden">
                                       {newsItem.bild && (
-                                          <div className="mb-1">
+                                          <div className="mb-2 outline-2 -outline-offset-2 outline-theme-primary">
                                               <img src={newsItem.bild.sizes.medium} alt={`${newsItem.titel} bild`} className="w-full object-cover" />
                                           </div>
                                       )}
@@ -117,7 +117,7 @@ const NewsItems = () => {
                                       <div
                                           // eslint-disable-next-line react/no-danger
                                           dangerouslySetInnerHTML={{ __html: newsItem.text }}
-                                          className="relative overflow-hidden !text-sm text-pretty after:absolute after:right-0 after:bottom-0 after:h-5 after:w-1/4 after:bg-linear-90 after:from-transparent after:to-theme-primary-variation after:to-50%"
+                                          className="relative overflow-hidden !text-xs text-pretty after:absolute after:right-0 after:bottom-0 after:h-5 after:w-1/4 after:bg-linear-90 after:from-transparent after:to-theme-primary-variation after:to-50%"
                                       />
                                   </div>
                               </button>
@@ -157,10 +157,10 @@ const NewsItems = () => {
                             <h6 className="my-0 basis-full cursor-text text-theme-primary-variation">{newsModalContent.datum}</h6>
                         </div>
 
-                        <div className="mb-(--content-card-padding-double) overflow-y-auto p-(--content-card-padding-double)">
+                        <div className="mb-(--content-card-padding-double) overflow-y-auto p-(--content-card-padding-double) pt-0">
                             {newsModalContent.bild && (
                                 <a
-                                    className="float-left mb-2 block w-full md:mr-2 md:w-2/3 lg:w-1/2"
+                                    className="float-left mb-2 block w-full rounded-xs outline-2 -outline-offset-2 outline-theme-primary md:mr-2 md:w-2/3 lg:w-1/2"
                                     href={newsModalContent.bild.url}
                                     target="_blank"
                                     rel="noreferrer"
