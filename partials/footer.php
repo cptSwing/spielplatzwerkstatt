@@ -10,11 +10,11 @@
     <div class="mt-(--header-footer-clip-offset)">
         <div class="font-gabarito italic text-theme-text/50 text-right text-xs w-full my-1">Unsere Partner:</div>
         <div class="flex items-end justify-start flex-col gap-0.5 mb-2">
-            <div class="xl:w-3/4 ml-auto mr-0 w-1/3 md:w-1/2 object-contain">
-                <img src="/images/spielplatzwerkstatt_grueber_logo_klein.png" class="w-fit max-h-8" />
+            <div class="xl:w-3/4 w-1/3 md:w-1/2 object-contain">
+                <img src="/images/spielplatzwerkstatt_grueber_logo_klein.png" class="w-fit max-h-6 ml-auto mr-0" />
             </div>
-            <div class="xl:w-3/4 ml-auto mr-0 w-1/3 md:w-1/2 object-contain">
-                <img src="/images/wamiki_logo_klein.png" class="w-fit max-h-8" />
+            <div class="xl:w-3/4 w-1/3 md:w-1/2 object-contain">
+                <img src="/images/wamiki_logo_klein.png" class="w-fit max-h-6 ml-auto mr-0" />
             </div>
         </div>
     </div>
