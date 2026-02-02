@@ -1,13 +1,7 @@
 <?php
 
-class WrapHTML
-{
-    public function __construct(
-        public string $title,
-        public string $route,
-        public ?string $queryString = null,
-        public string $lang = 'de',
-    ) {
+class WrapHTML {
+    public function __construct(public string $title, public string $route, public ?string $queryString = null, public string $lang = 'de') {
         // Start buffering page content
         ob_start();
     }
@@ -15,18 +9,15 @@ class WrapHTML
     /**
      * Renders the full HTML document and flushes output.
      */
-    public function render(): void
-    {
+    public function render(): void {
         // Page-specific content captured from output buffer
         $content = ob_get_clean();
 
         // Load API data (if any)
-        $result = $this->queryString !== null
-            ? (@file_get_contents($this->queryString) ?: '{}')
-            : '{}';
+        $result = $this->queryString !== null ? (@file_get_contents($this->queryString) ?: '{}') : '{}';
         $route = $this->route;
         $title = $this->title;
-        $lang  = $this->lang;
+        $lang = $this->lang;
 
         // Start final output
         ob_start();
@@ -62,8 +53,6 @@ class WrapHTML
 
             <script type="module" src="/src/index.tsx"></script>
         </html>
-        <?php
-
-        echo ob_get_clean();
+        <?php echo ob_get_clean();
     }
 }
