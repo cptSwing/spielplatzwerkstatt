@@ -35,7 +35,7 @@ const InfoKarte = ({ titel, text }: { titel: string; text: string }) => {
             </div>
 
             <div
-                className="max-h-48 min-h-20 p-2 pt-0 text-sm text-pretty"
+                className="max-h-48 min-h-20 p-2 pt-0 text-xs whitespace-pre-wrap"
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: text }}
             />

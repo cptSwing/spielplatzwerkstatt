@@ -12,12 +12,10 @@
                     echo 'checked="checked"';
                 } ?> 
                     />
-                <label for="input-radio-spielplatzbau" class="header-menu-item-label">
+                <label for="input-radio-spielplatzbau" class="header-menu-item-label" >
                     <a href="../index.php#home-anchor-spielplatzbau">
-                        <img alt="naschgarten" src="../images/symbol_geraet_238x240.png" <?php if ($route != 'spielplatzbau') {
-                            echo 'class="group-hover:-translate-y-0.5"';
-                        } ?> />
-                        <h6 class="my-0">Spielplatzbau</h6>
+                        <img alt="naschgarten" src="../images/symbol_geraet_238x240.png" />
+                        <h6>Spielplatzbau</h6>
                     </a>
                 </label>
             </div>
@@ -28,12 +26,10 @@
                     class="peer input-clip-hidden" <?php if ($route == 'galabau') {
                         echo 'checked="checked"';
                     } ?> />
-                <label for="input-radio-galabau" class="header-menu-item-label">
+                <label for="input-radio-galabau" class="header-menu-item-label" >
                     <a href="../index.php#home-anchor-galabau">
-                        <img alt="naschgarten" src="../images/symbol_spaten_203x205.png" <?php if ($route != 'galabau') {
-                            echo 'class="group-hover:-translate-y-0.5"';
-                        } ?> />
-                        <h6 class="my-0">Garten- & Landschaftsbau</h6>
+                        <img alt="naschgarten" src="../images/symbol_spaten_203x205.png" />
+                        <h6>Garten- & Landschaftsbau</h6>
                     </a>
                 </label>
             </div>
@@ -44,12 +40,10 @@
                     class="peer input-clip-hidden" <?php if ($route == 'naschgarten') {
                         echo 'checked="checked"';
                     } ?> />
-                <label for="input-radio-naschgarten" class="header-menu-item-label">
+                <label for="input-radio-naschgarten" class="header-menu-item-label" >
                     <a href="../index.php#home-anchor-naschgarten">
-                        <img alt="naschgarten" src="../images/symbol_baum_211x211.png" <?php if ($route != 'naschgarten') {
-                            echo 'class="group-hover:-translate-y-0.5"';
-                        } ?> />
-                        <h6 class="my-0">Naschgarten</h6>
+                        <img alt="naschgarten" src="../images/symbol_baum_211x211.png" />
+                        <h6>Naschgarten</h6>
                     </a>
                 </label>
             </div>
@@ -60,19 +54,17 @@
                     class="peer input-clip-hidden" <?php if ($route == 'workshops') {
                         echo 'checked="checked"';
                     } ?> />
-                <label for="input-radio-workshops" class="header-menu-item-label">
+                <label for="input-radio-workshops" class="header-menu-item-label" >
                     <a href="../index.php#home-anchor-workshops">
-                        <img alt="naschgarten" src="../images/symbol_buch_210x213.png" <?php if ($route != 'workshops') {
-                            echo 'class="group-hover:-translate-y-0.5"';
-                        } ?> />
-                        <h6 class="my-0">Workshops</h6>
+                        <img alt="naschgarten" src="../images/symbol_buch_210x213.png" />
+                        <h6>Workshops</h6>
                     </a>
                 </label>
             </div>
         </div>
     </div>
 
-    <a class="absolute border-2 border-theme-primary-variation drop-shadow-sm drop-shadow-black/20 hover:border-theme-primary rounded-xs -mb-3 bottom-0 h-full left-(--container-horizontal-margin) -ml-1 md:-ml-2"
+    <a class="absolute border-2 block border-theme-primary-variation drop-shadow-sm drop-shadow-black/20 hover:border-theme-accent rounded-xs -mb-3 bottom-0 h-full left-(--container-horizontal-margin) -ml-1 md:-ml-2 hover:-translate-y-0.5"
         href="../index.php">
         <img class="size-full object-contain image-hover p-1 pr-1.5 bg-white"
             src="../images/logo_spielplatzwerkstatt_209x204.png" />

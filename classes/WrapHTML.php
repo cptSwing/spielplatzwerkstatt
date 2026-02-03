@@ -1,7 +1,7 @@
 <?php
 
 class WrapHTML {
-    public function __construct(public string $title, public string $route, public ?string $queryString = null, public string $lang = 'de') {
+    public function __construct(public string $title, public string $route, public string|null $queryString = null, public string $lang = 'de') {
         // Start buffering page content
         ob_start();
     }
@@ -28,6 +28,7 @@ class WrapHTML {
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="stylesheet" href="/src/styles/index.css">
+                <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
                 <title><?= htmlspecialchars($title, ENT_QUOTES) ?></title>
             </head>
 

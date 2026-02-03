@@ -86,7 +86,7 @@
     }
 
     a {
-        @apply text-theme-link hover:underline active:underline;
+        @apply text-theme-link hover-active:underline;
     }
 
     hr {
@@ -121,17 +121,17 @@
     }
 
     .button {
-        @apply relative inline-block cursor-pointer rounded-xl bg-theme-cta py-2 pr-8 pl-2 font-gabarito text-base leading-none text-white no-underline transition-[border-color,background-color,transform] duration-75 hover:-translate-y-px hover:bg-theme-cta/90 focus:-translate-y-px;
-        @apply after:absolute after:top-1/2 after:right-2 after:size-3 after:-translate-y-1/2 after:bg-theme-accent after:transition-[background-color] after:[clip-path:polygon(0%_0%,100%_50%,0%_100%)] hover:after:bg-theme-primary-variation hover:after:duration-500;
+        @apply relative inline-block cursor-pointer rounded-xl bg-theme-cta py-2 pr-8 pl-2 font-gabarito text-base leading-none text-white no-underline transition-[border-color,background-color,transform] duration-75 focus:-translate-y-px hover-active:-translate-y-px hover-active:bg-theme-cta/90;
+        @apply after:absolute after:top-1/2 after:right-2 after:size-3 after:-translate-y-1/2 after:bg-theme-accent after:transition-[background-color] after:[clip-path:polygon(0%_0%,100%_50%,0%_100%)] hover-active:after:bg-theme-primary-variation hover-active:after:duration-500;
     }
 
     .button-cta {
-        @apply relative inline-block cursor-pointer rounded-xl bg-theme-cta py-2 pr-8 pl-2 font-gabarito text-base leading-none text-white no-underline transition-[border-color,background-color,transform] duration-75 hover:-translate-y-px hover:bg-theme-cta/90 focus:-translate-y-px;
-        @apply after:absolute after:top-1/2 after:right-2 after:size-3 after:-translate-y-1/2 after:bg-theme-accent after:transition-[background-color] after:[clip-path:polygon(0%_0%,100%_50%,0%_100%)] hover:after:bg-theme-primary-variation hover:after:duration-500;
+        @apply relative inline-block cursor-pointer rounded-xl bg-theme-cta py-2 pr-8 pl-2 font-gabarito text-base leading-none text-white no-underline transition-[border-color,background-color,transform] duration-75 focus:-translate-y-px hover-active:-translate-y-px hover-active:bg-theme-cta/90;
+        @apply after:absolute after:top-1/2 after:right-2 after:size-3 after:-translate-y-1/2 after:bg-theme-accent after:transition-[background-color] after:[clip-path:polygon(0%_0%,100%_50%,0%_100%)] hover-active:after:bg-theme-primary-variation hover-active:after:duration-500;
     }
 
     .floating-button {
-        @apply relative inline-block cursor-pointer rounded-full bg-theme-cta/95 px-2 py-1.5 font-gabarito text-base text-white no-underline shadow-level-3 shadow-black/20 outline-2 outline-offset-0 outline-theme-accent transition-[outline-color,outline-width,outline-offset,scale] hover:scale-110 hover:shadow-black/25 hover:outline-4 hover:outline-offset-4 hover:outline-theme-accent/75 focus:-translate-y-px;
+        @apply relative inline-block cursor-pointer rounded-full bg-theme-cta/95 px-2 py-1.5 font-gabarito text-base text-white no-underline shadow-level-3 shadow-black/20 outline-2 outline-offset-0 outline-theme-accent transition-[outline-color,outline-width,outline-offset,scale] focus:-translate-y-px hover-active:scale-110 hover-active:shadow-black/25 hover-active:outline-4 hover-active:outline-offset-4 hover-active:outline-theme-accent/75;
     }
 
     .element-level-1 {
@@ -140,7 +140,7 @@
 
     .element-level-2-interactive {
         @apply element-level-2;
-        @apply transition-[transform] duration-75 hover:-translate-y-px active:-translate-y-px;
+        @apply transition-[transform] duration-75 hover-active:-translate-y-px;
     }
 
     /* input[name="input-radio-leistungen"] + label  */
@@ -149,20 +149,24 @@
     }
 
     .header-menu-item-label {
-        @apply rounded-xs border border-theme-primary py-px pr-0.5 text-theme-primary-variation peer-checked:text-theme-background hover:text-theme-background hover:**:no-underline! peer-checked:hover:**:cursor-default! md:py-0 md:pr-2;
-        @apply after:absolute after:top-0 after:left-0 after:-z-10 after:h-full after:w-full after:bg-theme-background after:transition-[transform,background-color] peer-checked:after:bg-theme-primary-variation hover:after:bg-theme-primary-variation;
+        @apply relative rounded-xs border border-theme-primary bg-theme-background py-px pr-0.5 text-theme-primary-variation transition-[transform,border-color] duration-100 peer-checked:-translate-y-0.5 peer-checked:bg-theme-primary-variation peer-checked:text-theme-background md:py-0 md:pr-2 peer-not-checked:hover-active:-translate-y-0.5 peer-not-checked:hover-active:border-theme-accent;
+        @apply after:absolute after:top-full after:left-1/2 after:-z-10 after:h-3 after:w-5 after:-translate-x-1/2 after:-translate-y-full after:bg-theme-accent after:transition-transform after:duration-100 after:[clip-path:polygon(0%_0%,50%_100%,100%_0%)] peer-checked:after:translate-y-1 hover-active:after:translate-y-1;
     }
 
     .header-menu-item-label > a {
-        @apply block flex h-5 flex-row items-center leading-none text-inherit select-none lg:h-6 xl:h-7;
+        @apply relative block flex h-5 flex-row items-center leading-none text-inherit no-underline select-none lg:h-6 xl:h-7;
     }
 
     .header-menu-item-label > a > img {
         @apply inline-block aspect-square h-full -translate-x-1/4 scale-130 object-cover;
     }
 
+    .header-menu-item-label > a > h6 {
+        @apply my-0;
+    }
+
     .image-hover {
-        @apply transition-[filter] group-hover:brightness-110 group-hover:saturate-125 hover:brightness-110 hover:saturate-125 active:brightness-110 active:saturate-125;
+        @apply transition-[filter] group-hover-active:brightness-110 group-hover-active:saturate-125 hover-active:brightness-110 hover-active:saturate-125;
     }
 
     .input-clip-hidden {
@@ -179,4 +183,13 @@
 /* Added as utility to allow it to be used in others' @apply  */
 @utility element-level-2 {
     @apply rounded-xs bg-theme-primary-variation text-theme-text shadow-level-3;
+}
+
+@custom-variant peer-not-checked (.peer:not(:checked) ~ &);
+
+@custom-variant hover-active {
+    &:hover,
+    &:active {
+        @slot;
+    }
 }
