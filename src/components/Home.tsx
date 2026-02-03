@@ -22,7 +22,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
         <main className="flex flex-col items-center justify-start gap-y-48">
             <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
                 <div className="absolute top-0 left-0 -z-10 -mt-(--clipped-margin-and-offset) h-[calc(var(--page-height-no-header-no-footer-without-margins)+var(--clipped-margin-and-offset))] w-full [clip-path:var(--clip-path-angled-bottom)]">
-                    <video src={video.url} preload="auto" muted loop autoPlay className="size-full object-cover" />
+                    <video src={video.url} poster={'/images/timeline-video-poster.jpg'} muted loop autoPlay className="size-full object-cover" />
                 </div>
 
                 <div className="mx-auto flex h-full w-(--container-width) flex-col items-center justify-end">
