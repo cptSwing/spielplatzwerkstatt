@@ -145,7 +145,7 @@
 
     /* input[name="input-radio-leistungen"] + label  */
     .header-menu-item {
-        @apply relative flex flex-row items-center drop-shadow-xs drop-shadow-black/20;
+        @apply relative flex flex-row items-center;
     }
 
     .header-menu-item-label {
