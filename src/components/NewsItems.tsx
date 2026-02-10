@@ -43,9 +43,9 @@ const NewsItems = () => {
 
     return (
         <>
-            <div id="home-anchor-news" className="element-level-1 flex h-2/5 w-full flex-col p-(--content-card-padding-double) md:h-1/2">
-                <div className="mb-(--content-card-padding) flex items-start justify-between">
-                    <h3 className="my-0 text-left text-theme-primary-variation">Neuigkeiten:</h3>
+            <div id="home-anchor-news" className="element-level-1 flex h-2/5 w-full flex-col p-(--content-card-padding-double) md:h-2/5">
+                <div className="mb-1 flex items-start justify-between">
+                    <h4 className="my-0 text-left tracking-tight text-theme-primary-variation">Neuigkeiten:</h4>
 
                     {/* Left / Right Buttons */}
                     {totalPages && (
@@ -95,31 +95,31 @@ const NewsItems = () => {
                     )}
                 </div>
 
-                <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-1 gap-x-(--content-card-padding-double) md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-1 gap-x-(--content-card-padding) md:grid-cols-2 lg:grid-cols-3">
                     {newsHaveLoaded
                         ? news &&
                           news.map((newsItem) => (
                               <button
                                   key={newsItem.titel + newsItem.datum}
-                                  className="element-level-2-interactive flex cursor-pointer flex-col items-start p-(--content-card-padding) text-left select-none"
+                                  className="element-level-2-interactive relative flex cursor-pointer flex-col items-start overflow-hidden text-left select-none"
                                   onClick={() => handleClick(newsItem)}
                               >
-                                  <h5 className="my-0 text-white">{newsItem.titel}</h5>
-                                  <h6 className="my-0 font-thin text-neutral-200">{newsItem.datum}</h6>
+                                  {/* <span className="absolute right-(--content-card-padding) text-neutral-200/50">{newsItem.datum}</span> */}
+                                  <h5 className="absolute bottom-0 left-(--content-card-padding) my-0 text-white">{newsItem.titel}</h5>
 
-                                  <div className="w-full overflow-hidden">
-                                      {newsItem.bild && (
-                                          <div className="mb-2 outline-2 -outline-offset-2 outline-theme-primary">
-                                              <img src={newsItem.bild.sizes.medium} alt={`${newsItem.titel} bild`} className="w-full object-cover" />
-                                          </div>
-                                      )}
+                                  {/* <div className="w-full overflow-hidden"> */}
+                                  {newsItem.bild && (
+                                      <div className="size-full object-cover" /* outline-2 -outline-offset-2 outline-theme-primary */>
+                                          <img src={newsItem.bild.sizes.medium} alt={`${newsItem.titel} bild`} className="size-full" />
+                                      </div>
+                                  )}
 
-                                      <div
+                                  {/* <div
                                           // eslint-disable-next-line react/no-danger
                                           dangerouslySetInnerHTML={{ __html: newsItem.text }}
                                           className="relative overflow-hidden !text-xs text-pretty after:absolute after:right-0 after:bottom-0 after:h-5 after:w-1/4 after:bg-linear-90 after:from-transparent after:to-theme-primary-variation after:to-50%"
-                                      />
-                                  </div>
+                                      /> */}
+                                  {/* </div> */}
                               </button>
                           ))
                         : Array.from({ length: newsItemsPerPage }, (_, idx) => (
