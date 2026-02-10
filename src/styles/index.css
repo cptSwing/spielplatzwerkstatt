@@ -95,7 +95,7 @@
 
     ol,
     ul {
-        @apply ml-6 list-outside marker:text-theme-accent;
+        @apply list-outside marker:text-theme-accent;
     }
 
     ul {
@@ -107,7 +107,7 @@
     }
 
     li {
-        @apply my-1.5;
+        @apply my-1.5 ml-6 text-left;
     }
 }
 
