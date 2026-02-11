@@ -2,14 +2,27 @@ import type { ACF_Produkt_Story } from '../types/types';
 import Carousel from './Carousel';
 import { BreakpointContext } from '../lib/BreakpointContext';
 import { useContext } from 'preact/hooks';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { classNames } from 'cpts-javascript-utilities';
 
 const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
     const breakpoint = useContext(BreakpointContext);
     const { titel, beschreibung, bilder } = storyData;
     const imageSources = bilder ? Object.values(bilder).filter(Boolean) : [];
 
+    const { isIntersecting, ref } = useIntersectionObserver({
+        freezeOnceVisible: true,
+        threshold: 0.5,
+    });
+
     return (
-        <div className="element-level-1 flex w-(--container-width) flex-col items-start justify-start gap-(--content-card-padding-double) border-(--slug-color) p-(--content-card-padding) md:p-(--content-card-padding-double)">
+        <div
+            ref={ref}
+            className={classNames(
+                'element-level-1 flex w-(--container-width) flex-col items-start justify-start gap-(--content-card-padding-double) border-(--slug-color) p-(--content-card-padding) transition-[opacity] duration-700 md:p-(--content-card-padding-double)',
+                isIntersecting ? 'opacity-100' : 'opacity-0',
+            )}
+        >
             <div className="w-full">
                 <h5 className="relative z-0 my-0 w-fit pr-10 pl-(--content-card-padding-half) text-theme-background before:absolute before:top-0 before:left-0 before:-z-10 before:size-full before:bg-(--slug-color) md:pl-(--content-card-padding)">
                     {titel}

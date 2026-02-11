@@ -1,4 +1,6 @@
+import { classNames } from 'cpts-javascript-utilities';
 import type { ACF_Info_Karte } from '../types/types';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const InfoKarten = ({
     kartenData,
@@ -27,8 +29,19 @@ const InfoKarten = ({
 export default InfoKarten;
 
 const InfoKarte = ({ titel, text }: { titel: string; text: string }) => {
+    const { isIntersecting, ref } = useIntersectionObserver({
+        freezeOnceVisible: true,
+        threshold: 0.5,
+    });
+
     return (
-        <div className="element-level-1 shrink-0 basis-full overflow-hidden border-(--slug-color) md:basis-[calc(50%-var(--info-karten-gap)/2)] lg:basis-[calc(33.333%-var(--info-karten-gap)/1.5)]">
+        <div
+            ref={ref}
+            className={classNames(
+                'element-level-1 shrink-0 basis-full overflow-hidden border-(--slug-color) transition-[opacity] duration-700 md:basis-[calc(50%-var(--info-karten-gap)/2)] lg:basis-[calc(33.333%-var(--info-karten-gap)/1.5)]',
+                isIntersecting ? 'opacity-100' : 'opacity-0',
+            )}
+        >
             <div className="relative mb-1 p-1 pb-3 md:pb-6">
                 <div className="absolute top-0 -left-px z-0 h-full w-dvw bg-(--slug-color) [clip-path:var(--clip-path-angled-bottom)]" />
                 <h5 className="relative z-10 my-0 text-center text-theme-background">{titel}</h5>

@@ -3,6 +3,7 @@ import type { ACF_Home_Type, ACF_Image, Leistungsbeschreibungen } from '../types
 import NewsItems from './NewsItems';
 import { classNames } from 'cpts-javascript-utilities';
 import { LEISTUNGEN_BESCHREIBUNGEN } from '../types/consts';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     const { spielplatzbau, galabau, naschgarten, workshops, video } = homeData;
@@ -19,9 +20,9 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     }, []);
 
     return (
-        <main className="flex flex-col items-center justify-start gap-y-48">
+        <main className="-mt-(--clipped-margin-and-offset) flex flex-col items-center justify-start gap-y-48 overflow-hidden">
             <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
-                <div className="absolute top-0 left-0 -z-10 -mt-(--clipped-margin-and-offset) size-full [clip-path:var(--clip-path-angled-bottom)]">
+                <div className="absolute top-0 left-0 -z-10 size-full [clip-path:var(--clip-path-angled-bottom)]">
                     {video.url && (
                         <video
                             src={video.url}
@@ -63,8 +64,17 @@ const Leistungsbeschreibung = ({
     const { text, bild } = beschreibungsData;
     const { name, imgSrc, anchoredContent, shapeOutside, headerBgClass, hrColorClass } = LEISTUNGEN_BESCHREIBUNGEN[leistung];
 
+    const { isIntersecting, ref } = useIntersectionObserver({
+        freezeOnceVisible: true,
+        threshold: 0.5,
+    });
+
     return (
-        <section id={`home-anchor-${leistung}`} className="relative w-(--container-width)">
+        <section
+            id={`home-anchor-${leistung}`}
+            ref={ref}
+            className={classNames('relative w-(--container-width) transition-[opacity] duration-700', isIntersecting ? 'opacity-100' : 'opacity-0')}
+        >
             <div
                 className={`element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] ${
                     anchoredContent
