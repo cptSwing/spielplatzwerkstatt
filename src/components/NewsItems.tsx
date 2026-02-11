@@ -53,7 +53,7 @@ const NewsItems = () => {
                             {/* Back (newer) */}
                             <button
                                 className={classNames(
-                                    'group size-6 rounded-full p-1 transition-[background-color] xl:size-5',
+                                    'group size-6 rounded-full p-1 transition-[background-color] xl:size-5.5',
                                     newsPage <= totalPages && newsPage > 1 ? 'cursor-pointer bg-neutral-200' : 'cursor-not-allowed bg-neutral-100',
                                 )}
                                 onClick={() => {
@@ -75,7 +75,7 @@ const NewsItems = () => {
                             {/* Forward (older) */}
                             <button
                                 className={classNames(
-                                    'group size-6 rounded-full p-1 transition-[background-color] xl:size-5',
+                                    'group size-6 rounded-full p-1 transition-[background-color] xl:size-5.5',
                                     newsPage < totalPages ? 'cursor-pointer bg-neutral-200' : 'cursor-not-allowed bg-neutral-100',
                                 )}
                                 onClick={() => {
