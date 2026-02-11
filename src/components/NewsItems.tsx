@@ -6,8 +6,9 @@ import type { TargetedKeyboardEvent } from 'preact';
 import type { ACF_Nachricht_Type } from '../types/types';
 import { LoadingSpinner } from './LoadingMessage';
 import { BreakpointContext } from '../lib/BreakpointContext';
+import type { BreakpointName } from '../hooks/useBreakpoint';
 
-const newsItemsPerBreakpoint = new Map([
+const newsItemsPerBreakpoint = new Map<BreakpointName, number>([
     ['base', 1],
     ['sm', 1],
     ['md', 2],
@@ -20,9 +21,8 @@ const NewsItems = () => {
     const breakpoint = useContext(BreakpointContext);
     const [newsItemsPerPage, setNewsItemsPerPage] = useState(1);
     useEffect(() => {
-        if (breakpoint) {
-            setNewsItemsPerPage(newsItemsPerBreakpoint.get(breakpoint)!);
-        }
+        const bp = newsItemsPerBreakpoint.get(breakpoint);
+        bp && setNewsItemsPerPage(bp);
     }, [breakpoint]);
 
     const [newsPage, setNewsPage] = useState(1);
@@ -53,7 +53,7 @@ const NewsItems = () => {
                             {/* Back (newer) */}
                             <button
                                 className={classNames(
-                                    'group size-6 rounded-full p-1 transition-[background-color]',
+                                    'group size-6 rounded-full p-1 transition-[background-color] xl:size-5',
                                     newsPage <= totalPages && newsPage > 1 ? 'cursor-pointer bg-neutral-200' : 'cursor-not-allowed bg-neutral-100',
                                 )}
                                 onClick={() => {
@@ -75,7 +75,7 @@ const NewsItems = () => {
                             {/* Forward (older) */}
                             <button
                                 className={classNames(
-                                    'group size-6 rounded-full p-1 transition-[background-color]',
+                                    'group size-6 rounded-full p-1 transition-[background-color] xl:size-5',
                                     newsPage < totalPages ? 'cursor-pointer bg-neutral-200' : 'cursor-not-allowed bg-neutral-100',
                                 )}
                                 onClick={() => {
@@ -104,22 +104,9 @@ const NewsItems = () => {
                                   className="element-level-2-interactive relative flex cursor-pointer flex-col items-start overflow-hidden text-left select-none"
                                   onClick={() => handleClick(newsItem)}
                               >
-                                  {/* <span className="absolute right-(--content-card-padding) text-neutral-200/50">{newsItem.datum}</span> */}
                                   <h5 className="absolute bottom-0 left-(--content-card-padding) my-0 text-white">{newsItem.titel}</h5>
 
-                                  {/* <div className="w-full overflow-hidden"> */}
-                                  {newsItem.bild && (
-                                      <div className="size-full object-cover" /* outline-2 -outline-offset-2 outline-theme-primary */>
-                                          <img src={newsItem.bild.sizes.medium} alt={`${newsItem.titel} bild`} className="size-full" />
-                                      </div>
-                                  )}
-
-                                  {/* <div
-                                          // eslint-disable-next-line react/no-danger
-                                          dangerouslySetInnerHTML={{ __html: newsItem.text }}
-                                          className="relative overflow-hidden !text-xs text-pretty after:absolute after:right-0 after:bottom-0 after:h-5 after:w-1/4 after:bg-linear-90 after:from-transparent after:to-theme-primary-variation after:to-50%"
-                                      /> */}
-                                  {/* </div> */}
+                                  {newsItem.bild && <img src={newsItem.bild.sizes.medium} alt={`${newsItem.titel} bild`} className="size-full object-cover" />}
                               </button>
                           ))
                         : Array.from({ length: newsItemsPerPage }, (_, idx) => (
