@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 import type { ACF_Home_Type, ACF_Image, Leistungsbeschreibungen } from '../types/types';
 import NewsItems from './NewsItems';
 import { classNames } from 'cpts-javascript-utilities';
@@ -6,7 +6,6 @@ import { LEISTUNGEN_BESCHREIBUNGEN } from '../types/consts';
 
 const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     const { spielplatzbau, galabau, naschgarten, workshops, video } = homeData;
-    const video_Ref = useRef<HTMLVideoElement | null>(null);
 
     // TODO Scrolls to <section> anchors when page is ready
     // TODO Once hydration vs full-js content is implemented, this will not be necessary
@@ -19,39 +18,22 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
         }
     }, []);
 
-    useEffect(() => {
-        if (!video_Ref.current) return;
-
-        const startVideo = () => {
-            const v = video_Ref.current!;
-            v.src = video.url;
-            v.play().catch((e) => {
-                // eslint-disable-next-line no-console
-                console.log(e);
-            });
-        };
-
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(startVideo, { timeout: 2000 });
-        } else {
-            setTimeout(startVideo, 500);
-        }
-    }, [video.url]);
-
     return (
         <main className="flex flex-col items-center justify-start gap-y-48">
             <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
-                <div className="absolute top-0 left-0 -z-10 -mt-(--clipped-margin-and-offset) h-[calc(var(--page-height-no-header-no-footer-without-margins)+var(--clipped-margin-and-offset))] w-full [clip-path:var(--clip-path-angled-bottom)]">
-                    <video
-                        ref={video_Ref}
-                        poster={'/images/timeline-video-poster.jpg'}
-                        // preload="metadata"
-                        muted
-                        loop
-                        // autoPlay
-                        className="size-full object-cover"
-                        aria-hidden="true"
-                    />
+                <div className="absolute top-0 left-0 -z-10 -mt-(--clipped-margin-and-offset) size-full [clip-path:var(--clip-path-angled-bottom)]">
+                    {video.url && (
+                        <video
+                            src={video.url}
+                            poster={video.sizes.large ? video.sizes.large : 'images/1-pixel-black.png'}
+                            playsinline
+                            muted
+                            loop
+                            autoPlay
+                            className="size-full object-cover"
+                            aria-hidden="true"
+                        />
+                    )}
                 </div>
 
                 <div className="mx-auto flex h-full w-(--container-width) flex-col items-center justify-end">

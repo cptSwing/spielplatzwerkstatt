@@ -69,9 +69,7 @@ export type ACF_Leistungsbeschreibung_Type = {
 
 export type ACF_Leistung_Type = {
     header_text: string;
-    header_bild_1: ACF_Header_Slider_Bild;
-    header_bild_2: ACF_Header_Slider_Bild;
-    header_bild_3: ACF_Header_Slider_Bild;
+    header_video: ACF_Video;
 
     banderole: ACF_Info_Karte;
 

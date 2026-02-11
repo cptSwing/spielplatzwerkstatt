@@ -1,21 +1,7 @@
-import isDefined from '../lib/isDefined';
-import type { ACF_Header_Slider_Bild } from '../types/types';
-import Carousel from './Carousel';
+import type { ACF_Video } from '../types/types';
 
-const LeistungHeader = ({
-    headerData,
-}: {
-    headerData: { titel: string; header_bild_1: ACF_Header_Slider_Bild; header_bild_2: ACF_Header_Slider_Bild; header_bild_3: ACF_Header_Slider_Bild };
-}) => {
-    const { titel, ...rest } = headerData;
-
-    const bilder = Object.values(rest)
-        .map((headerImage) => {
-            if (headerImage.bild) {
-                return { ...headerImage.bild, beschreibung: headerImage.beschreibung };
-            }
-        })
-        .filter(isDefined);
+const LeistungHeader = ({ headerData }: { headerData: { titel: string; header_video: ACF_Video } }) => {
+    const { titel, header_video } = headerData;
 
     return (
         <div className="relative -mt-(--clipped-margin-and-offset) h-(--page-height-no-header-no-footer) w-dvw bg-neutral-300 [clip-path:var(--clip-path-angled-bottom)]">
@@ -25,7 +11,18 @@ const LeistungHeader = ({
                 </div>
             )}
 
-            {bilder.length ? <Carousel images={bilder} showMenu={false} /> : null}
+            {header_video.url && (
+                <video
+                    src={header_video.url}
+                    poster={header_video.sizes.large ? header_video.sizes.large : 'images/1-pixel-black.png'}
+                    playsinline
+                    muted
+                    loop
+                    autoPlay
+                    className="size-full object-cover"
+                    aria-hidden="true"
+                />
+            )}
         </div>
     );
 };
