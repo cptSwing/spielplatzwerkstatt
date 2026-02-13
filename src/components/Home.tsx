@@ -1,13 +1,13 @@
-import { useEffect, useRef } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import type { ACF_Home_Type, ACF_Image, Leistungsbeschreibungen } from '../types/types';
 import NewsItems from './NewsItems';
 import { classNames } from 'cpts-javascript-utilities';
 import { LEISTUNGEN_BESCHREIBUNGEN } from '../types/consts';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { LoadingSpinner } from './LoadingMessage';
 
 const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     const { spielplatzbau, galabau, naschgarten, workshops, video } = homeData;
-    const video_Ref = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
         // TODO Scrolls to <section> anchors when page is ready
@@ -19,6 +19,9 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
             }
         }
     }, []);
+
+    const video_Ref = useRef<HTMLVideoElement | null>(null);
+    const [canPlay, setCanPlay] = useState(false);
 
     useEffect(() => {
         if (video_Ref.current && video.url) {
@@ -38,15 +41,26 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
                 <div className="absolute top-0 left-0 -z-10 size-full [clip-path:var(--clip-path-angled-bottom)]">
                     <video
                         ref={video_Ref}
-                        poster={video.sizes.large ? video.sizes.large : 'images/1-pixel-black.png'}
+                        poster={video.sizes.large ? video.sizes.large : '/images/1-pixel-black.png'}
                         playsinline
                         muted
                         loop
-                        preload="none"
                         autoPlay
                         className="size-full object-cover"
                         aria-hidden="true"
+                        onCanPlay={() => {
+                            setCanPlay(true);
+                        }}
                     />
+
+                    {!canPlay && (
+                        <div className="absolute top-0 left-0 flex size-full items-center justify-center text-theme-primary">
+                            <div className="relative">
+                                <LoadingSpinner />
+                                <div className='absolute size-10 -translate-y-full scale-35 animate-pulse bg-[currentColor] [mask:url("/svg/PlayOutline.svg")]' />
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="mx-auto flex h-full w-(--container-width) flex-col items-center justify-end">
