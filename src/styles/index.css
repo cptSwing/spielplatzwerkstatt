@@ -129,10 +129,6 @@
         @apply after:absolute after:top-1/2 after:right-2 after:size-3 after:-translate-y-1/2 after:bg-theme-accent after:transition-[background-color] after:[clip-path:polygon(0%_0%,100%_50%,0%_100%)] hover-active:after:bg-theme-primary-variation hover-active:after:duration-500;
     }
 
-    .floating-button {
-        @apply relative inline-block cursor-pointer rounded-full bg-theme-cta/95 px-2 py-1.5 font-gabarito text-base text-white no-underline shadow-level-3 shadow-black/20 outline-2 outline-offset-0 outline-theme-accent transition-[outline-color,outline-width,outline-offset,scale] focus:-translate-y-px hover-active:scale-110 hover-active:shadow-black/25 hover-active:outline-4 hover-active:outline-offset-4 hover-active:outline-theme-accent/75;
-    }
-
     .element-level-1 {
         @apply rounded-xs border border-theme-primary bg-white text-theme-text shadow-level-2;
     }

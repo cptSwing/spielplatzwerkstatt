@@ -47,7 +47,6 @@ class WrapHTML {
                 <?= $content ?>
 
                 <?php
-                require __DIR__ . '/../partials/floater.php';
                 require __DIR__ . '/../partials/footer.php';
                 ?>
             </body>

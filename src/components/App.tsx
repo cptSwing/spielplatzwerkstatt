@@ -5,6 +5,7 @@ import useParseApi from '../hooks/useParseApi';
 import type { ACF_Contacts_Type, ACF_Home_Type, ACF_Leistung_Type } from '../types/types';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import { BreakpointContext } from '../lib/BreakpointContext';
+import FloatingButton from './FloatingButton';
 
 const Home = lazy(() => import('./Home'));
 const Leistungen = lazy(() => import('./Leistungen'));
@@ -40,18 +41,28 @@ const Routes = () => {
 
     switch (route) {
         case 'home':
-            return <Home homeData={apiResult as ACF_Home_Type} />;
+            return (
+                <>
+                    <Home homeData={apiResult as ACF_Home_Type} />
+                    <FloatingButton />
+                </>
+            );
 
         case 'spielplatzbau':
         case 'galabau':
         case 'naschgarten':
         case 'workshops':
-            return <Leistungen leistungsData={apiResult as ACF_Leistung_Type} route={route} />;
+            return (
+                <>
+                    <Leistungen leistungsData={apiResult as ACF_Leistung_Type} route={route} />
+                    <FloatingButton />
+                </>
+            );
 
         case 'kontakt':
             return <Contact contactData={apiResult as ACF_Contacts_Type} />;
 
         default:
-            return null;
+            return <FloatingButton />;
     }
 };
