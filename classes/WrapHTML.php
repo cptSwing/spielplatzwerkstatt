@@ -46,9 +46,7 @@ class WrapHTML {
                 <!-- Further content is embedded here -->
                 <?= $content ?>
 
-                <?php
-                require __DIR__ . '/../partials/footer.php';
-                ?>
+                <?php require __DIR__ . '/../partials/footer.php'; ?>
             </body>
 
             <script type="module" src="/src/index.tsx"></script>
