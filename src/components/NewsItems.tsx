@@ -107,7 +107,14 @@ const NewsItems = () => {
                               >
                                   <h5 className="absolute bottom-0 left-(--content-card-padding) my-0 text-white">{newsItem.titel}</h5>
 
-                                  {newsItem.bild && <img src={newsItem.bild.sizes.medium} alt={`${newsItem.titel} bild`} className="size-full object-cover" />}
+                                  {newsItem.bild && (
+                                      <img
+                                          src={newsItem.bild.sizes.medium}
+                                          alt={`${newsItem.titel} bild`}
+                                          className="size-full object-cover"
+                                          fetchpriority="high"
+                                      />
+                                  )}
                               </button>
                           ))
                         : Array.from({ length: newsItemsPerPage ?? 1 }, (_, idx) => (

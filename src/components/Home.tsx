@@ -1,4 +1,4 @@
-import { useEffect } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import type { ACF_Home_Type, ACF_Image, Leistungsbeschreibungen } from '../types/types';
 import NewsItems from './NewsItems';
 import { classNames } from 'cpts-javascript-utilities';
@@ -7,10 +7,11 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     const { spielplatzbau, galabau, naschgarten, workshops, video } = homeData;
+    const video_Ref = useRef<HTMLVideoElement | null>(null);
 
-    // TODO Scrolls to <section> anchors when page is ready
-    // TODO Once hydration vs full-js content is implemented, this will not be necessary
     useEffect(() => {
+        // TODO Scrolls to <section> anchors when page is ready
+        // TODO Once hydration vs full-js content is implemented, this will not be necessary
         if (location.hash) {
             const target = document.querySelector(location.hash);
             if (target) {
@@ -19,22 +20,33 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
         }
     }, []);
 
+    useEffect(() => {
+        if (video_Ref.current && video.url) {
+            const videoElem = video_Ref.current;
+
+            const timer = setTimeout(() => {
+                videoElem.src = video.url;
+            }, 500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [video.url]);
+
     return (
         <main className="-mt-(--clipped-margin-and-offset) flex flex-col items-center justify-start gap-y-48 overflow-hidden">
             <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
                 <div className="absolute top-0 left-0 -z-10 size-full [clip-path:var(--clip-path-angled-bottom)]">
-                    {video.url && (
-                        <video
-                            src={video.url}
-                            poster={video.sizes.large ? video.sizes.large : 'images/1-pixel-black.png'}
-                            playsinline
-                            muted
-                            loop
-                            autoPlay
-                            className="size-full object-cover"
-                            aria-hidden="true"
-                        />
-                    )}
+                    <video
+                        ref={video_Ref}
+                        poster={video.sizes.large ? video.sizes.large : 'images/1-pixel-black.png'}
+                        playsinline
+                        muted
+                        loop
+                        preload="none"
+                        autoPlay
+                        className="size-full object-cover"
+                        aria-hidden="true"
+                    />
                 </div>
 
                 <div className="mx-auto flex h-full w-(--container-width) flex-col items-center justify-end">
