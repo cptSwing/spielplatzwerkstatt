@@ -19,7 +19,8 @@ const newsItemsPerBreakpoint = new Map<BreakpointName, number>([
 
 const NewsItems = () => {
     const breakpoint = useContext(BreakpointContext);
-    const [newsItemsPerPage, setNewsItemsPerPage] = useState(1);
+    const [newsItemsPerPage, setNewsItemsPerPage] = useState<number | null>(null);
+
     useEffect(() => {
         const bp = newsItemsPerBreakpoint.get(breakpoint);
         bp && setNewsItemsPerPage(bp);
@@ -109,7 +110,7 @@ const NewsItems = () => {
                                   {newsItem.bild && <img src={newsItem.bild.sizes.medium} alt={`${newsItem.titel} bild`} className="size-full object-cover" />}
                               </button>
                           ))
-                        : Array.from({ length: newsItemsPerPage }, (_, idx) => (
+                        : Array.from({ length: newsItemsPerPage ?? 1 }, (_, idx) => (
                               <div
                                   key={idx}
                                   className="flex items-center justify-center element-level-2 p-(--content-card-padding) text-theme-primary opacity-80 select-none"
