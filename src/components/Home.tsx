@@ -12,8 +12,8 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     useEffect(() => {
         // TODO Scrolls to <section> anchors when page is ready
         // TODO Once hydration vs full-js content is implemented, this will not be necessary
-        if (location.hash) {
-            const target = document.querySelector(location.hash);
+        if (window.location.hash) {
+            const target = document.querySelector(window.location.hash);
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth' });
             }
@@ -88,21 +88,32 @@ const Leistungsbeschreibung = ({
     leistung: keyof Leistungsbeschreibungen;
     beschreibungsData: { text: string; bild: ACF_Image | false };
 }) => {
+    const sectionId = `home-anchor-${leistung}`;
     const { text, bild } = beschreibungsData;
     const { name, imgSrc, anchoredContent, shapeOutside, headerBgClass, hrColorClass } = LEISTUNGEN_BESCHREIBUNGEN[leistung];
 
+    const [isTargeted, setIsTargeted] = useState(false);
+
     const { isIntersecting, ref: section_Ref } = useIntersectionObserver({
         freezeOnceVisible: true,
-        threshold: 0.1,
+        threshold: 0.05,
     });
+
+    // On mount, check if this section matches the current hash - :target pseudo selector will not work on reactively inserted DOM elements unfortunately (so does not fire on initial load)
+    useEffect(() => {
+        if (window.location.hash === `#${sectionId}`) {
+            setIsTargeted(true);
+        }
+    }, [sectionId]);
 
     return (
         <section
-            id={`home-anchor-${leistung}`}
+            id={sectionId}
             ref={section_Ref}
             className={classNames(
-                'relative w-(--container-width) transition-[translate,opacity] duration-500',
+                'relative w-(--container-width) transition-[translate,opacity] duration-500 target:translate-y-0! target:opacity-100!',
                 isIntersecting ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0',
+                isTargeted && 'translate-y-0! opacity-100!',
             )}
         >
             <div
