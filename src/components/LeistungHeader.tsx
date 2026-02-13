@@ -7,9 +7,9 @@ const LeistungHeader = ({ headerData }: { headerData: { titel: string; header_vi
     const [canPlay, setCanPlay] = useState(false);
 
     return (
-        <div className="relative -mt-(--clipped-margin-and-offset) h-(--page-height-no-header-no-footer) w-dvw bg-neutral-300 [clip-path:var(--clip-path-angled-bottom)]">
+        <div className="relative -mt-(--clipped-margin-and-offset) h-(--page-height-no-header) w-dvw bg-neutral-300 [clip-path:var(--clip-path-angled-bottom)]">
             {titel && (
-                <div className="absolute top-(--clipped-margin-and-offset) z-20 mx-(--container-horizontal-margin) bg-(--slug-color) p-2 shadow-lg">
+                <div className="animate-header-title absolute top-(--clipped-margin-and-offset) z-20 mx-(--container-horizontal-margin) bg-(--slug-color) p-2 shadow-lg">
                     <h2 className="my-0 leading-none text-white">{titel}</h2>
                 </div>
             )}

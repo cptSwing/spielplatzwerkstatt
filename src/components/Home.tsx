@@ -24,6 +24,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
     const [canPlay, setCanPlay] = useState(false);
 
     useEffect(() => {
+        // delay video loading in order for images in newsitems to display beforehand
         if (video_Ref.current && video.url) {
             const videoElem = video_Ref.current;
 
@@ -37,7 +38,7 @@ const Home = ({ homeData }: { homeData: ACF_Home_Type }) => {
 
     return (
         <main className="-mt-(--clipped-margin-and-offset) flex flex-col items-center justify-start gap-y-48 overflow-hidden">
-            <div className="relative h-(--page-height-no-header-no-footer) w-dvw">
+            <div className="relative h-(--page-height-no-header) w-dvw">
                 <div className="absolute top-0 left-0 -z-10 size-full [clip-path:var(--clip-path-angled-bottom)]">
                     <video
                         ref={video_Ref}
