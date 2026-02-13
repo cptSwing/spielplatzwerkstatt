@@ -12,15 +12,15 @@ const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
 
     const { isIntersecting, ref } = useIntersectionObserver({
         freezeOnceVisible: true,
-        threshold: 0.5,
+        threshold: 0.1,
     });
 
     return (
         <div
             ref={ref}
             className={classNames(
-                'element-level-1 flex w-(--container-width) flex-col items-start justify-start gap-(--content-card-padding-double) border-(--slug-color) p-(--content-card-padding) transition-[opacity] duration-700 md:p-(--content-card-padding-double)',
-                isIntersecting ? 'opacity-100' : 'opacity-0',
+                'element-level-1 flex w-(--container-width) flex-col items-start justify-start gap-(--content-card-padding-double) border-(--slug-color) p-(--content-card-padding) transition-[translate,opacity] duration-500 md:p-(--content-card-padding-double)',
+                isIntersecting ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0',
             )}
         >
             <div className="w-full">

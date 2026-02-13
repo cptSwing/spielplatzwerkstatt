@@ -90,16 +90,19 @@ const Leistungsbeschreibung = ({
     const { text, bild } = beschreibungsData;
     const { name, imgSrc, anchoredContent, shapeOutside, headerBgClass, hrColorClass } = LEISTUNGEN_BESCHREIBUNGEN[leistung];
 
-    const { isIntersecting, ref } = useIntersectionObserver({
+    const { isIntersecting, ref: section_Ref } = useIntersectionObserver({
         freezeOnceVisible: true,
-        threshold: 0.5,
+        threshold: 0.1,
     });
 
     return (
         <section
             id={`home-anchor-${leistung}`}
-            ref={ref}
-            className={classNames('relative w-(--container-width) transition-[opacity] duration-700', isIntersecting ? 'opacity-100' : 'opacity-0')}
+            ref={section_Ref}
+            className={classNames(
+                'relative w-(--container-width) transition-[translate,opacity] duration-500',
+                isIntersecting ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0',
+            )}
         >
             <div
                 className={`element-level-1 w-full p-(--content-card-padding-double) [--anchored-content-hr-padding:calc(var(--anchored-content-image-width)*0.666)] ${

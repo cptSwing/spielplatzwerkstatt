@@ -31,15 +31,15 @@ export default InfoKarten;
 const InfoKarte = ({ titel, text }: { titel: string; text: string }) => {
     const { isIntersecting, ref } = useIntersectionObserver({
         freezeOnceVisible: true,
-        threshold: 0.5,
+        threshold: 0.1,
     });
 
     return (
         <div
             ref={ref}
             className={classNames(
-                'element-level-1 shrink-0 basis-full overflow-hidden border-(--slug-color) transition-[opacity] duration-700 md:basis-[calc(50%-var(--info-karten-gap)/2)] lg:basis-[calc(33.333%-var(--info-karten-gap)/1.5)]',
-                isIntersecting ? 'opacity-100' : 'opacity-0',
+                'element-level-1 shrink-0 basis-full overflow-hidden border-(--slug-color) transition-[translate,opacity] duration-500 md:basis-[calc(50%-var(--info-karten-gap)/2)] lg:basis-[calc(33.333%-var(--info-karten-gap)/1.5)]',
+                isIntersecting ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0',
             )}
         >
             <div className="relative mb-1 p-1 pb-3 md:pb-6">
