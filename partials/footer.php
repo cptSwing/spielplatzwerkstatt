@@ -1,5 +1,5 @@
 
-<footer class="mt-(--header-footer-margin) flex min-h-(--header-footer-height) w-full flex-row items-center justify-center bg-theme-primary-variation px-(--container-horizontal-margin) text-theme-text/50 [clip-path:var(--clip-path-angled-top)] flex-wrap text-xs overflow-hidden">
+<footer class="mt-(--header-footer-margin) flex h-(--header-footer-height) w-full pt-(--header-footer-clip-offset) flex-row items-start justify-center bg-theme-primary-variation px-(--container-horizontal-margin) text-theme-text/50 [clip-path:var(--clip-path-angled-top)] text-xs overflow-hidden">
     <div class="md:absolute md:left-(--container-horizontal-margin) hidden md:block">
         <ul class="ml-0 list-inside">
             <li class="my-1.5"><a href="/pages/impressum.php" class="ml-px inline-block no-underline px-1 hover-active:text-theme-background hover-active:outline-theme-accent outline-1 outline-transparent outline-offset-1 duration-100  transition-[color,outline-color] <?php if (
@@ -15,17 +15,17 @@
         </ul>
     </div>
 
-    <div class="mt-(--header-footer-clip-offset)">
-        <div class="font-gabarito italic text-center text-xs w-full my-1">Unsere Partner:</div>
-        <div class="flex items-center justify-center gap-4 mb-2">
-                <a href="https://www.spielplatzwerkstatt.de" target="_blank" class="object-contain ">
-                    <img src="/images/spielplatzwerkstatt_grueber_logo_klein.png" class="w-fit max-h-6 " />
+    <div class="">
+        <div class="font-gabarito text-center text-xs w-full mb-1">Unsere Partner:</div>
+        <div class="flex items-start justify-center gap-4">
+                <a href="https://www.spielplatzwerkstatt.de" target="_blank" class="object-contain">
+                    <img src="/images/SWG.png" alt="Spielplatzwerkstatt Grüber" class="image-hover max-h-[calc(var(--header-footer-height)*0.45)] size-full" />
                 </a>
                 <a href="https://wamiki.de/" target="_blank"  class="object-contain">
-                    <img src="/images/wamiki_logo_klein.png" class="w-fit max-h-6 -translate-y-0.5" />
+                    <img src="/images/Wamiki.png" alt="Wamiki - Was mit Kindern" class="image-hover max-h-[calc(var(--header-footer-height)*0.45)] size-full" />
                 </a>
                 <a href="https://happytree.life" target="_blank"  class="object-contain">
-                    <span class="uppercase italic leading-tight">Happy Tree Berlin</span>
+                    <img src="/images/Happytree.png" alt="Happy Tree Berlin" class="image-hover max-h-[calc(var(--header-footer-height)*0.45)] size-full" />
                 </a>
         </div>
     </div>
