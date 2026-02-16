@@ -24,9 +24,9 @@ const ProduktStory = ({ storyData }: { storyData: ACF_Produkt_Story }) => {
             )}
         >
             <div className="w-full">
-                <h5 className="relative z-0 my-0 w-fit pr-10 pl-(--content-card-padding-half) text-theme-background before:absolute before:top-0 before:left-0 before:-z-10 before:size-full before:bg-(--slug-color) md:pl-(--content-card-padding)">
+                <h4 className="relative z-0 my-0 w-fit pr-10 pl-(--content-card-padding-half) text-theme-background before:absolute before:top-0 before:left-0 before:-z-10 before:size-full before:bg-(--slug-color) md:pl-(--content-card-padding)">
                     {titel}
-                </h5>
+                </h4>
                 <hr className="-mt-(--content-card-padding-half) w-full text-(--slug-color)" />
             </div>
 

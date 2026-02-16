@@ -161,7 +161,7 @@
     }
 
     .image-hover {
-        @apply transition-[filter] group-hover-active:brightness-110 group-hover-active:saturate-125 hover-active:brightness-110 hover-active:saturate-125;
+        @apply transition-[filter] hover-active:brightness-110 hover-active:saturate-125;
     }
 
     .input-clip-hidden {
@@ -195,9 +195,9 @@
 
 @keyframes slideInFromTop {
     0% {
-        transform: translateY(-200%) scaleY(0);
+        transform: translateY(-200%) scaleY(0.5);
         transform-origin: top;
-        opacity: 0.25;
+        opacity: 0.5;
     }
     100% {
         transform: translateY(0) scaleY(1);

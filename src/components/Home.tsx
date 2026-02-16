@@ -99,7 +99,7 @@ const Leistungsbeschreibung = ({
         threshold: 0.05,
     });
 
-    // On mount, check if this section matches the current hash - :target pseudo selector will not work on reactively inserted DOM elements unfortunately (so does not fire on initial load)
+    // TODO On mount, check if this section matches the current hash - :target pseudo selector will not work on reactively inserted DOM elements unfortunately (so does not fire on initial load) - should this be hydrated at some later point, I can revert to target:... classes I suppose
     useEffect(() => {
         if (window.location.hash === `#${sectionId}`) {
             setIsTargeted(true);
@@ -111,7 +111,7 @@ const Leistungsbeschreibung = ({
             id={sectionId}
             ref={section_Ref}
             className={classNames(
-                'relative w-(--container-width) transition-[translate,opacity] duration-500 target:translate-y-0! target:opacity-100!',
+                'relative w-(--container-width) transition-[translate,opacity] duration-500',
                 isIntersecting ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0',
                 isTargeted && 'translate-y-0! opacity-100!',
             )}
