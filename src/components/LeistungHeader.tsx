@@ -16,7 +16,7 @@ const LeistungHeader = ({ headerData }: { headerData: { titel: string; header_vi
 
             <video
                 src={header_video.url}
-                poster={header_video.sizes.large ? header_video.sizes.large : '/images/1-pixel-black.png'}
+                poster={header_video.sizes?.large ? header_video.sizes.large : '/images/1-pixel-black.png'}
                 playsinline
                 muted
                 loop
