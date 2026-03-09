@@ -15,7 +15,7 @@
         </ul>
     </div>
 
-    <div class="">
+    <div>
         <div class="font-gabarito text-center text-xs w-full mb-1">Unsere Partner:</div>
         <div class="flex items-start justify-center gap-4">
                 <a href="https://www.spielplatzwerkstatt.de" target="_blank" class="object-contain">
